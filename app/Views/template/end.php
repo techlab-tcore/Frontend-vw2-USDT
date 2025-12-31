@@ -2661,6 +2661,7 @@ if( logged )
         refresh = timer * 1000;
         schedule = setTimeout(function() {
             runningBigJackpot(timer);
+            triggerPendinglist();
         }, refresh);
     }
     function startRefresh()
