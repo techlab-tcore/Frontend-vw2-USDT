@@ -65,9 +65,9 @@ return [
     'bankdep3' => 'Vui lòng đảm bảo rằng bạn điền thông tin tài khoản ngân hàng chính xác để tránh mọi bất tiện & chúng tôi KHÔNG chấp nhận rút tiền của bên thứ ba.',
     'bankdep4' => 'Để thực hiện rút tiền, bạn phải đạt doanh thu 1x cho tất cả các khoản tiền gửi được thực hiện.',
 
-    'deppolicy' => 'Vì công ty sẽ phân bổ các ngân hàng khác nhau để nạp tiền cho khách hàng theo thời gian, vui lòng nhấp vào [Gửi tiền] trên trang web của chúng tôi và kiểm tra tài khoản nạp tiền mới nhất trước khi gửi tiền, sau đó nạp tiền vào tài khoản trên trang web trước, nếu bạn tìm thấy tài khoản chưa được nạp tiền vào trang web, tài khoản đó sẽ không được chấp nhận.',
+    'deppolicy' => 'Do công ty sẽ thay đổi địa chỉ nạp tiền theo từng thời điểm, vui lòng nhấp vào [Nạp tiền] trên website để kiểm tra địa chỉ nạp mới nhất trước khi chuyển tiền và gửi yêu cầu nạp tiền trên website trước. Các giao dịch chuyển vào địa chỉ chưa được đăng ký trên website sẽ không được chấp nhận.',
     'deppolicy1' => 'CHÚNG TÔI CHỈ CHẤP NHẬN CHUYỂN TIỀN NGAY LẬP TỨC, KHÔNG SỬ DỤNG CHUYỂN TIỀN GIRO/IMG.',
-    'deppolicy2' => 'Mỗi ID VWORLD2.0 xác định tên của chủ tài khoản ngân hàng và tên của chủ tài khoản ngân hàng cho mỗi lần gửi tiền và rút tiền phải giống nhau holder.',
+    'deppolicy2' => 'Mỗi ID VWORLD2.0 xác định tên của chủ tài khoản ngân hàng và tên của chủ tài khoản ngân hàng cho mỗi lần gửi và rút tiền phải là cùng một chủ tài khoản.',
     'deppolicy3' => 'Vui lòng điền [Tên của bạn] vào phần ghi chú của người nhận. Vui lòng không điền bất kỳ từ ngữ nhạy cảm nào như: VWORLD2.0, CASINO, TOPUP, v.v. và tải ảnh chụp màn hình lên biểu mẫu gửi tiền để xác minh',
     'deppolicy4' => '*** Nếu không hoàn thành các yêu cầu trên, khoản tiền gửi sẽ bị từ chối',
 
@@ -79,7 +79,7 @@ return [
     'insdep' => 'Gửi tiền lần đầu? Xin lưu ý một số lưu ý',
     'insdep1' => 'Nếu có vấn đề về việc mất đơn hàng, vui lòng thông báo cho bộ phận chăm sóc khách hàng để giải quyết.',
     'insdep2' => 'Khi thanh toán, vui lòng làm theo số tiền trong biểu đồ',
-    'insdep3' => 'Vui lòng đảm bảo sử dụng mã QR mới nhất để nạp tiền Touch NGo và hoàn tất đơn hàng trong vòng {0} phút. Công ty sẽ không chịu trách nhiệm nạp tiền bằng mã QR cũ.',
+    'insdep3' => 'Vui lòng đảm bảo sử dụng mã QR nạp tiền mới nhất và hoàn tất đơn hàng trong vòng {0} phút. Công ty sẽ không chịu trách nhiệm đối với các giao dịch nạp tiền bằng mã QR cũ.',
     'insdep4' => 'Vui lòng đảm bảo làm theo hướng dẫn của chúng tôi, nếu không công ty chúng tôi sẽ không bồi thường cho bất kỳ tổn thất nào!',
 
     'accnamenomatch' => 'Tên tài khoản của bạn không khớp với tên đầy đủ của bạn. Vui lòng liên hệ với bộ phận dịch vụ khách hàng để xác minh thêm.',

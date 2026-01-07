@@ -16,8 +16,8 @@ return [
     'currentpin' => 'Current Pin',
     'newpin' => 'New Pin',
     'gameid' => 'ID',
-    'bankoption' => 'Bank Options',
-    'bankacc' => 'Bank Account',
+    'bankoption' => 'Crypto Options',
+    'bankacc' => 'Crypto Address',
     'uploadreceipt' => 'Upload Receipt',
     'types' => 'Types',
     'startdate' => 'Start Date',
@@ -26,7 +26,7 @@ return [
     'date' => 'Date',
     'accno' => 'Account No.',
     'cryptoadd' => 'Crypto Address',
-    'accholder' => 'Account Holder',
+    'accholder' => 'Holder name',
     'primary' => 'Primary',
     'bank' => 'Bank',
     'title' => 'Title',
@@ -58,5 +58,6 @@ return [
     'gatewallet' => 'E-Wallet',
     'tacoption' => 'TAC Receive Method',
     'read' => 'read',
-    'readed' => 'readed'
+    'readed' => 'readed',
+    'bankqr' => 'Address QR'
 ];

@@ -12,6 +12,10 @@ Copyright 2022
     background-color: #FFF;
 }
 
+.majorColor{
+    color: #198754; 
+}
+
 .btn-login {
     color: #FFF;
     width: 100%;

@@ -64,13 +64,13 @@ return [
     'bankdep3' => 'Please make sure that you fill up accurate bank account details to avoid any inconveniences & using third-party withdrawal is NOT accepted by us.',
     'bankdep4' => 'To carry out withdrawal, you are required to achieve 1x turnover for all deposits made.',
 
-    'deppolicy' => 'Since the company will allocate different banks to recharge customers from time to time, please click [Deposit] on our website and check the latest recharge account before sending money, and then recharge the account on the website first, if you find an account that is not recharged to the website, it will not be accepted.',
+    'deppolicy' => 'Since the company will allocate different addresses to recharge customers from time to time, please click [Deposit] on our website and check the latest recharge account before sending money, and then recharge the account on the website first, if you find an account that is not recharged to the website, it will not be accepted.',
     'deppolicy1' => 'WE ONLY ACCEPT INSTANT TRANSFER, DO NOT USE GIRO/IMG TRANSFERS.',
-    'deppolicy2' => 'Each VWORLD2.0 ID identifies the name of a bank account holder, and the name of the bank account holder for each deposit and withdrawal must be the same holder.',
+    'deppolicy2' => 'Each VWORLD2.0 ID identifies the name of a crypto address holder, and the name of the address holder for each deposit and withdrawal must be the same holder.',
     'deppolicy3' => 'Please fill in [Your Name] in the recipient remarks. Please do not fill in any sensitive words such as: VWORLD2.0, CASINO, TOPUP, etc. and upload a screenshot to the deposit form for verification',
     'deppolicy4' => '*** If the above requirements are not completed, the deposit will be declined',
 
-    'wthpolicy' => 'Each VWORLD2.0 ID identifies the name of a bank account holder, and the name of the bank account holder for each deposit and withdrawal must be the same holder.',
+    'wthpolicy' => 'Each VWORLD2.0 ID identifies the name of a crypto address holder, and the name of the address holder for each deposit and withdrawal must be the same holder.',
     'wthpolicy1' => 'Withdrawal conditions:<br>Minimum withdrawal amount: {0}',
     'wthpolicy2' => 'All deposit amounts must be completed {0} times the turnover requirement before transfers or withdrawals can be made.',
     'wthpolicy3' => 'Withdrawal limit {1} times per day. If the number of withdrawals exceeds {1}, a {1}% fee will be charged.',
@@ -78,7 +78,7 @@ return [
     'insdep' => 'First deposit? Please note a few notes',
     'insdep1' => 'If there is an order drop problem, please notify the customer service to deal with it.',
     'insdep2' => 'When paying, please follow the amount in the chart',
-    'insdep3' => 'Please make sure to use the latest QR code for Touch NGo recharge and complete the order within {0} minutes. The company will not be responsible for recharging with old QR codes.',
+    'insdep3' => 'Please make sure to use the latest QR code for deposit and complete the order within {0} minutes. The company will not be responsible for recharging with old QR codes.',
     'insdep4' => 'Please be sure to follow our instructions, otherwise our company will not make any compensation for any loss!',
 
     'accnamenomatch' => 'Your account name is not match with your full name. Please contact customer services for further verification.',

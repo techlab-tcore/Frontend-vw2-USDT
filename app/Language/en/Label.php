@@ -98,7 +98,7 @@ return [
     'jackpot' => 'Jackpot',
     'fortunetoken' => 'Fortune Token',
     'lossrebate' => 'Loss Rebate',
-    'selectbank' => 'Select Bank',
+    'selectbank' => 'Select Crypto address',
     'from' => 'From',
     'to' => 'To',
     'createdate' => 'Created Date',
@@ -139,7 +139,7 @@ return [
     'bank' => 'Bank',
     'accno' => 'Account Number',
     'cryptoadd' => 'Crypto Address',
-    'holder' => 'Card Holder',
+    'holder' => 'Holder Name',
 
     'referrer' => 'Referrer',
     'invalidreferrer' => 'Invalid Referrer',

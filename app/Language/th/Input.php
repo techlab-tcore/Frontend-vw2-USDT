@@ -16,8 +16,8 @@ return [
     'currentpin' => 'พินปัจจุบัน',
     'newpin' => 'พินใหม่',
     'gameid' => 'ไอดี',
-    'bankoption' => 'ตัวเลือกธนาคาร',
-    'bankacc' => 'บัญชีธนาคาร',
+    'bankoption' => 'ตัวเลือกคริปโต',
+    'bankacc' => 'ที่อยู่กระเป๋าเงิน Crypto',
     'uploadreceipt' => 'อัปโหลดใบเสร็จ',
     'types' => 'ประเภท',
     'startdate' => 'วันที่เริ่มต้น',
@@ -58,5 +58,6 @@ return [
     'gatewallet' => 'กระเป๋าเงินอิเล็กทรอนิกส์',
     'tacoption' => 'วิธีการรับ TAC',
     'read' => 'อ่าน',
-    'readed' => 'อ่านแล้ว'
+    'readed' => 'อ่านแล้ว',
+    'bankqr' => 'ที่อยู่ QR'
 ];

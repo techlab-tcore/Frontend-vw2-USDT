@@ -142,7 +142,7 @@ class Sms_control extends BaseController
         $payload = [
             'type' => "2",
             'regioncode' => $this->request->getpost('params')['regioncode'],
-            'contact' => $this->request->getpost('params')['contact'],
+            'contactno' => $this->request->getpost('params')['contact'],
             'text' => $msg
             // 'text' => $this->request->getpost('params')['message']
         ];

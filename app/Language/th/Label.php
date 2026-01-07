@@ -98,7 +98,7 @@ return [
     'jackpot' => 'แจ็คพอต',
     'fortunetoken' => 'โทเค็นโชคลาภ',
     'lossrebate' => 'ส่วนลดการสูญเสีย',
-    'selectbank' => 'เลือกธนาคาร',
+    'selectbank' => 'เลือกที่อยู่ Crypto',
     'from' => 'จาก',
     'to' => 'ถึง',
     'createdate' => 'วันที่สร้าง',
@@ -138,7 +138,7 @@ return [
     'currency' => 'สกุลเงิน',
     'bank' => 'ธนาคาร',
     'accno' => 'หมายเลขบัญชี',
-    'holder' => 'ที่ใส่บัตร',
+    'holder' => 'ชื่อผู้ถือบัญชี',
 
     'referrer' => 'ผู้อ้างอิง',
     'invalidreferrer' => 'ผู้อ้างอิงไม่ถูกต้อง',

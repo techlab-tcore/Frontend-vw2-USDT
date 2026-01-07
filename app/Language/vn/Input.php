@@ -16,8 +16,8 @@ return [
     'currentpin' => 'Mã PIN hiện tại',
     'newpin' => 'Mã PIN mới',
     'gameid' => 'ID',
-    'bankoption' => 'Tùy chọn ngân hàng',
-    'bankacc' => 'Tài khoản ngân hàng',
+    'bankoption' => 'Tùy chọn tiền mã hóa',
+    'bankacc' => 'Địa chỉ ví tiền điện tử',
     'uploadreceipt' => 'Tải biên lai lên',
     'types' => 'Các loại',
     'startdate' => 'Ngày bắt đầu',
@@ -58,5 +58,6 @@ return [
     'gatewallet' => 'Ví điện tử',
     'tacoption' => 'Phương pháp nhận TAC',
     'read' => 'đọc',
-    'readed' => 'đã đọc'
+    'readed' => 'đã đọc',
+    'bankqr' => 'Địa chỉ QR'
 ];

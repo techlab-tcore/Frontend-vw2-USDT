@@ -98,7 +98,7 @@ return [
     'jackpot' => 'Giải độc đắc',
     'fortunetoken' => 'Mã thông báo may mắn',
     'lossrebate' => 'Hoàn tiền lỗ',
-    'selectbank' => 'Chọn Ngân hàng',
+    'selectbank' => 'Chọn địa chỉ tiền điện tử',
     'from' => 'Từ',
     'to' => 'Đến',
     'createdate' => 'Ngày tạo',
@@ -138,7 +138,7 @@ return [
     'currency' => 'Tiền tệ',
     'bank' => 'Ngân hàng',
     'accno' => 'Số tài khoản',
-    'holder' => 'Chủ thẻ',
+    'holder' => 'Tên chủ tài khoản',
 
     'referrer' => 'Người giới thiệu',
     'invalidreferrer' => 'Người giới thiệu không hợp lệ',

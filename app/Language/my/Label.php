@@ -98,7 +98,7 @@ return [
     'jackpot' => 'Jackpot',
     'fortunetoken' => 'Token Nasib',
     'lossrebate' => 'Rebat Kerugian',
-    'selectbank' => 'Pilih Bank',
+    'selectbank' => 'Pilih alamat Kripto',
     'from' => 'Daripada',
     'to' => 'Ke',
     'createdate' => 'Tarikh Dicipta',
@@ -138,7 +138,7 @@ return [
     'currency' => 'Mata Wang',
     'bank' => 'Bank',
     'accno' => 'Nombor Akaun',
-    'holder' => 'Pemegang Kad',
+    'holder' => 'Nama Pemegang',
 
     'referrer' => 'Perujuk',
     'invalidreferrer' => 'Perujuk Tidak Sah',

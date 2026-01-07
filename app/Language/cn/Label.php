@@ -98,7 +98,7 @@ return [
     'jackpot' => '积宝红包',
     'fortunetoken' => '幸运币',
     'lossrebate' => '输利回扣',
-    'selectbank' => '选择银行',
+    'selectbank' => '选择加密钱包地址',
     'from' => '从',
     'to' => '到',
     'createdate' => '创建日期',
@@ -138,7 +138,7 @@ return [
     'currency' => '币种',
     'bank' => '银行',
     'accno' => '户口号码',
-    'holder' => '持卡人',
+    'holder' => '持有人姓名',
 
     'referrer' => '推荐人',
     'invalidreferrer' => '无效的推荐人',

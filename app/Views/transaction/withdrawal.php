@@ -19,16 +19,18 @@
                     <figure class="bg-vw2 p-3 rounded default-card-infor">
                         <ul class="list-unstyled row g-2 m-0">
                         <li class="col-auto">
-                            <label class="d-block"><?=lang('Label.currency');?></label><h5 class="label-currency text-light m-0"></h5>
+                            <label class="d-block"><?=lang('Label.currency');?></label><h5 class="label-currency majorColor m-0"></h5>
                         </li>
                         <li class="col-auto">
-                            <label class="d-block"><?=lang('Label.bank');?></label><h5 class="label-bankName text-light m-0"></h5>
+                            <label class="d-block"><?=lang('Label.bank');?></label><h5 class="label-bankName majorColor m-0"></h5>
                         </li>
                         <li class="col-auto">
-                            <label class="d-block"><?=lang('Label.accno');?>/<?=lang('Label.cryptoadd');?></label><h5 class="label-accNo color-55vp m-0"></h5>
+                            <label class="d-block"><?=lang('Label.holder');?></label><h5 class="label-holder majorColor m-0"></h5>
                         </li>
-                        <li class="col-auto">
-                            <label class="d-block"><?=lang('Label.holder');?></label><h5 class="label-holder text-light m-0"></h5>
+                        </ul>
+                        <ul class="list-unstyled row g-2 m-0">
+                            <li class="col-auto">
+                            <label class="d-block"><?=lang('Label.cryptoadd');?></label><h5 class="label-accNo majorColor m-0"></h5>
                         </li>
                         </ul>
                     </figure>
@@ -53,7 +55,6 @@
                         <div class="col-xl-9 col-lg-9 col-md-9 col-12">
                             <small class="d-block bg-major-light text-dark p-xl-5 p-lg-5 p-md-5 p-3">
                                 <h5 class="color-major2 pb-3"><?=lang('Label.withdrawalpolicy');?></h5>
-                                <p><?=lang('Validation.wthpolicy');?></p>
                                 <p><?=lang('Validation.wthpolicy1',[100]);?></p>
                                 <p><?=lang('Validation.wthpolicy2',[1]);?></p>
                                 <p><?=lang('Validation.wthpolicy3',[1,3]);?></p>

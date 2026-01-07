@@ -88,7 +88,7 @@
                             <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.bankacc');?> <span class="text-danger">*</span></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
-                                    <div class="input-group mb-1">
+                                    <div class="input-group mb-1" hidden>
                                         <input type="text" class="form-control" name="accholder" readonly>
                                         <button class="btn btn-dark btn-copy-holder" type="button"><?=lang('Nav.copy');?></button>
                                     </div>
@@ -98,6 +98,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- <div class="row mb-3">
+                                <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.bankqr');?></label>
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-12">
+                                    <img id="bankQr" class="d-inline-block w-50" src="">
+                                </div>
+                            </div> -->
                             <div class="row mb-3 d-none">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.exchamount');?></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
@@ -134,7 +140,6 @@
                             <article class="p-4 bg-light text-dark rounded fw-light finance-condition">
                                 <h5 class="text-uppercase color-55vp pb-3"><?=lang('Label.depositpolicy');?></h5>
                                 <p><?=lang('Validation.deppolicy');?></p>
-                                <p><?=lang('Validation.deppolicy1',[10]);?></p>
                                 <p><?=lang('Validation.deppolicy2');?></p>
                                 <p><?=lang('Validation.deppolicy3');?><br><?=lang('Validation.deppolicy4');?></p>
                             </article>
@@ -250,6 +255,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const remark = this.options[idx].dataset.remark;
         const minDep = this.options[idx].dataset.mindep;
         const maxDep = this.options[idx].dataset.maxdep;
+        //const bankQr = this.options[idx].dataset.qrimg;
 
         $('.bankTransferForm [name=currency]').val(currency);
         $('.bankTransferForm [name=accholder]').val(holder);
@@ -264,6 +270,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         $('.bankTransferForm [name=amount]').attr('placeholder', "Min: "+minDep+" / "+"Max: "+maxDep);
         $('.bankMinDeposit').html(minDep);
         $('.bankMaxDeposit').html(maxDep);
+        //$("#bankQr").attr("src", bankQr);
 
         params = {};
         params['userid'] = '<?=$_SESSION['token']?>';

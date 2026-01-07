@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text bg-white"><i class="bx bxs-credit-card"></i></span>
-                        <input type="text" class="form-control" name="accno" pattern="[A-Za-z0-9]+" placeholder="<?=lang('Input.bankacc');?>/<?=lang('Input.cryptoadd');?>" required>
+                        <input type="text" class="form-control" name="accno" pattern="[A-Za-z0-9]+" placeholder="<?=lang('Input.cryptoadd');?>" required>
                     </div>
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary btn-lg"><?=lang('Nav.submit');?></button>

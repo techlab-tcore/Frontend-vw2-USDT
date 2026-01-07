@@ -16,8 +16,8 @@ return [
     'currentpin' => 'Pin បច្ចុប្បន្ន',
     'newpin' => 'Pin ថ្មី',
     'gameid' => 'ID',
-    'bankoption' => 'ជម្រើសធនាគារ',
-    'bankacc' => 'គណនីធនាគារ',
+    'bankoption' => 'ជម្រើសគ្រីបតូ',
+    'bankacc' => 'អាសយដ្ឋានកាបូបគ្រីបតូ',
     'uploadreceipt' => 'បង្កាន់ដៃផ្ទុកឡើង',
     'types' => 'ប្រភេទ',
     'startdate' => 'កាលបរិច្ឆេទចាប់ផ្តើម',
@@ -58,5 +58,6 @@ return [
     'gatewallet' => 'កាបូបអេឡិចត្រូនិច',
     'tacoption' => 'វិធីសាស្ត្រទទួល TAC',
     'read' => 'អាន',
-    'readed' => 'បានអាន'
+    'readed' => 'បានអាន',
+    'bankqr' => 'អាស័យដ្ឋាន QR'
 ];

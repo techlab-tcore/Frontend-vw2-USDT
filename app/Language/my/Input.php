@@ -16,8 +16,8 @@ return [
     'currentpin' => 'Pin Peti Keselamatan Semasa',
     'newpin' => 'Pin Peti Keselamatan Baharu',
     'gameid' => 'ID Permainan',
-    'bankoption' => 'Pilihan Bank',
-    'bankacc' => 'Akaun Bank',
+    'bankoption' => 'Pilihan Kripto',
+    'bankacc' => 'Alamat Kripto',
     'uploadreceipt' => 'Muat Naik Resit',
     'types' => 'Jenis',
     'startdate' => 'Tarikh Mula',
@@ -58,5 +58,6 @@ return [
     'gatewallet' => 'E-Wallet',
     'tacoption' => 'Kaedah Penerimaan TAC',
     'read' => 'baca',
-    'readed' => 'dibaca'
+    'readed' => 'dibaca',
+    'bankqr' => 'QR Alamat'
 ];

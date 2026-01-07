@@ -16,8 +16,8 @@ return [
     'currentpin' => '原始保险箱密码',
     'newpin' => '新保险箱密码',
     'gameid' => '游戏账号',
-    'bankoption' => '银行选项',
-    'bankacc' => '银行户口',
+    'bankoption' => '加密货币选项',
+    'bankacc' => '加密钱包地址',
     'uploadreceipt' => '上传收据',
     'types' => '种类',
     'startdate' => '开始日期',
@@ -58,5 +58,6 @@ return [
     'gatewallet' => '电子钱包',
     'tacoption' => '接受验证码渠道',
     'read' => '未读',
-    'readed' => '已读'
+    'readed' => '已读',
+    'bankqr' => '地址QR'
 ];

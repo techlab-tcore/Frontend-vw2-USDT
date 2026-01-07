@@ -98,7 +98,7 @@ return [
     'jackpot' => 'Jackpot',
     'fortunetoken' => 'Fortune Token',
     'lossrebate' => 'ការសងប្រាក់វិញ',
-    'selectbank' => 'ជ្រើសរើសធនាគារ',
+    'selectbank' => 'ជ្រើសរើសអាសយដ្ឋានគ្រីបតូ',
     'from' => 'From',
     'to' => 'To',
     'createdate' => 'កាលបរិច្ឆេទបង្កើត',
@@ -138,7 +138,7 @@ return [
     'currency' => 'រូបិយប័ណ្ណ',
     'bank' => 'ធនាគារ',
     'accno' => 'លេខគណនី',
-    'holder' => 'អ្នកកាន់កាត',
+    'holder' => 'ឈ្មោះម្ចាស់គណនី',
 
     'referrer' => 'អ្នកណែនាំ',
     'invalidreferrer' => 'មិនត្រឹមត្រូវអ្នកណែនាំ',

@@ -64,13 +64,13 @@ return [
     'bankdep3' => 'Sila pastikan anda mengisi butiran akaun bank yang tepat untuk mengelakkan sebarang kesulitan & menggunakan pengeluaran pihak ketiga TIDAK diterima oleh kami.',
     'bankdep4' => 'Untuk menjalankan pengeluaran, anda dikehendaki mencapai perolehan 1x untuk semua deposit yang dibuat.',
 
-    'deppolicy' => 'Oleh kerana syarikat akan memperuntukkan bank yang berbeza untuk mengisi semula pelanggan dari semasa ke semasa, sila klik [Deposit] di laman web kami dan semak akaun cas semula terkini sebelum menghantar wang, dan kemudian mengisi semula akaun di laman web terlebih dahulu, jika anda mencari akaun yang tidak dicas semula ke laman web, ia tidak akan diterima.',
+    'deppolicy' => 'Memandangkan syarikat akan menukar alamat deposit dari semasa ke semasa, sila klik [Deposit] di laman web kami untuk menyemak alamat deposit terkini sebelum membuat pemindahan, dan hantar permohonan deposit di laman web terlebih dahulu. Sebarang pemindahan ke alamat yang tidak didaftarkan di laman web tidak akan diterima.',
     'deppolicy1' => 'KAMI HANYA MENERIMA PEMINDAHAN SEGERA, JANGAN GUNAKAN PEMINDAHAN GIRO/IMG.',
-    'deppolicy2' => 'Setiap ID VWORLD2.0 mengenal pasti nama pemegang akaun bank, dan nama pemegang akaun bank untuk setiap deposit dan pengeluaran mestilah pemegang yang sama.',
+    'deppolicy2' => 'Setiap ID VWORLD2.0 hanya dikaitkan dengan satu nama pemegang alamat kripto. Nama pemegang alamat bagi setiap deposit dan pengeluaran mestilah sama.',
     'deppolicy3' => 'Sila isikan [Nama Anda] dalam ucapan penerima. Sila jangan mengisi sebarang perkataan sensitif seperti: VWORLD2.0, KASINO, TOPUP, dll. dan muat naik tangkapan skrin ke borang deposit untuk pengesahan',
     'deppolicy4' => '*** Jika keperluan di atas tidak selesai, deposit akan ditolak',
 
-    'wthpolicy' => 'Setiap ID VWORLD2.0 mengenal pasti nama pemegang akaun bank, dan nama pemegang akaun bank untuk setiap deposit dan pengeluaran mestilah pemegang yang sama.', 
+    'wthpolicy' => 'Setiap ID VWORLD2.0 hanya dikaitkan dengan satu nama pemegang alamat kripto. Nama pemegang alamat bagi setiap deposit dan pengeluaran mestilah sama.', 
     'wthpolicy1' => 'Syarat pengeluaran:<br>Jumlah pengeluaran minimum: {0}', 
     'wthpolicy2' => 'Semua amaun deposit mesti dilengkapkan {0} kali ganda keperluan pusing ganti sebelum pemindahan atau pengeluaran boleh dibuat.', 
     'wthpolicy3' => 'Had pengeluaran {1} kali sehari. Jika bilangan pengeluaran melebihi {1}, bayaran {1}% akan dikenakan.',
@@ -78,7 +78,7 @@ return [
     'insdep' => 'Deposit pertama? Sila ambil perhatian beberapa nota',
     'insdep1' => 'Jika terdapat masalah kejatuhan pesanan, sila maklumkan perkhidmatan pelanggan untuk menanganinya.',
     'insdep2' => 'Semasa membayar, sila ikut jumlah dalam carta',
-    'insdep3' => 'Sila pastikan anda menggunakan kod QR terkini untuk cas semula Touch NGo dan selesaikan pesanan dalam masa {0} minit. Syarikat tidak akan bertanggungjawab untuk mengecas semula dengan kod QR lama.',
+    'insdep3' => 'Sila pastikan anda menggunakan kod QR deposit yang terkini dan lengkapkan pesanan dalam tempoh {0} minit. Syarikat tidak bertanggungjawab terhadap sebarang deposit yang dibuat menggunakan kod QR lama.',
     'insdep4' => 'Sila pastikan anda mengikuti arahan kami, jika tidak, syarikat kami tidak akan membuat sebarang pampasan untuk sebarang kerugian!',
 
     'accnamenomatch' => 'Nama akaun anda tidak sepadan dengan nama penuh anda. Sila hubungi perkhidmatan pelanggan untuk pengesahan lanjut.',

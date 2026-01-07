@@ -13,7 +13,7 @@
                     <table id="bcTable" class="w-100 nowrap table table-bordered">
                         <thead class="bg-major color-major-grey">
                         <tr>
-                        <td><?=lang('Input.accno');?>/<?=lang('Input.cryptoadd');?></td>
+                        <td><?=lang('Input.cryptoadd');?></td>
                         <td><?=lang('Input.accholder');?></td>
                         <!-- <td><?//=lang('Input.status');?></td> -->
                         <td><?=lang('Input.primary');?></td>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label class="col-xl-3 col-lg-3 col-md-3 col-12 col-form-label text-dark position-relative required2"><?=lang('Input.accno');?>/<?=lang('Input.cryptoadd');?></label>
+                        <label class="col-xl-3 col-lg-3 col-md-3 col-12 col-form-label text-dark position-relative required2"><?=lang('Input.cryptoadd');?></label>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                             <input type="text" class="form-control" name="accno" pattern="[A-Za-z0-9]+" required>
                         </div>
