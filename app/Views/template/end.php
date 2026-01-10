@@ -1473,12 +1473,6 @@ function callingAll()
             // Each argument is [data, status, jqXHR]
             var combinedHtml = slotData[0] + liveData[0] + sportData[0] + kenoData[0];
 
-            combinedHtml += `<li class="col-xl-2 col-lg-2 col-md-3 col-3">
-                                <a class="d-block text-decoration-none" href="javascript:void(0);" onclick="callingPreLotto();">
-                                    <img class="d-block w-100" src="<?=base_url('assets/img/prelotto.png');?>">
-                                </a>
-                            </li>`
-
             // Inject once
             $("#grid-all").html(combinedHtml);
 

@@ -51,7 +51,7 @@
             <a class="badge rounded-pill fw-semibold px-3 py-2 d-flex justify-content-center align-items-center" data-bs-toggle="tab" data-bs-target="#casino" href="#"><?=lang('Label.casino');?></a>
             <a class="badge rounded-pill fw-semibold px-3 py-2 d-flex justify-content-center align-items-center" data-bs-toggle="tab" data-bs-target="#sport" href="#"><?=lang('Label.sport');?></a>
             <a class="badge rounded-pill fw-semibold px-3 py-2 d-flex justify-content-center align-items-center" data-bs-toggle="tab" data-bs-target="#keno" href="#"><?=lang('Label.keno');?></a>
-            <a class="badge rounded-pill fw-semibold px-3 py-2 d-flex justify-content-center align-items-center" data-bs-toggle="tab" data-bs-target="#lottery" href="#"><?=lang('Label.lottery');?></a>
+            <!-- <a class="badge rounded-pill fw-semibold px-3 py-2 d-flex justify-content-center align-items-center" data-bs-toggle="tab" data-bs-target="#lottery" href="#"><?=lang('Label.lottery');?></a> -->
             <a class="badge rounded-pill fw-semibold px-3 py-2 d-flex justify-content-center align-items-center" data-bs-toggle="tab" data-bs-target="#other" href="#"><?=lang('Label.other');?></a>
         </nav>
     </div>
@@ -77,9 +77,9 @@
             <div class="col-3">
                 <a class="badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#sport" href="#" role="tab"><?=lang('Label.sport');?></a>
             </div>
-            <div class="col-3">
+            <!-- <div class="col-3">
                 <a class="badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#lottery" href="#" role="tab"><?=lang('Label.lottery');?></a>
-            </div>
+            </div> -->
             <div class="col-3">
                 <a class="badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#keno" href="#" role="tab"><?=lang('Label.keno');?></a>
             </div>
@@ -467,10 +467,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		hotGamesShowCase('<?=$_ENV['hotGames'];?>','grid-hot');
     });
 
-    $('.btn-gameprovider a[data-bs-target="#exclusive"]').off().on('click', function(e) {
-        e.preventDefault();
-		exclusiveGamesShowCase('<?=$_ENV['exclusiveGames'];?>','grid-exclusive');
-    });
+    // $('.btn-gameprovider a[data-bs-target="#exclusive"]').off().on('click', function(e) {
+    //     e.preventDefault();
+	// 	exclusiveGamesShowCase('<?=$_ENV['exclusiveGames'];?>','grid-exclusive');
+    // });
 	// End Games
 
     // Promotion
