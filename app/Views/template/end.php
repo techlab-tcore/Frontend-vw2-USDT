@@ -592,6 +592,10 @@
 </nav>
 -->
 
+<nav class="btn-float-angpow draggable" id="btn-float-angpow">
+    <button type="button" class="angpow" onclick="jackportTrigger()"></button>
+</nav>
+
 <!-- Hidden Bar -->
 <!--
 <section class="wrap-sideToggle d-none">
@@ -623,28 +627,28 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     document.getElementsByClassName("wrap-sideToggle")[0].classList.remove('show');
                 }
             });
-        } else {
-            // if( logged )
-            // {
-            //     var $draggable = $('.draggable').draggabilly({
-            //         containment: true
-            //     });
+        } 
+        
+        if(logged){
+            var $draggable = $('.draggable').draggabilly({
+                containment: true
+            });
 
-            //     var startOrientation = $('.draggable').data('draggabilly');
-            //     startOrientation.setPosition(1380,545);
+            var startOrientation = $('.draggable').data('draggabilly');
+            startOrientation.setPosition(20,539);
 
-            //     $draggable.on('staticClick',function( event, pointer ) {
-            //         // event.stopPropagation();
-            //         // event.preventDefault();
-            //         // redeemLossRebate();
-            //     });
+            $draggable.on('staticClick',function( event, pointer ) {
+                // event.stopPropagation();
+                // event.preventDefault();
+                // redeemLossRebate();
+            });
 
-            //     window.addEventListener("orientationchange", function() {
-            //         // console.log("the orientation of the device is now " + screen.orientation.angle);
-            //         var revertOrientation = $('.draggable').data('draggabilly');
-            //         revertOrientation.setPosition(1380,545);
-            //     }, false);
-            // }
+            window.addEventListener("orientationchange", function() {
+                // console.log("the orientation of the device is now " + screen.orientation.angle);
+                var revertOrientation = $('.draggable').data('draggabilly');
+                revertOrientation.setPosition(20,539);
+            }, false);
+
         }
     });
 
@@ -2541,9 +2545,9 @@ function jackportTrigger()
 
                 $('.wrap-bigJackpot .img-bigjackpot').attr('src','<?=base_url('assets/img/jackpot/jackpot_ring.gif');?>');
             } else {
-                document.getElementsByClassName('wrap-jackpot')[0].classList.add('show');
-                $('.wrap-jackpot img').attr('src','<?=base_url('assets/img/jackpot/'.$_SESSION['lang'].'/angpow.gif');?>');
-                document.getElementsByClassName('jackpotAmount')[0].innerHTML = '<?=$_ENV['currency'];?> ' + obj.jackpotAmount;
+                swal.fire("Success!", "Congratulation! You have successfully claimed 5 USDT welcome bonus!", "success").then(()=>{
+                    document.getElementById("btn-float-angpow").classList.add("d-none");
+                });
             }
         } else if( obj.code==39 ) {
             forceUserLogout();
@@ -2589,7 +2593,10 @@ function runningBigJackpot(timer)
                 // }
             // }
 
-            if( obj.getJackpot==true )
+            if (obj.getJackpot==true && obj.type === 2 && obj.jackpotAmount === 5){
+                document.getElementById("btn-float-angpow").classList.remove("d-none");
+                document.getElementById("btn-float-angpow").style.display = "block";
+            } else if( obj.getJackpot==true )
             {
                 jackportTrigger();
             }
@@ -2611,8 +2618,12 @@ function runningJackpot()
     $.get('/user/jackpot/running-count', function(data, status) {
         const obj = JSON.parse(data);
         if( obj.code == 1 ) {
-            if( obj.type!=5 && obj.getJackpot==true ) {
-                jackportTrigger();
+            if( obj.type!=5) {
+                if(obj.getJackpot==true && obj.type === 2 && obj.jackpotAmount === 5){
+                    document.getElementById("btn-float-angpow").classList.remove("d-none");
+                } else {
+                    jackportTrigger();
+                }
             } else if( obj.type==5 && obj.getJackpot==true ) {
                 runningBigJackpot(60);
             }
@@ -2633,7 +2644,9 @@ function specialCount()
     $.get('/user/jackpot/running-big-prize', function(data, status) {
         const obj = JSON.parse(data);
         if( obj.code == 1 ) {
-            if( obj.getJackpot==true )
+            if (obj.getJackpot==true && obj.type === 2 && obj.jackpotAmount === 5) {
+                document.getElementById("btn-float-angpow").classList.remove("d-none");
+            } else if ( obj.getJackpot==true )
             {
                 jackportTrigger();
             }

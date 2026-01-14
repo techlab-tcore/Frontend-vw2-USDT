@@ -461,8 +461,8 @@ Game
 
 .draggable, .draggable-lobby {
     display: inline-block;
-	width: 50px;
-	height: 50px;
+	width: 150px;
+	height: 150px;
 	z-index: 1361;
 	/* touch-action: auto; */
     position: absolute;
@@ -956,23 +956,12 @@ Fortune Wheel
 /*
 Angpow
 */
-
-.btn-float-angpow .btn-float-close {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: url('../../assets/img/btn_close.png') no-repeat center center;
-    background-size: 100%;
-}
-
 .btn-float-angpow {
     width: 9%;
     height: 130px;
     display: inline-block;
     border-width: 0px;
     position: fixed;
-    top: 80%;
-    right: 2%;
     z-index: 1036;
 }
 
@@ -980,7 +969,7 @@ Angpow
     width: 100%;
     display: block;
     height: 100%;
-    background: url('../../assets/img/boom.gif') no-repeat top left;
+    background: url('../../assets/img/kaching.gif') no-repeat top left;
     background-size: 100%;
     border-width: 0;
 }
