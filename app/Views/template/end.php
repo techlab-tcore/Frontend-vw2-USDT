@@ -1503,25 +1503,25 @@ function callingAppGames()
     });
 }
 
-function callingLotto()
-{
-    generalLoading();
+// function callingLotto()
+// {
+//     generalLoading();
 
-    var params = {};
-    params['type'] = 5;
+//     var params = {};
+//     params['type'] = 5;
 
-    $.post('/list/lottery/games', {
-        params
-    }, function(data, status) {
-        document.getElementById("grid-lottery").innerHTML = data;
-    })
-    .done(function() {
-        swal.close();
-    })
-    .fail(function() {
-        swal.fire("Error!", "Oopss! There are something wrong. Please try again later.", "error");
-    });
-}
+//     $.post('/list/lottery/games', {
+//         params
+//     }, function(data, status) {
+//         document.getElementById("grid-lottery").innerHTML = data;
+//     })
+//     .done(function() {
+//         swal.close();
+//     })
+//     .fail(function() {
+//         swal.fire("Error!", "Oopss! There are something wrong. Please try again later.", "error");
+//     });
+// }
 
 function callingKeno()
 {

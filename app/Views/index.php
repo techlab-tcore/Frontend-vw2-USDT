@@ -69,23 +69,23 @@
                 <a class="badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#exclusive" href="#" role="tab"><?=lang('Label.exclusive');?></a>
             </div>
             <div class="col-3">
-                <a class="badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#slot" href="#" role="tab"><?=lang('Label.slot');?></a>
-            </div>
-            <div class="col-3">
-                <a class="badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#casino" href="#" role="tab"><?=lang('Label.casino');?></a>
-            </div>
-            <div class="col-3">
-                <a class="badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#sport" href="#" role="tab"><?=lang('Label.sport');?></a>
-            </div>
-            <!-- <div class="col-3">
-                <a class="badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#lottery" href="#" role="tab"><?=lang('Label.lottery');?></a>
-            </div> -->
-            <div class="col-3">
                 <a class="badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#keno" href="#" role="tab"><?=lang('Label.keno');?></a>
             </div>
             <div class="col-3">
                 <a class="badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#other" href="#" role="tab"><?=lang('Label.other');?></a>
             </div>
+            <div class="col-4">
+                <a class="badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#slot" href="#" role="tab"><?=lang('Label.slot');?></a>
+            </div>
+            <div class="col-4">
+                <a class="badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#casino" href="#" role="tab"><?=lang('Label.casino');?></a>
+            </div>
+            <div class="col-4">
+                <a class="badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#sport" href="#" role="tab"><?=lang('Label.sport');?></a>
+            </div>
+            <!-- <div class="col-3">
+                <a class="badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#lottery" href="#" role="tab"><?=lang('Label.lottery');?></a>
+            </div> -->
             <!-- Last one full width -->
             <div class="col-12">
                 <a class="active badge nav-pill px-1 py-1 fw-semibold" data-bs-toggle="tab" data-bs-target="#all" href="#" role="tab"><?=lang('Label.allgames');?></a>
@@ -158,10 +158,10 @@
             </data>
         </div>
         -->
-        <div class="tab-pane fade" id="lottery" role="tabpanel" aria-labelledby="lottery-tab">
-            <data class="d-block grid-item">
+        <!-- <div class="tab-pane fade" id="lottery" role="tabpanel" aria-labelledby="lottery-tab">
+            <data class="d-block grid-item"> -->
                 <!-- <ul class="list-unstyled row g-2 justify-content-center" id="grid-lottery"></ul> -->
-                <ul class="list-unstyled row g-2 justify-content-center">
+                <!-- <ul class="list-unstyled row g-2 justify-content-center">
                     <li class="col-xl-2 col-lg-2 col-md-3 col-3">
                         <a class="d-block text-decoration-none" href="javascript:void(0);" onclick="callingPreLotto();">
                             <img class="d-block w-100" src="<?=base_url('assets/img/prelotto.png');?>">
@@ -169,7 +169,7 @@
                     </li>
                 </ul>
             </data>
-        </div>
+        </div> -->
         <!--
         <div class="tab-pane fade" id="appgame" role="tabpanel" aria-labelledby="appgame-tab">
             <data class="d-block grid-item">
@@ -204,7 +204,7 @@
 <!-- End Pop-up Announement -->
 
 <!--- PreLotto --->
-<section class="modal fade modal-prelotto" id="modal-prelotto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal-prelotto" aria-hidden="true">
+<!-- <section class="modal fade modal-prelotto" id="modal-prelotto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal-prelotto" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content bg-transparent border-0">
             <div class="modal-body">
@@ -215,7 +215,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!--- End PreLotto --->
 
 <link rel="stylesheet" href="<?=base_url('assets/vendors/swiper/swiper-bundle.min.css');?>" />
@@ -330,27 +330,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
         callingSlot();
     });
 
-    const tabcasinoEvent = document.querySelector('a[data-bs-target="#casino"]');
-    tabcasinoEvent.addEventListener('hidden.bs.tab', function (event) {
-        document.getElementById("grid-casino").innerHTML = '';
-    });
-    tabcasinoEvent.addEventListener('shown.bs.tab', function (event) {
-        event.target // newly activated tab
-        event.relatedTarget // previous active tab
-        removeSEO();
-        callingCasino();
-    });
+    // const tabcasinoEvent = document.querySelector('a[data-bs-target="#casino"]');
+    // tabcasinoEvent.addEventListener('hidden.bs.tab', function (event) {
+    //     document.getElementById("grid-casino").innerHTML = '';
+    // });
+    // tabcasinoEvent.addEventListener('shown.bs.tab', function (event) {
+    //     event.target // newly activated tab
+    //     event.relatedTarget // previous active tab
+    //     removeSEO();
+    //     callingCasino();
+    // });
 
-    const tabcasinoEvent2 = document.querySelector('#mobileGameBar a[data-bs-target="#casino"]');
-    tabcasinoEvent2.addEventListener('hidden.bs.tab', function (event) {
-        document.getElementById("grid-casino").innerHTML = '';
-    });
-    tabcasinoEvent2.addEventListener('shown.bs.tab', function (event) {
-        event.target // newly activated tab
-        event.relatedTarget // previous active tab
-        removeSEO();
-        callingCasino();
-    });
+    // const tabcasinoEvent2 = document.querySelector('#mobileGameBar a[data-bs-target="#casino"]');
+    // tabcasinoEvent2.addEventListener('hidden.bs.tab', function (event) {
+    //     document.getElementById("grid-casino").innerHTML = '';
+    // });
+    // tabcasinoEvent2.addEventListener('shown.bs.tab', function (event) {
+    //     event.target // newly activated tab
+    //     event.relatedTarget // previous active tab
+    //     removeSEO();
+    //     callingCasino();
+    // });
 
     const tabsportEvent = document.querySelector('a[data-bs-target="#sport"]');
     tabsportEvent.addEventListener('hidden.bs.tab', function (event) {
@@ -485,19 +485,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // });
     // End Promotion
 
-    const prelottoModel = document.getElementById('modal-prelotto');
-    prelottoModel.addEventListener('hidden.bs.tab', function (event) {
-        document.getElementById("grid-lottery").innerHTML = '';
-    });
-    prelottoModel.addEventListener('shown.bs.modal', function (event) {
-        callingLotto();
-    });
+    // const prelottoModel = document.getElementById('modal-prelotto');
+    // prelottoModel.addEventListener('hidden.bs.tab', function (event) {
+    //     document.getElementById("grid-lottery").innerHTML = '';
+    // });
+    // prelottoModel.addEventListener('shown.bs.modal', function (event) {
+    //     callingLotto();
+    // });
 });
 
-function callingPreLotto()
-{
-    $('.modal-prelotto').modal('show');
-}
+// function callingPreLotto()
+// {
+//     $('.modal-prelotto').modal('show');
+// }
 
 async function hotGamesShowCase(provider,element)
 {
