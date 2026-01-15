@@ -59,5 +59,7 @@ return [
     'tacoption' => '接受验证码渠道',
     'read' => '未读',
     'readed' => '已读',
-    'bankqr' => '地址QR'
+    'bankqr' => '地址QR',
+    'yes' => '是',
+    'no' => '否'
 ];

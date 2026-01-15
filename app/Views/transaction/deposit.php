@@ -701,18 +701,25 @@ function getPgChannel(element,pgid,merchant,currency)
                         document.getElementById(element).appendChild(node);
                         document.getElementById(element).appendChild(nodeLabel);
 
+                        
+
+                        node.addEventListener('change', function() {
+                            $('.pgatewayForm [name=currency]').val(currency);
+                            $('.pgatewayForm [name=channel]').val(item.code);
+                            $('.pgatewayForm [name=amount]').val(item.minDeposit); 
+                            $('.pgatewayForm [name=amount]').attr('min', item.minDeposit); 
+                            $('.pgatewayForm [name=amount]').attr('max', item.maxDeposit); 
+                            $('.pgatewayForm [name=amount]').attr('placeholder', "Min: " + item.minDeposit + " / Max: " + item.maxDeposit); 
+
+                            $('.pgMinDeposit').html(item.minDeposit); 
+                            $('.pgMaxDeposit').html(item.maxDeposit);
+
+                        });
+
                         if ( defaultBank == 0 )
                         {
-                            $('.pgatewayForm [name=currency]').val(currency);
-                            $('.pgatewayForm [name=channel]').val(obj.data[index].code);
-                            $('.pgatewayForm [name=amount]').val(obj.data[index].minDeposit);
-                            $('.pgatewayForm [name=amount]').attr('min', obj.data[index].minDeposit);
-                            $('.pgatewayForm [name=amount]').attr('max', obj.data[index].maxDeposit);
-                            $('.pgatewayForm [name=amount]').attr('placeholder', "Min: "+obj.data[index].minDeposit+" / "+"Max: "+obj.data[0].maxDeposit);
-
-                            $('.pgMinDeposit').html(obj.data[index].minDeposit);
-                            $('.pgMaxDeposit').html(obj.data[index].maxDeposit);
-
+                            node.checked = true;
+                            node.dispatchEvent(new Event('change'));
                             defaultBank++;
                         }
                     }
@@ -922,22 +929,39 @@ function uploadslip(agid, sid, uid, slipname, imgSource)
 
 function beforePGDeposit(params)
 {
-    $.get('/refresh-credit/all', function(data, status) {
-        const obj = JSON.parse(data);
-        if( obj.code==1 ) {
-            submitPGatetway(params);
-        } else {
-            swal.fire("", obj.message + " (Code: "+obj.code+")", "error");
-        }
-    })
-    .done(function() {
+    swal.fire({
+        backdrop: true,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        title: '<?=lang('Label.importantnotice');?>',
+        text: '<?=lang('Validation.pgconfirm');?>',
+        showDenyButton: true,
+        confirmButtonText: '<?=lang('Input.yes');?>',
+        denyButtonText: `<?=lang('Input.no');?>`,
+    }).then( (result) => {
+        if( result.isConfirmed ) {
+            $.get('/refresh-credit/all', function(data, status) {
+                const obj = JSON.parse(data);
+                if( obj.code==1 ) {
+                    submitPGatetway(params);
+                } else {
+                    swal.fire("", obj.message + " (Code: "+obj.code+")", "error");
+                }
+            })
+            .done(function() {
         
-    })
-    .fail(function() {
-        swal.fire("", "Please try again later.", "error").then(() => {
+            })
+            .fail(function() {
+                swal.fire("", "Please try again later.", "error").then(() => {
+                    $('.pgatewayForm [type=submit]').prop('disabled', false);
+                });
+            });
+        } else if ( result.isDenied ) {
+            swal.close();
             $('.pgatewayForm [type=submit]').prop('disabled', false);
-        });
+        }
     });
+
 }
 
 function beforeBTDeposit(params, imgSource)

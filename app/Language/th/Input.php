@@ -59,5 +59,7 @@ return [
     'tacoption' => 'วิธีการรับ TAC',
     'read' => 'อ่าน',
     'readed' => 'อ่านแล้ว',
-    'bankqr' => 'ที่อยู่ QR'
+    'bankqr' => 'ที่อยู่ QR',
+    'yes' => 'ใช่',
+    'no' => 'ไม่ใช่'
 ];

@@ -59,5 +59,7 @@ return [
     'tacoption' => 'Phương pháp nhận TAC',
     'read' => 'đọc',
     'readed' => 'đã đọc',
-    'bankqr' => 'Địa chỉ QR'
+    'bankqr' => 'Địa chỉ QR',
+    'yes' => 'Có',
+    'no' => 'Không'
 ];
