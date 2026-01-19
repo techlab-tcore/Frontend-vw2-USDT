@@ -330,27 +330,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
         callingSlot();
     });
 
-    // const tabcasinoEvent = document.querySelector('a[data-bs-target="#casino"]');
-    // tabcasinoEvent.addEventListener('hidden.bs.tab', function (event) {
-    //     document.getElementById("grid-casino").innerHTML = '';
-    // });
-    // tabcasinoEvent.addEventListener('shown.bs.tab', function (event) {
-    //     event.target // newly activated tab
-    //     event.relatedTarget // previous active tab
-    //     removeSEO();
-    //     callingCasino();
-    // });
+    const tabcasinoEvent = document.querySelector('a[data-bs-target="#casino"]');
+    tabcasinoEvent.addEventListener('hidden.bs.tab', function (event) {
+        document.getElementById("grid-casino").innerHTML = '';
+    });
+    tabcasinoEvent.addEventListener('shown.bs.tab', function (event) {
+        event.target // newly activated tab
+        event.relatedTarget // previous active tab
+        removeSEO();
+        callingCasino();
+    });
 
-    // const tabcasinoEvent2 = document.querySelector('#mobileGameBar a[data-bs-target="#casino"]');
-    // tabcasinoEvent2.addEventListener('hidden.bs.tab', function (event) {
-    //     document.getElementById("grid-casino").innerHTML = '';
-    // });
-    // tabcasinoEvent2.addEventListener('shown.bs.tab', function (event) {
-    //     event.target // newly activated tab
-    //     event.relatedTarget // previous active tab
-    //     removeSEO();
-    //     callingCasino();
-    // });
+    const tabcasinoEvent2 = document.querySelector('#mobileGameBar a[data-bs-target="#casino"]');
+    tabcasinoEvent2.addEventListener('hidden.bs.tab', function (event) {
+        document.getElementById("grid-casino").innerHTML = '';
+    });
+    tabcasinoEvent2.addEventListener('shown.bs.tab', function (event) {
+        event.target // newly activated tab
+        event.relatedTarget // previous active tab
+        removeSEO();
+        callingCasino();
+    });
 
     const tabsportEvent = document.querySelector('a[data-bs-target="#sport"]');
     tabsportEvent.addEventListener('hidden.bs.tab', function (event) {
@@ -406,27 +406,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
     //     callingESport();
     // });
 
-    const tablottoEvent = document.querySelector('a[data-bs-target="#lottery"]');
-    tablottoEvent.addEventListener('hidden.bs.tab', function (event) {
-        document.getElementById("grid-lottery").innerHTML = '';
-    });
-    tablottoEvent.addEventListener('shown.bs.tab', function (event) {
-        event.target // newly activated tab
-        event.relatedTarget // previous active tab
-        removeSEO();
-        // callingLotto();
-    });
+    // const tablottoEvent = document.querySelector('a[data-bs-target="#lottery"]');
+    // tablottoEvent.addEventListener('hidden.bs.tab', function (event) {
+    //     document.getElementById("grid-lottery").innerHTML = '';
+    // });
+    // tablottoEvent.addEventListener('shown.bs.tab', function (event) {
+    //     event.target // newly activated tab
+    //     event.relatedTarget // previous active tab
+    //     removeSEO();
+    //     // callingLotto();
+    // });
 
-    const tablottoEvent2 = document.querySelector('#mobileGameBar a[data-bs-target="#lottery"]');
-    tablottoEvent2.addEventListener('hidden.bs.tab', function (event) {
-        document.getElementById("grid-lottery").innerHTML = '';
-    });
-    tablottoEvent2.addEventListener('shown.bs.tab', function (event) {
-        event.target // newly activated tab
-        event.relatedTarget // previous active tab
-        removeSEO();
-        // callingLotto();
-    });
+    // const tablottoEvent2 = document.querySelector('#mobileGameBar a[data-bs-target="#lottery"]');
+    // tablottoEvent2.addEventListener('hidden.bs.tab', function (event) {
+    //     document.getElementById("grid-lottery").innerHTML = '';
+    // });
+    // tablottoEvent2.addEventListener('shown.bs.tab', function (event) {
+    //     event.target // newly activated tab
+    //     event.relatedTarget // previous active tab
+    //     removeSEO();
+    //     // callingLotto();
+    // });
 
     // const tabappgameEvent = document.querySelector('a[data-bs-target="#appgame"]');
     // tabappgameEvent.addEventListener('hidden.bs.tab', function (event) {
