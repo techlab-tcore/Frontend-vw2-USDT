@@ -332,6 +332,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
         getPgChannel('depositPayGatewayBank-list',pgid,merchant,currency);
     });
 
+    $('#depositPayGatewayBank-list').on('change', function(e) {
+        let amount = $('.pgatewayForm [name=amount]').val();
+
+        if (amount == 0) {
+            const defaultemsg = 1 + " " + GLOBAL.currencyTag + " = " + "<?= $_ENV['currency']; ?>" + " " + (1*GLOBAL.currencyRate).toFixed(2);
+            $('.pgatewayForm [name=exchamount]').val(defaultemsg);
+        }else {
+            let exch = amount * GLOBAL.currencyRate;
+            let msg = amount +  " " + GLOBAL.currencyTag + " = " + "<?= $_ENV['currency']; ?>" + " " + exch.toFixed(2);
+            $('.pgatewayForm [name=exchamount]').val(msg);
+        }  
+    });
+
     const tabInstantEvent = document.querySelector('[data-bs-target="#nav-instant"]');
     tabInstantEvent.addEventListener('hidden.bs.tab', function (event) {
         $('[name="exchamount"]').closest('.row').addClass('d-none');
@@ -686,6 +699,8 @@ function getPgChannel(element,pgid,merchant,currency)
                         var node = document.createElement("input");
                         var nodeLabel = document.createElement("label");
                         var textNodeLabel = document.createTextNode(item.channelName.EN);
+                        let exch = item.minDeposit * GLOBAL.currencyRate;
+                        let msg = item.minDeposit +  " " + GLOBAL.currencyTag + " = " + "<?= $_ENV['currency']; ?>" + " " + exch.toFixed(2);
 
                         node.setAttribute("type", 'radio');
                         node.setAttribute("name", 'channel');
@@ -701,11 +716,10 @@ function getPgChannel(element,pgid,merchant,currency)
                         document.getElementById(element).appendChild(node);
                         document.getElementById(element).appendChild(nodeLabel);
 
-                        
-
                         node.addEventListener('change', function() {
                             $('.pgatewayForm [name=currency]').val(currency);
                             $('.pgatewayForm [name=channel]').val(item.code);
+                            $('.pgatewayForm [name=bankexchamount]').val(msg);
                             $('.pgatewayForm [name=amount]').val(item.minDeposit); 
                             $('.pgatewayForm [name=amount]').attr('min', item.minDeposit); 
                             $('.pgatewayForm [name=amount]').attr('max', item.maxDeposit); 
