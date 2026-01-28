@@ -90,7 +90,7 @@
         <article class="modal-content border-0">
             <div class="modal-body p-0">
                 <div class="p-4 bg-major position-relative rounded-top">
-                    <button type="button" class="btn-close me-3 mt-3" aria-label="Close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close me-3 mt-3" aria-label="Close" data-bs-dismiss="modal" onclick="$('.withdrawalForm [type=submit]').prop('disabled', false)"></button>
                     <h4 class="m-0"><?=lang('Label.veri2ndpass');?></h2>
                 </div>
                 <?=form_open('', ['class'=>'form-validation customForm p-5 verify2ndPassForm', 'novalidate'=>'novalidate']);?>
@@ -595,7 +595,7 @@
 </nav>
 -->
 
-<nav class="btn-float-angpow draggable" id="btn-float-angpow">
+<nav class="btn-float-angpow draggable d-none" id="btn-float-angpow">
     <button type="button" class="angpow" onclick="jackportTrigger()"></button>
 </nav>
 

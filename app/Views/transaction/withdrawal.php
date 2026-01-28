@@ -74,13 +74,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // document.getElementsByClassName("nav-profileWithdraw")[0].classList.add("active");
     $('.btn-profileWallet [data-click="withdrawal"]').addClass("active");
 
+    checkExist2ndPass();
     getUserDefaultBankCard();
 
     $('.withdrawalForm').on('submit', function(e) {
         e.preventDefault();
 
         if (this.checkValidity() !== false) {
-            generalLoading();
 
             $('.withdrawalForm [type=submit]').prop('disabled', true);
 
@@ -90,30 +90,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 params[value.name] = value.value;
             });
 
-            $.post('/payment/withdrawal/add', {
-                params
-            }, function(data, status) {
-                const obj = JSON.parse(data);
-                if( obj.code==1 ) {
-                    swal.fire("Success!", obj.message, "success").then(() => {
-                        getProfile();
-                        $('form').removeClass('was-validated');
-                        $('form').trigger('reset');
-                    });
-                } else {
-                    swal.fire("Error!", obj.message + " (Code: "+obj.code+")", "error").then(() => {
-                        $('.withdrawalForm [type=submit]').prop('disabled', false);
-                    });
-                }
-            })
-            .done(function() {
-                $('.withdrawalForm [type=submit]').prop('disabled', false);
-            })
-            .fail(function() {
-                swal.fire("Error!", "Oopss! There are something wrong. Please try again later.", "error").then(()=>{
-                    $('.withdrawalForm [type=submit]').prop('disabled', false);
-                });
-            });
+            verify2ndPass(params['currency'],params['amount']);
         }
     });
 });
@@ -157,6 +134,109 @@ async function getUserDefaultBankCard()
     })
     .fail(function() {
         swal.fire("Error!", "Oopss! There are something wrong. Please try again later.", "error");
+    });
+}
+
+function checkExist2ndPass()
+{
+    generalLoading();
+
+    $.get('/user/secondary-password/exist', function(data, status) {
+        const obj = JSON.parse(data);
+        if( obj.code==1 ) {
+            swal.close();
+            if( obj.havePassword==true ) {
+                // verify2ndPass(user,amount);
+            } else {
+                $('.modal-setup2ndPass').modal('toggle');
+            }
+        } else {
+            swal.fire("Error!", obj.message + " (Code: "+obj.code+")", "error").then(() => {
+                // $('.userTransferForm [type=submit]').prop('disabled', true);
+            });
+        }
+    })
+    .done(function() {
+    })
+    .fail(function() {
+        swal.fire("Error!", "Oopss! There are something wrong. Please try again later.", "error");
+    });
+}
+
+function withdraw(currency, amount){
+    generalLoading();
+
+    var params = {};
+    params['currency'] = currency;
+    params['amount'] = amount;
+
+    $.post('/payment/withdrawal/add', {
+        params
+    }, function(data, status) {
+        const obj = JSON.parse(data);
+        if( obj.code==1 ) {
+            swal.fire("Success!", obj.message, "success").then(() => {
+                getProfile();
+                $('form').removeClass('was-validated');
+                $('form').trigger('reset');
+            });
+        } else {
+            swal.fire("Error!", obj.message + " (Code: "+obj.code+")", "error").then(() => {
+                $('.withdrawalForm [type=submit]').prop('disabled', false);
+            });
+        }
+    })
+    .done(function() {
+        $('.withdrawalForm [type=submit]').prop('disabled', false);
+    })
+    .fail(function() {
+        swal.fire("Error!", "Oopss! There are something wrong. Please try again later.", "error").then(()=>{
+            $('.withdrawalForm [type=submit]').prop('disabled', false);
+        });
+    });
+}
+
+function verify2ndPass(currency,amount)
+{
+    $('.modal-check2ndPass').modal('toggle');
+    $('.verify2ndPassForm').off().on('submit', function(e) {
+        e.preventDefault();
+
+        if (this.checkValidity() !== false) {
+            generalLoading();
+
+            $('.verify2ndPassForm [type=submit]').prop('disabled', true);
+
+            var params = {};
+            var formObj = $(this).closest("form");
+            $.each($(formObj).serializeArray(), function (index, value) {
+                params[value.name] = value.value;
+            });
+
+            $.post('/user/secondary-password/verify', {
+                params
+            }, function(data, status) {
+                const obj = JSON.parse(data);
+                if( obj.code==1 ) {
+                    swal.close();
+                    $('.modal-check2ndPass').modal('hide');
+                    withdraw(currency,amount);
+                    
+                } else {
+                    swal.fire("Error!", obj.message + " (Code: "+obj.code+")", "error").then(() => {
+                        $('.verify2ndPassForm [type=submit]').prop('disabled', false);
+                    });
+                }
+            })
+            .done(function() {
+                $('.verify2ndPassForm [type=submit]').prop('disabled', false);
+            })
+            .fail(function() {
+                swal.fire("Error!", "Oopss! There are something wrong. Please try again later.", "error").then(()=>{
+                    $('.verify2ndPassForm [type=submit]').prop('disabled', false);
+                });
+            });
+        }
     });
 }
 </script>
