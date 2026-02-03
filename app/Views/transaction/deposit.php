@@ -67,14 +67,13 @@
 
                             <article class="p-4 bg-light text-dark rounded fw-light finance-condition">
                                 <h5 class="text-uppercase color-55vp"><?=lang('Label.depositpolicy');?></h5>
-                                <!--<span class="d-block"><?=lang('Validation.insdep');?></span>-->
-                                <ol>
-                                    <li><?=lang('Validation.insdep1');?></li>
-                                    <li><?=lang('Validation.insdep2');?></li>
-                                    <li><?=lang('Validation.insdep3',[10]);?></li>
-                                    <li><?=lang('Validation.insdep4');?></li>
-                                </ol>
-                                <!--<p class="pt-3"><?=lang('Validation.insdep2');?></p>-->
+                                <p><?=lang('Validation.deppolicy');?></p>
+                                <p><?=lang('Validation.deppolicy1');?></p>
+                                <p><?=lang('Validation.deppolicy2');?></p>
+                                <p><?=lang('Validation.deppolicy3');?></p>
+                                <p><?=lang('Validation.deppolicy4');?></p>
+                                <p><?=lang('Validation.deppolicy5');?></p>
+                                <p><?=lang('Validation.deppolicy6');?></p>
                             </article>
                         </dd>
                         <dd class="tab-pane fade" id="nav-bank" role="tabpanel" aria-labelledby="nav-bank-tab" tabindex="0">
@@ -140,8 +139,12 @@
                             <article class="p-4 bg-light text-dark rounded fw-light finance-condition">
                                 <h5 class="text-uppercase color-55vp pb-3"><?=lang('Label.depositpolicy');?></h5>
                                 <p><?=lang('Validation.deppolicy');?></p>
+                                <p><?=lang('Validation.deppolicy1');?></p>
                                 <p><?=lang('Validation.deppolicy2');?></p>
-                                <p><?=lang('Validation.deppolicy3');?><br><?=lang('Validation.deppolicy4');?></p>
+                                <p><?=lang('Validation.deppolicy3');?></p>
+                                <p><?=lang('Validation.deppolicy4');?></p>
+                                <p><?=lang('Validation.deppolicy5');?></p>
+                                <p><?=lang('Validation.deppolicy6');?></p>
                             </article>
                         </dd>
                     </dl>
