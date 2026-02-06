@@ -61,5 +61,6 @@ return [
     'readed' => 'đã đọc',
     'bankqr' => 'Địa chỉ QR',
     'yes' => 'Có',
-    'no' => 'Không'
+    'no' => 'Không',
+    'tranxid' => 'Mã giao dịch'
 ];

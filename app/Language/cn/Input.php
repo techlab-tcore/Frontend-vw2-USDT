@@ -61,5 +61,6 @@ return [
     'readed' => '已读',
     'bankqr' => '地址QR',
     'yes' => '是',
-    'no' => '否'
+    'no' => '否',
+    'tranxid' => '交易ID'
 ];

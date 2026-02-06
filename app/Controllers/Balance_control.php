@@ -173,7 +173,8 @@ class Balance_control extends BaseController
             'admincardno' => $this->request->getPost('params')['card'],
             'adminaccountno' => $this->request->getPost('params')['accno'],
             'slipname' => $this->request->getPost('params')['slip'],
-            'promotionid' => $promo
+            'promotionid' => $promo,
+            'reference' => $this->request->getPost('params')['tranxid']
         ];
 
         $res = $this->balance_model->insertTransaction($payload);

@@ -124,6 +124,12 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
+                                <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.tranxid');?> <span class="text-danger">*</span></label>
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-12">
+                                    <input class="form-control" id="tranxid" name="tranxid" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Label.promotion');?></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                                     <select class="form-select" name="promotion" id="bankPromo-list"></select>

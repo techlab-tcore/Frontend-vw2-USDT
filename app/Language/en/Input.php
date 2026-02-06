@@ -61,5 +61,6 @@ return [
     'readed' => 'readed',
     'bankqr' => 'Address QR',
     'yes' => 'Yes',
-    'no' => 'No'
+    'no' => 'No',
+    'tranxid' => 'Transaction ID'
 ];
