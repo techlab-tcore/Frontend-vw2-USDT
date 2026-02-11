@@ -99,7 +99,7 @@ document.onkeydown = function(e) {
             <div class="card border-0 shadow">
                 <div class="card-body p-xl-5 p-lg-5 p-md-5 p-4">
                     <h2 class="text-center pb-3 text-uppercase"><?=$secTitle;?></h2>
-                    <?=form_open('', ['class'=>'form-validation forgotPassForm','novalidate'=>'novalidate']);?>
+                    <?=form_open('', ['class'=>'form-validation forgotPassForm','novalidate'=>'novalidate'],['contact'=>'','email'=>'','regioncode'=>'']);?>
                     <!--
                     <div class="input-group mb-3">
                         <span class="input-group-text bg-white"><i class="bx bx-mobile"></i></span>
@@ -109,7 +109,7 @@ document.onkeydown = function(e) {
                     -->
                     <div class="input-group mb-3">
                         <span class="input-group-text bg-white"><i class="bx bxs-user-badge"></i></span>
-                        <input type="text" pattern="^[a-zA-Z ]{3,}$" class="form-control rounded-end" id="forgotusername" name="username" placeholder="<?=lang('Input.username');?>" required>
+                        <input type="text" pattern="^[a-zA-Z0-9]{3,}$" class="form-control rounded-end" id="forgotusername" name="username" placeholder="<?=lang('Input.username');?>" required>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text bg-white"><i class="bx bx-mobile"></i></span>
