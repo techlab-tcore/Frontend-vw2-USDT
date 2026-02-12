@@ -99,6 +99,7 @@ return [
     'fortunetoken' => 'Fortune Token',
     'lossrebate' => 'Loss Rebate',
     'selectbank' => 'Select Crypto address',
+    'selectpg' => 'Select Payment Gateway',
     'from' => 'From',
     'to' => 'To',
     'createdate' => 'Created Date',
@@ -168,4 +169,5 @@ return [
     'reset' => 'Reset',
     'ewallet' => 'E-Wallet',
     'action' => 'Action',
+    'chgAcc' => 'Change Account',
 ];

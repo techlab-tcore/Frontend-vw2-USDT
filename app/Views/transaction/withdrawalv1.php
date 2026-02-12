@@ -11,78 +11,30 @@
                 <i class="bx bx-chevron-left d-xl-none d-lg-none d-md-none me-2" style="cursor: pointer;" onclick="history.back();"></i>
                 <h6 class="text-uppercase d-xl-none d-lg-none d-md-none d-block m-0"><?=$secTitle;?></h6>
             </div>
-            <div class="card shadow d-xl-none d-lg-none d-md-none">
-                <div class="card-body">
-                    <div class="row text-center pb-1">
-                        <div class="col-6 border-end">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <span class="d-block"><?=lang('Label.cash');?></span>
-                                <img class="wallet-icon" src="<?=base_url('assets/img/wallet/cash.png');?>">
-                            </div>
-                            <p class="text-success fs-4 m-0 userCash">---</p>
-                        </div>
-                        <div class="col-6">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <span class="d-block"><?=lang('Label.chip');?></span>
-                                <img class="wallet-icon" src="<?=base_url('assets/img/wallet/chips.png');?>">
-                            </div>
-                            <p class="text-success fs-4 m-0 userChip">---</p>
-                        </div>
-                    </div>
-                    <button class="btn-depRestore" onclick="refreshAndWithdrawGame();"><?=lang('Nav.restore');?></button>
-                </div>
-            </div>
-
-            <div class="card shadow d-xl-none d-lg-none d-md-none mt-2 mb-2">
-                <div class="card-body">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-4"><h5 class="withdrawText m-0"><?=lang('Label.holder');?></h5></div>
-                        <div class="col-8"><h5 class="label-holder withdrawName m-0"></h5></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card shadow d-xl-none d-lg-none d-md-none mb-2">
-                <div class="card-body">
-                    <section class="row gx-3 d-flex align-items-center maccount">
-                        <figure class="col-2 m-0 p-0"><img class="withdrawIMG"></figure>
-                        <div class="col-7">
-                            <div class="mb-1">
-                                <h5 class="label-bankName m-0"></h5>
-                            </div>
-                            <div>
-                                <h5 class="label-accNo m-0"></h5>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <button class="btn-chgbank d-none" id="btn-chgbank" onclick="window.location.href='<?=base_url('user/mbank-account');?>'">
-                                <?=lang('Label.chgAcc');?>
-                            </button>
-                        </div>
-                    </section>
-                </div>
-            </div>
-
             <div class="card border-0 profileRight">
-                <div class="card-header profileWallet border-0 p-3 bg-dark rounded-4 text-light d-none d-xl-block d-lg-block d-md-block">
+                <div class="card-header profileWallet border-0 p-3 bg-dark rounded-4 text-light">
                     <?=view('profile-wallet');?>
                 </div>
                 <div class="card-body p-xl-5 p-lg-5 p-md-5 p-3">
-                    <figure class="bg-vw2 p-3 rounded default-card-infor d-none d-xl-block d-lg-block d-md-block">
-                        <ul class="list-unstyled row g-2 m-0 d-flex align-items-center">
-                        <li class="col-1 p-0">
-                            <img class="w-75 withdrawhIMG">
+                    <figure class="bg-vw2 p-3 rounded default-card-infor">
+                        <ul class="list-unstyled row g-2 m-0">
+                        <li class="col-auto">
+                            <label class="d-block"><?=lang('Label.currency');?></label><h5 class="label-currency majorColor m-0"></h5>
                         </li>
                         <li class="col-auto">
-                            <div class="d-flex align-items-center">
-                                <span class="label-currency currencyS m-0"></span><h5 class="label-bankName text-light m-0"></h5>
-                            </div>
-                            <h5 class="label-holder fw-bold m-0"></h5>
-                            <h5 class="label-accNo fw-bold m-0"></h5>
-
+                            <label class="d-block"><?=lang('Label.bank');?></label><h5 class="label-bankName majorColor m-0"></h5>
+                        </li>
+                        <li class="col-auto">
+                            <label class="d-block"><?=lang('Label.holder');?></label><h5 class="label-holder majorColor m-0"></h5>
+                        </li>
+                        </ul>
+                        <ul class="list-unstyled row g-2 m-0">
+                            <li class="col-auto">
+                            <label class="d-block"><?=lang('Label.cryptoadd');?></label><h5 class="label-accNo majorColor m-0"></h5>
                         </li>
                         </ul>
                     </figure>
+
 
                     <?=form_open('',['class'=>'form-validation customForm withdrawalForm','novalidate'=>'novalidate'],['currency'=>'']);?>
                     <div class="row mb-3">
@@ -130,6 +82,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // document.getElementsByClassName("nav-profileWithdraw")[0].classList.add("active");
     $('.btn-profileWallet [data-click="withdrawal"]').addClass("active");
 
+    checkExist2ndPass();
     getUserDefaultBankCard();
 
     $('.withdrawalForm').on('submit', function(e) {
@@ -145,7 +98,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 params[value.name] = value.value;
             });
 
-           verify2ndPass(params['currency'],params['amount']);
+            verify2ndPass(params['currency'],params['amount']);
         }
     });
 });
@@ -161,16 +114,8 @@ async function getUserDefaultBankCard()
             // getTransactionCount(2);
 
             const acc = obj.data;
-            const accNum = acc.length;
-            
-            if (accNum > 1){
-                document.getElementById('btn-chgbank').classList.remove('d-none');
-            }
-
             acc.forEach(function(item, index) {
                 if( item.isDefault==1 ) {
-                    document.querySelector(".withdrawIMG").src = getBankImg(atob(item.bank));
-                    document.querySelector(".withdrawhIMG").src = getBankImg(atob(item.bank));
                     $('.label-currency').html(item.currency);
                     $('.label-bankName').html(item.name);
                     $('.label-accNo').html(item.accno);

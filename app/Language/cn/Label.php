@@ -99,6 +99,7 @@ return [
     'fortunetoken' => '幸运币',
     'lossrebate' => '输利回扣',
     'selectbank' => '选择加密钱包地址',
+    'selectpg' => '选择充值渠道',
     'from' => '从',
     'to' => '到',
     'createdate' => '创建日期',
@@ -167,4 +168,6 @@ return [
     'reset' => '重设',
     'ewallet' => '电子钱包',
     'action' => '操作',
+    'chgAcc' => '变更账户',
+
 ];

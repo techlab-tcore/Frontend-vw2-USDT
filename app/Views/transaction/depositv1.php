@@ -11,14 +11,9 @@
                         <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.depoption');?> <span class="text-danger">*</span></label>
                         <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                             <div class="p-2 rounded bg-55vp4">
-                                <nav class="row nav nav-pills" id="nav-tab">
-                                    <button class="nav-link col-4 d-flex flex-column align-items-center flex-fill active" id="nav-instant-tab" data-bs-toggle="tab" data-bs-target="#nav-instant" type="button" role="tab" aria-controls="nav-instant" aria-selected="true">
-                                        <img class="depoptionimg" src="<?=base_url('assets/img/bankmethod/gateway.png');?>" alt="Instant Transfer" class="bank-icon">
-                                        <?=lang('Nav.instanttransfer');?>
-                                    </button>
-                                    <button class="nav-link col-4 d-flex flex-column align-items-center flex-fill" id="nav-bank-tab" data-bs-toggle="tab" data-bs-target="#nav-bank" type="button" role="tab" aria-controls="nav-bank" aria-selected="false">
-                                        <img class="depoptionimg"src="<?=base_url('assets/img/bankmethod/bank_transfer.png');?>" alt="Bank Transfer" class="bank-icon">
-                                        <?=lang('Nav.banktransfer');?></button>
+                                <nav class="nav nav-pills" id="nav-tab">
+                                    <button class="nav-link active" id="nav-instant-tab" data-bs-toggle="tab" data-bs-target="#nav-instant" type="button" role="tab" aria-controls="nav-instant" aria-selected="true"><?=lang('Nav.instanttransfer');?></button>
+                                    <button class="nav-link" id="nav-bank-tab" data-bs-toggle="tab" data-bs-target="#nav-bank" type="button" role="tab" aria-controls="nav-bank" aria-selected="false"><?=lang('Nav.banktransfer');?></button>
                                 </nav>
                             </div>
                         </div>
@@ -30,17 +25,16 @@
                             <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.pgateway');?> <span class="text-danger">*</span></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
-                                    <div class="dropdown p-2 rounded deposit-channel">
-                                        <a class="btn-pgDep dropdown-toggle" href="#" role="button" id="dropdownMenuPG" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"></a>
-                                        <ul class="dropdown-menu dropdown-menu-end rounded-3 shadow-lg menuLang w-100" id="depositChannel-list" aria-labelledby="dropdownMenuPG"></ul>
+                                    <div class="p-2 rounded bg-secondary deposit-channel">
+                                        <div class="row gap-1 px-2" id="depositChannel-list" role="group"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-3 d-none">
+                            <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.depchannel');?> <span class="text-danger">*</span></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
-                                    <div class="p-2 rounded deposit-bank" name="depositPayChannel">
-                                        <div class="d-flex flex-wrap" id="depositPayGatewayBank-list"></div>
+                                    <div class="p-2 rounded bg-secondary deposit-bank">
+                                        <div class="btn-group" id="depositPayGatewayBank-list" role="group"></div>
                                     </div>
                                 </div>
                             </div>
@@ -50,20 +44,12 @@
                                     <input type="text" step="any" class="form-control" name="exchamount" readonly>
                                 </div>
                             </div>
-                            <div class="row mb-3 d-none">
+                            <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.depamount');?> <span class="text-danger">*</span></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                                     <!-- <input type="number" step="any" class="form-control" name="amount" min="<?=$_ENV['minPgDeposit'];?>" max="<?=$_ENV['maxPgDeposit'];?>" placeholder="<?=lang('Validation.deposit',[$_ENV['minPgDeposit'],$_ENV['maxPgDeposit']]);?>" required> -->
 
-                                    <input type="number" step="any" class="form-control mb-2" name="amount" id="amountInput" required>
-
-                                    <div class="w-100" id="amountButtons">  
-                                        <button type="button" class="btn btn-outline-success col-auto me-1" onclick="setAmount(30)">30</button> 
-                                        <button type="button" class="btn btn-outline-success col-auto me-1" onclick="setAmount(50)">50</button> 
-                                        <button type="button" class="btn btn-outline-success col-auto me-1" onclick="setAmount(100)">100</button> 
-                                        <button type="button" class="btn btn-outline-success col-auto me-1" onclick="setAmount(200)">200</button>
-                                        <button type="button" class="btn btn-outline-success col-auto" onclick="setAmount(500)">500</button> 
-                                    </div>
+                                    <input type="number" step="any" class="form-control" name="amount" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -95,15 +81,13 @@
                             <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.bankoption');?> <span class="text-danger">*</span></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
-                                    <div class="p-2 rounded bank-channel">
-                                        <div class="d-flex flex-wrap" name="bank" id="bankOption-list"></div>
-                                    </div>
+                                    <select class="form-select" name="bank" id="bankOption-list" required></select>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.bankacc');?> <span class="text-danger">*</span></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
-                                    <div class="input-group mb-1">
+                                    <div class="input-group mb-1" hidden>
                                         <input type="text" class="form-control" name="accholder" readonly>
                                         <button class="btn btn-dark btn-copy-holder" type="button"><?=lang('Nav.copy');?></button>
                                     </div>
@@ -113,26 +97,24 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- <div class="row mb-3">
+                                <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.bankqr');?></label>
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-12">
+                                    <img id="bankQr" class="d-inline-block w-50" src="">
+                                </div>
+                            </div> -->
                             <div class="row mb-3 d-none">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.exchamount');?></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                                     <input type="text" step="any" class="form-control" name="bankexchamount" readonly>
                                 </div>
                             </div>
-                            <div class="row mb-3 d-none">
+                            <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.depamount');?> <span class="text-danger">*</span></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                                     <!-- <input type="number" step="any" class="form-control" name="amount" min="<?=$_ENV['minBankDeposit'];?>" max="<?=$_ENV['maxBankDeposit'];?>" placeholder="<?=lang('Validation.deposit',[$_ENV['minBankDeposit'],$_ENV['maxBankDeposit']]);?>" required> -->
 
-                                    <input type="number" step="any" class="form-control mb-2" name="amount" id="bamountInput" required>
-
-                                    <div class="w-100" id="amountButtons">  
-                                        <button type="button" class="btn btn-outline-success me-1" onclick="setBAmount(30)">30</button> 
-                                        <button type="button" class="btn btn-outline-success me-1" onclick="setBAmount(50)">50</button> 
-                                        <button type="button" class="btn btn-outline-success me-1" onclick="setBAmount(100)">100</button> 
-                                        <button type="button" class="btn btn-outline-success me-1" onclick="setBAmount(200)">200</button>
-                                        <button type="button" class="btn btn-outline-success" onclick="setBAmount(500)">500</button> 
-                                    </div>
+                                    <input type="number" step="any" class="form-control" name="amount" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -207,7 +189,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     $('.sideMainNav [data-page=deposit]').addClass("active");
 
     getRadioPGatewayList('depositChannel-list');
-    getCompanyCDMverM('bankOption-list');
+    getCompanyCDM('bankOption-list');
 
     let checkChannel = $('#depositChannel-list input:radio[name=bankid]:checked').val();
     if( typeof checkChannel!='undefined' )
@@ -223,12 +205,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let amount = parseFloat($(this).val()) || 0;
 
         if (amount == 0) {
-            const defaultemsg = 1 + " " + GLOBAL.currencyTag + " = " + "<?= $_ENV['currency']; ?>" + " " + (1*GLOBAL.currencyRate).toFixed(2);
+            const defaultemsg = 1 + " " + GLOBAL.currencyTag + " = " + (1*GLOBAL.currencyRate).toFixed(2) + " " + "<?= $_ENV['currency']; ?>";
             $('.pgatewayForm [name=exchamount]').val(defaultemsg);
         }else {
             let exch = amount * GLOBAL.currencyRate;
-            let msg = amount +  " " + GLOBAL.currencyTag + " = " + "<?= $_ENV['currency']; ?>" + " " + exch.toFixed(2);
-            $('.pgatewayForm [name=exchamount]').val(msg);
+            let msg = amount +  " " + GLOBAL.currencyTag + " = " + exch.toFixed(2) + " " + "<?= $_ENV['currency']; ?>";
+            $('[name=exchamount]').val(msg);
         }  
        
     });
@@ -237,11 +219,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let amount = parseFloat($(this).val()) || 0;
 
         if (amount == 0) {
-            const defaultemsg = 1 + " " + GLOBAL.currencyTag + " = " + "<?= $_ENV['currency']; ?>" + " " + (1*GLOBAL.currencyRate).toFixed(2);
+            const defaultemsg = 1 + " " + GLOBAL.currencyTag + " = " + (1*GLOBAL.currencyRate).toFixed(2) + " " + "<?= $_ENV['currency']; ?>";
             $('.bankTransferForm [name=bankexchamount]').val(defaultemsg);
         }else {
             let exch = amount * GLOBAL.currencyRate;
-            let msg = amount +  " " + GLOBAL.currencyTag + " = " + "<?= $_ENV['currency']; ?>" + " " + exch.toFixed(2);
+            let msg = amount +  " " + GLOBAL.currencyTag + " = " + exch.toFixed(2) + " " + "<?= $_ENV['currency']; ?>";
             $('.bankTransferForm [name=bankexchamount]').val(msg);
         }  
        
@@ -273,16 +255,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-    $('#bankOption-list').off().on('change', function() {
-        $("#bamountInput").closest('.row').removeClass('d-none');
-        
-        const currency = $('#bankOption-list input:radio[name=bankid]:checked').data('currency');
-        const holder = $('#bankOption-list input:radio[name=bankid]:checked').data('holder');
-        const accno = $('#bankOption-list input:radio[name=bankid]:checked').data('accno');
-        const card = $('#bankOption-list input:radio[name=bankid]:checked').data('cardno');
-        const remark = $('#bankOption-list input:radio[name=bankid]:checked').data('holder');
-        const minDep = $('#bankOption-list input:radio[name=bankid]:checked').data('mindep');
-        const maxDep = $('#bankOption-list input:radio[name=bankid]:checked').data('maxdep');
+    $('#bankOption-list').on('change', function() {
+        const idx = this.options.selectedIndex;
+        const currency = this.options[idx].dataset.currency;
+        const card = this.options[idx].dataset.cardno;
+        const accno = this.options[idx].dataset.accno;
+        const holder = this.options[idx].dataset.holder;
+        const remark = this.options[idx].dataset.remark;
+        const minDep = this.options[idx].dataset.mindep;
+        const maxDep = this.options[idx].dataset.maxdep;
+        //const bankQr = this.options[idx].dataset.qrimg;
 
         $('.bankTransferForm [name=currency]').val(currency);
         $('.bankTransferForm [name=accholder]').val(holder);
@@ -297,6 +279,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         $('.bankTransferForm [name=amount]').attr('placeholder', "Min: "+minDep+" / "+"Max: "+maxDep);
         $('.bankMinDeposit').html(minDep);
         $('.bankMaxDeposit').html(maxDep);
+        //$("#bankQr").attr("src", bankQr);
 
         params = {};
         params['userid'] = '<?=$_SESSION['token']?>';
@@ -315,11 +298,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     GLOBAL.currencyRate = parseFloat(obj.data['depositRate']);
 
                     if (amount == 0 || amount == '' ) {
-                        const defaultemsg = 1 + " " + currency + " = " + "<?= $_ENV['currency']; ?>" + " " + (1*obj.data['depositRate']).toFixed(2);
+                        const defaultemsg = 1 + " " + currency + " = " + (1*obj.data['depositRate']).toFixed(2) + " " + "<?= $_ENV['currency']; ?>";
                         $('.bankTransferForm [name=bankexchamount]').val(defaultemsg);
                     } else {
                         let exch = amount * parseFloat(obj.data['depositRate']);
-                        let msg = amount +  " " + currency + " = " + "<?= $_ENV['currency']; ?>" + " " + exch.toFixed(2);
+                        let msg = amount +  " " + currency + " = " + exch.toFixed(2) + " " + "<?= $_ENV['currency']; ?>";
                         $('.bankTransferForm [name=bankexchamount]').val(msg);
                     }
 
@@ -340,14 +323,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     $('#depositChannel-list').off().on('change', function(e) {
         generalLoading();
         $('#depositPayGatewayBank-list').html('');
-        this.options[0].remove();
-        const idx = this.options.selectedIndex;
 
-        const pgid = this.options[idx].value;
-        const currency = this.options[idx].dataset.currency;
-        const merchant = this.options[idx].dataset.merchant;
+        const pgid = $('#depositChannel-list input:radio[name=bankid]:checked').val();
+        const currency = $('#depositChannel-list input:radio[name=bankid]:checked').data('currency');
+        const merchant = $('#depositChannel-list input:radio[name=bankid]:checked').data('merchant');
 
-        if( pgid!=null )
+        let checkChannel = $('#depositChannel-list input:radio[name=bankid]:checked').val();
+        if( typeof checkChannel!='undefined' )
         {
             $('.pgatewayForm [name=amount]').prop('disabled',false);
             $('.pgatewayForm [type=submit]').prop('disabled', false);
@@ -374,12 +356,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     const tabInstantEvent = document.querySelector('[data-bs-target="#nav-instant"]');
     tabInstantEvent.addEventListener('hidden.bs.tab', function (event) {
-        $('#dropdownMenuPG').html('');
-        $('#depositChannel-list').html('');
-        $('#depositPayGatewayBank-list').html('');
-        $('[name="depositPayChannel"]').closest('.row').addClass('d-none');
         $('[name="exchamount"]').closest('.row').addClass('d-none');
-        $("#amountInput").closest('.row').addClass('d-none');
         GLOBAL.currencyTag = "";
         GLOBAL.currencyRate = 0;
         $('#nav-instant').find('form').trigger('reset');
@@ -388,13 +365,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     tabInstantEvent.addEventListener('shown.bs.tab', function (event) {
         event.target // newly activated tab
         event.relatedTarget // previous active tab
-        getRadioPGatewayList('depositChannel-list');
+        getPromoList('promo-list');
     });
 
     const tabBankEvent = document.querySelector('[data-bs-target="#nav-bank"]');
     tabBankEvent.addEventListener('hidden.bs.tab', function (event) {
         $('[name="bankexchamount"]').closest('.row').addClass('d-none');
-        $("#bamountInput").closest('.row').addClass('d-none');
         GLOBAL.currencyTag = "";
         GLOBAL.currencyRate = 0;
         $('#nav-bank').find('form').trigger('reset');
@@ -413,8 +389,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             generalLoading();
             $('.pgatewayForm [type=submit]').prop('disabled', true);
 
-            const bankid = $('.pgatewayForm [name=pgid]').data('pgid');
-            const merchant = $('.pgatewayForm [name=pgid]').data('merchant');
+            const bankid = $('.pgatewayForm [name=bankid]:checked').val();
+            const merchant = $('.pgatewayForm [name=bankid]:checked').data('merchant');
 
             var params = {};
             var formObj = $(this).closest("form");
@@ -425,7 +401,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
 
             const channelExist = $('#depositChannel-list').html();
-            let checkChannel = $('.pgatewayForm [name=pgid]').data('pgid');
+            let checkChannel = $('#depositChannel-list input:radio[name=bankid]:checked').val();
             if( channelExist=='' || typeof checkChannel=='undefined' ) 
             {
                 $('.pgatewayForm [type=submit]').prop('disabled', true);
@@ -469,7 +445,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-    $('.bankTransferForm').on('submit', function(e) {
+    $('.bankTransferForm').off().on('submit', function(e) {
         e.preventDefault();
 
         if (this.checkValidity() !== false) {
@@ -604,7 +580,7 @@ function submitPGatetway(params)
                     // win.document.write(data);
                     // win.document.close();
 
-                    if( obj.paymentGatewayParams.channelcode!='USDT' && params['bankid']!=btoa('<?=$_ENV['payessence'];?>') && params['bankid']!=btoa('<?=$_ENV['peEwallet'];?>') && params['bankid']!=btoa('<?=$_ENV['bigpay'];?>') && params['bankid']!=btoa('<?=$_ENV['epicpayFPX'];?>') )
+                    if( obj.paymentGatewayParams.channelcode!='USDT' && params['bankid']!=btoa('<?=$_ENV['payessence'];?>') && params['bankid']!=btoa('<?=$_ENV['peEwallet'];?>') && params['bankid']!=btoa('<?=$_ENV['bigpay'];?>') )
                     {
                         $('.modal-depositFrame').modal('show');
                         var node = document.createElement('iframe');
@@ -700,13 +676,9 @@ async function getPromoList(element)
 
 function getPgChannel(element,pgid,merchant,currency)
 {
-    $('[name="depositPayChannel"]').closest('.row').removeClass('d-none');
-    $("#amountInput").closest('.row').removeClass('d-none');
-    $('#depositPayGatewayBank-list').html('');
     var params = {};
     params['bankid'] = pgid;
     params['merchant'] = merchant;
-    generalLoading();
 
     $.post('/list/payment-channel/company', {
         params
@@ -735,9 +707,9 @@ function getPgChannel(element,pgid,merchant,currency)
                     {
                         var node = document.createElement("input");
                         var nodeLabel = document.createElement("label");
-                        var img = document.createElement("img");
-                        img.src = getBankImg(item.code);
                         var textNodeLabel = document.createTextNode(item.channelName.EN);
+                        let exch = item.minDeposit * GLOBAL.currencyRate;
+                        let msg = item.minDeposit +  " " + GLOBAL.currencyTag + " = " + "<?= $_ENV['currency']; ?>" + " " + exch.toFixed(2);
 
                         node.setAttribute("type", 'radio');
                         node.setAttribute("name", 'channel');
@@ -747,16 +719,16 @@ function getPgChannel(element,pgid,merchant,currency)
                         node.classList.add('btn-check');
 
                         nodeLabel.setAttribute("for", 'pgchannel-'+index);
-                        nodeLabel.classList.add('btn','custom-pg-button', 'me-1', 'mb-1', 'd-flex', 'flex-column', 'align-items-center', 'text-wrap');
+                        nodeLabel.classList.add('btn','btn-outline-success');
 
-                        nodeLabel.appendChild(img);
                         nodeLabel.appendChild(textNodeLabel);
                         document.getElementById(element).appendChild(node);
                         document.getElementById(element).appendChild(nodeLabel);
 
                         node.addEventListener('change', function() {
-                            //$('.pgatewayForm [name=currency]').val(currency);
+                            $('.pgatewayForm [name=currency]').val(currency);
                             $('.pgatewayForm [name=channel]').val(item.code);
+                            $('.pgatewayForm [name=bankexchamount]').val(msg);
                             $('.pgatewayForm [name=amount]').val(item.minDeposit); 
                             $('.pgatewayForm [name=amount]').attr('min', item.minDeposit); 
                             $('.pgatewayForm [name=amount]').attr('max', item.maxDeposit); 
@@ -803,7 +775,7 @@ function getPgChannel(element,pgid,merchant,currency)
 
                     $('[name="exchamount"]').closest('.row').removeClass('d-none');
                     const rate = parseFloat(obj.data['depositRate']);
-                    const ratemsg = amount + " " + currency + " = " + "<?= $_ENV['currency']; ?>" + " " + (amount*rate).toFixed(2);
+                    const ratemsg = amount + " " + currency + " = " + (amount*rate).toFixed(2) + " " + "<?= $_ENV['currency']; ?>";
                     $('.pgatewayForm [name=exchamount]').val(ratemsg);
                     
                 }
@@ -831,20 +803,8 @@ async function getRadioPGatewayList(element)
         if( obj.code==1 ) {
             // swal.close();
             const pg = obj.data;
-            if (pg.length == 0){
-                var nodeLast = document.createElement("label");
-                var textnodeLast = document.createTextNode('No gateway available');
-                nodeLast.setAttribute("value", '');
-                nodeLast.appendChild(textnodeLast);
-                document.getElementById('dropdownMenuPG').appendChild(nodeLast);
 
-            } else{
-                var nodeLast = document.createElement("label");
-                var textnodeLast = document.createTextNode('<?=lang('Label.selectpg');?>');
-                nodeLast.setAttribute("value", '');
-                nodeLast.appendChild(textnodeLast);
-                document.getElementById('dropdownMenuPG').appendChild(nodeLast);
-                if( pg!='' )
+            if( pg!='' )
             {
                     //DGPAY filter
                     pg.forEach(function(item, index) {
@@ -853,52 +813,37 @@ async function getRadioPGatewayList(element)
                     // <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
                     //if( item.status==1 && item.name == 'PayEssence')
                     //{
-                        var nodeWrapped = document.createElement("li");
-                        var node = document.createElement("a");
-                        var img = document.createElement("img");
-                        console.log(item.name.slice(-3));
-                        if(item.name.slice(-3) == "TNG"){
-                            img.src = getBankImg('TNGC');
-                        }else if(item.name.slice(-3) == "DUI"){
-                            img.src = getBankImg('DUI');
-                        }else{
-                            img.src = getBankImg('PYG');
-                        }
-                        var textNode = document.createTextNode(item.name);
+                        var node = document.createElement("input");
+                        var nodeLabel = document.createElement("label");
+                        //var textNodeLabel = document.createTextNode(item.name);
                         if (item.bank == '6555fe133b4ec7d4620de8dd') {
-                            var textNode = document.createTextNode('<?=lang('Input.gatduitnow');?> ('+item.currency+')');
+                            var textNodeLabel = document.createTextNode(oderNo+') <?=lang('Input.gatduitnow');?> ('+item.currency+')');
                         } else if (item.bank == '6465e84e51613c192ccbcdc2') {
-                            //var textNodeLabel = document.createTextNode(oderNo+') <?//=lang('Input.gatewallet');?> ('+item.currency+')');
-                            var textNode = document.createTextNode('PAY ESSENCE E-WALLET ('+item.currency+')');
-                        } else if (item.bank == '6131f4080b2791e8cc7225ea') {
-                            var textNode = document.createTextNode('PAY ESSENCE ('+item.currency+')');
+                            var textNodeLabel = document.createTextNode(oderNo+') <?=lang('Input.gatewallet');?> ('+item.currency+')');
                         } else {
-                            var textNode = document.createTextNode('<?=lang('Input.gatchannel');?> ('+item.currency+')');
+                            var textNodeLabel = document.createTextNode(oderNo+') <?=lang('Input.gatchannel');?> ('+item.currency+')');
                         }
 
-                        node.setAttribute("name", 'pgid');
+                        node.setAttribute("type", 'radio');
+                        node.setAttribute("name", 'bankid');
                         node.setAttribute("id", 'channel-'+index);
+                        node.setAttribute("autocomplete", 'off');
                         node.setAttribute("value", btoa(item.bank));
                         node.setAttribute("data-currency", item.currency);
                         node.setAttribute("data-merchant", item.merchant);
-                        node.onclick = function () {
-                            $('.pgatewayForm [name=amount]').prop('disabled',false);
-                            $('.pgatewayForm [type=submit]').prop('disabled', false);
-                            // change the <i> text
-                            document.querySelector("#dropdownMenuPG label").innerHTML =`<img src="${img.src}"> ${textNode.nodeValue}`;
-                            // (optional) store selected value somewhere
-                            document.querySelector("#dropdownMenuPG").setAttribute("name", 'pgid');
-                            document.querySelector("#dropdownMenuPG").setAttribute("data-pgid", btoa(item.bank));
-                            document.querySelector("#dropdownMenuPG").setAttribute("data-merchant", item.merchant);
-                            getPgChannel('depositPayGatewayBank-list', btoa(item.bank),item.merchant,item.currency);
+                        node.classList.add('btn-check');
 
-                        };
+                        if( index==0 )
+                        {
+                            // node.setAttribute("checked", 'checked');
+                        }
 
-                        node.appendChild(img);
-                        node.appendChild(textNode);
-                        node.classList.add('dropdown-item');
-                        nodeWrapped.append(node);
+                        nodeLabel.setAttribute("for", 'channel-'+index);
+                        nodeLabel.classList.add('btn','btn-outline-success','col-5');
+
+                        nodeLabel.appendChild(textNodeLabel);
                         document.getElementById(element).appendChild(node);
+                        document.getElementById(element).appendChild(nodeLabel);
                     //}
                 });
 
@@ -972,7 +917,6 @@ async function getRadioPGatewayList(element)
                 swal.close();
                 $('.pgatewayForm [type=submit]').prop('disabled', true);
             }
-            }           
         } else {
             swal.fire("Error!", obj.message + " (Code: "+obj.code+")", "error");
         }
@@ -1062,28 +1006,6 @@ function beforeBTDeposit(params, imgSource)
         swal.fire("", "Please try again later.", "error").then(() => {
             $('.bankTransferForm [type=submit]').prop('disabled', false);
         });
-    });
-}
-
-function setAmount(value) 
-{ 
-    document.getElementById('amountInput').value = value;
-    let exch = value * GLOBAL.currencyRate;
-    let msg = value +  " " + GLOBAL.currencyTag + " = " + "<?= $_ENV['currency']; ?>" + " " + exch.toFixed(2);
-    $('.pgatewayForm [name=exchamount]').val(msg);
-}
-
-function setBAmount(value) 
-{ 
-    document.getElementById('bamountInput').value = value;
-    let exch = value * GLOBAL.currencyRate;
-    let msg = value +  " " + GLOBAL.currencyTag + " = " + "<?= $_ENV['currency']; ?>" + " " + exch.toFixed(2);
-    $('.bankTransferForm [name=bankexchamount]').val(msg);
-}
-
-function enableAmountButtons() {
-    document.querySelectorAll('#amountButtons button').forEach(btn => {
-        btn.disabled = false;
     });
 }
 </script>

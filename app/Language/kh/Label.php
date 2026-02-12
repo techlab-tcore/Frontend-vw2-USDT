@@ -99,6 +99,7 @@ return [
     'fortunetoken' => 'Fortune Token',
     'lossrebate' => 'ការសងប្រាក់វិញ',
     'selectbank' => 'ជ្រើសរើសអាសយដ្ឋានគ្រីបតូ',
+    'selectpg' => 'ជ្រើសរើសច្រកទូទាត់',
     'from' => 'From',
     'to' => 'To',
     'createdate' => 'កាលបរិច្ឆេទបង្កើត',
@@ -166,5 +167,6 @@ return [
     'scrPwd' => 'ពាក្យសម្ងាត់សុវត្ថិភាព',
     'reset' => 'កំណត់ឡើងវិញ',
     'ewallet' => 'E-កាបូបលុយ',
-    'action' => 'សកម្មភាព'
+    'action' => 'សកម្មភាព',
+    'chgAcc' => 'ផ្លាស់ប្តូរគណនី',
 ];
