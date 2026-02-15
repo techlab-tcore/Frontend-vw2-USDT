@@ -837,6 +837,7 @@ async function getRadioPGatewayList(element)
                 nodeLast.setAttribute("value", '');
                 nodeLast.appendChild(textnodeLast);
                 document.getElementById('dropdownMenuPG').appendChild(nodeLast);
+                swal.close();
 
             } else{
                 var nodeLast = document.createElement("label");

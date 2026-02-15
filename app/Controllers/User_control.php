@@ -467,7 +467,7 @@ class User_control extends BaseController
             $email = $this->request->getpost('params')['email'];
             $contact = $this->request->getpost('params')['contact'];
 
-            // if( isset($_SESSION['taccode']) && $_SESSION['taccode']==$this->request->getpost('params')['veritac'] ):
+            if( isset($_SESSION['taccode']) && $_SESSION['taccode']==$this->request->getpost('params')['veritac'] ):
                 // Reset Current Password
                 //check email/contactno
                 if ($email != ""){
@@ -498,10 +498,10 @@ class User_control extends BaseController
                 else:
                     echo json_encode($res);
                 endif;
-            // else:
+            else:
                 //unset($_SESSION['taccode']);
-                // echo json_encode(['code'=>-1, 'message'=>lang('Validation.smstac')]);
-            // endif;
+                echo json_encode(['code'=>-1, 'message'=>lang('Validation.smstac')]);
+            endif;
         //endif;
     }
 
