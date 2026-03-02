@@ -26,7 +26,7 @@
 
                     <dl class="tab-content" id="nav-tabContent">
                         <dd class="tab-pane fade show active" id="nav-instant" role="tabpanel" aria-labelledby="nav-instant-tab" tabindex="0">
-                            <?=form_open('',['class'=>'form-validation pgatewayForm','novalidate'=>'novalidate'],['channel'=>'','currency'=>'']);?>
+                            <?=form_open('',['class'=>'form-validation pgatewayForm','novalidate'=>'novalidate'],['channel'=>'','currency'=>'','bankid'=>'','merchant'=>'']);?>
                             <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.pgateway');?> <span class="text-danger">*</span></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
@@ -66,12 +66,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-3">
+                            <!-- <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Label.promotion');?></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                                     <select class="form-select" name="promotion" id="promo-list"></select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row mb-3">
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12 ms-auto">
                                     <button type="submit" class="btn btn-primary"><?=lang('Nav.submit');?></button>
@@ -147,12 +147,12 @@
                                     <input class="form-control" id="tranxid" name="tranxid" required>
                                 </div>
                             </div>
-                            <div class="row mb-3">
+                            <!-- <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Label.promotion');?></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                                     <select class="form-select" name="promotion" id="bankPromo-list"></select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row mb-3">
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12 ms-auto">
                                     <button type="submit" class="btn btn-primary"><?=lang('Nav.submit');?></button>
@@ -337,24 +337,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-    $('#depositChannel-list').off().on('change', function(e) {
-        generalLoading();
+   $('#depositChannel-list').on('click', 'a.dropdown-item', function(e) {
+        e.preventDefault();
         $('#depositPayGatewayBank-list').html('');
-        this.options[0].remove();
-        const idx = this.options.selectedIndex;
 
-        const pgid = this.options[idx].value;
-        const currency = this.options[idx].dataset.currency;
-        const merchant = this.options[idx].dataset.merchant;
+        const pgid = $(this).attr('value');
+        const currency = $(this).data('currency');
+        const merchant = $(this).data('merchant');
 
-        if( pgid!=null )
-        {
-            $('.pgatewayForm [name=amount]').prop('disabled',false);
-            $('.pgatewayForm [type=submit]').prop('disabled', false);
-        } else {
-            $('.pgatewayForm [name=amount]').prop('disabled',true);
-            $('.pgatewayForm [type=submit]').prop('disabled', true);
-        }
+        $('.pgatewayForm [name=merchant]').val(merchant);
+        $('.pgatewayForm [name=bankid]').val(pgid);
 
         getPgChannel('depositPayGatewayBank-list',pgid,merchant,currency);
     });
@@ -432,12 +424,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 return false;
             }
 
-            const promoExist = $('.pgatewayForm #promo-list').html();
-            // alert(promoExist.length);
-            if( promoExist.length>0 )
-            {
-                if( params['promotion']=='' )
-                {
+            // const promoExist = $('.pgatewayForm #promo-list').html();
+            // // alert(promoExist.length);
+            // if( promoExist.length>0 )
+            // {
+            //     if( params['promotion']=='' )
+            //     {
                     swal.fire({
                         backdrop: true,
                         allowOutsideClick: false,
@@ -458,14 +450,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         }
                     });
                     return false;
-                } else {
-                    beforePGDeposit(params);
-                    //submitPGatetway(params);
-                }
-            } else {
-                beforePGDeposit(params);
-                //submitPGatetway(params);
-            }
+            //     } else {
+            //         beforePGDeposit(params);
+            //         //submitPGatetway(params);
+            //     }
+            // } else {
+            //     beforePGDeposit(params);
+            //     //submitPGatetway(params);
+            // }
         }
     });
 
@@ -498,11 +490,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 return false;
             }
             
-            const promoExist = $('.bankTransferForm #bankPromo-list').html();
-            if( promoExist.length>0 )
-            {
-                if( params['promotion']=='' )
-                {
+            // const promoExist = $('.bankTransferForm #bankPromo-list').html();
+            // if( promoExist.length>0 )
+            // {
+                // if( params['promotion']=='' )
+                // {
                     swal.fire({
                         title: '<?=lang('Validation.rusure');?>',
                         text: '<?=lang('Validation.nopromotion');?>',
@@ -518,14 +510,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                             $('.bankTransferForm [type=submit]').prop('disabled', false);
                         }
                     });
-                } else {
-                    beforeBTDeposit(params, imgSource);
-                    //submitBankTransfer(params, imgSource);
-                }
-            } else {
-                beforeBTDeposit(params, imgSource);
-                //submitBankTransfer(params, imgSource);
-            }
+                // } else {
+                //     beforeBTDeposit(params, imgSource);
+                //     //submitBankTransfer(params, imgSource);
+                // }
+            // } else {
+            //     beforeBTDeposit(params, imgSource);
+            //     //submitBankTransfer(params, imgSource);
+            // }
         }
     });
 });
