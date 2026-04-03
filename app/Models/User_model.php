@@ -6,7 +6,7 @@ class User_model extends Model
 {
     protected $userRegister = 'http://10.148.15.251:8961/user/register';
     protected $userLogin = 'http://10.148.15.251:8961/user/login';
-    protected $userLogout = 'http://10.148.15.251:89611/user/logout';
+    protected $userLogout = 'http://10.148.15.251:8961/user/logout';
     protected $userProfile = 'http://10.148.15.251:8961/user/getprofile';
     protected $editUserPass = 'http://10.148.15.251:8961/user/updatepassword';
     protected $editUserPassWithoutSession = 'http://10.148.15.251:8961/user/updatepasswordwithoutsessionid';
