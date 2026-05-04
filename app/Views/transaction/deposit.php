@@ -108,7 +108,7 @@
                                         <button class="btn btn-dark btn-copy-holder" type="button"><?=lang('Nav.copy');?></button>
                                     </div>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="accno" readonly>
+                                        <textarea class="form-control wordB" name="accno" rows="1" readonly style="resize:none;"></textarea>
                                         <button class="btn btn-dark btn-copy-accno" type="button"><?=lang('Nav.copy');?></button>
                                     </div>
                                 </div>
@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         $('.bankTransferForm [name=currency]').val(currency);
         $('.bankTransferForm [name=accholder]').val(holder);
-        $('.bankTransferForm [name=accno]').val(accno);
+        $('.bankTransferForm [name=accno]').val(accno).each(function(){ this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px'; });
         $('.bankTransferForm [name=card]').val(card);
         $('.bankTransferForm [name=currency]').val(currency);
         $('.bankTransferForm .bank-remark').html(remark);

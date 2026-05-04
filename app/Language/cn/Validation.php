@@ -95,8 +95,8 @@ return [
     'useragreetitle' => '用户协议',
     'sportgamerulescontent' => '<p class="text-start fs-6">本平台概不负责任何因体育游戏公司取消或删除的异常投注单而引起的纠纷。这类情况属于体育游戏公司风控部门的操作，与本平台无关，因此本平台无需给予任何解释。</p><p class="text-start fs-6">点击同意即表示您已阅读并认同上述用户协议，进入游戏后将视为接受相关条款和条件。</p><p class="text-start fs-6 text-danger">如游戏商判定为（角球,罚牌,虚拟赛）,鬼单,打水,机械,集体投注或其他不正常投注行为，公司将在不给与警告的情况取消投注或直接封锁账号，分数将没收，无需给与任何解释</p><p class="text-start fs-6 text-danger">篮球投注声明</p><p class="text-start fs-6 text-danger">本平台不接受篮球赛事投注，若用户进行篮球相关投注，平台仅接受下注金额但不予赔付，请用户知悉并自行承担相关风险。请您谨慎投注，遵守平台规则，以确保公平公正的游戏环境。</p>',
     'casinogamerulestitle' => '违规处罚通知',
-    'casinogamerulescontent' => '<p class="text-start fs-6">本公司郑重声明，若发现玩家在参与本公司提供的娱乐服务中涉及<b>Blackjack(21点)</b> 游戏 及 <b>百家乐完美对子(Perfect Pair)</b> 本公司将采取以下措施:</b> <p class="text-start fs-6">赢金不予赔付</p><p class="text-start fs-6">所有在Blackiack(21点)游戏 及 百家乐完美对子(Perfect Pair) 中获得的收益将不予支付或结算</p><p class="text-start fs-6">所得没收</p><p class="text-start fs-6">本公司将没收玩家在该游戏中的所有所得包括本金、红利及相关赢金</p>',
-
+    'casinogamerulescontent' => '<p class="text-start fs-6">本公司郑重声明，若发现玩家在参与本公司提供的娱乐服务中涉及<b>Blackjack(21点)</b> 游戏 及 <b>百家乐完美对子(Perfect Pair)</b> 本公司将采取以下措施:</b> <p class="text-start fs-6">赢金不予赔付</p><p class="text-start fs-6">所有在Blackiack(21点)游戏 及 百家乐完美对子(Perfect Pair) 中获得的收益将不予支付或结算</p><p class="text-start fs-6">所得没收</p><p class="text-start fs-6">本公司将没收玩家在该游戏中的所有所得包括本金、红利及相关赢金</p></b><p class="text-start fs-6">* LIVE 高倍数轮盘高贏金金額，將統一設定為 250,000 (USDT), 超出 250,000 (USDT) 以上的贏金將作廢。</p>',
+    
     'opennewtab' => '即将在新页面中打开内容',
     'pgconfirm' => '请务必严格按照支付网关显示的金额进行操作！如果金额错误，存款将无法接受。对于由此造成的任何损失，我公司概不负责!',
 ];

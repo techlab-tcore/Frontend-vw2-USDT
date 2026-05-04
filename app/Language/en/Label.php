@@ -170,4 +170,6 @@ return [
     'ewallet' => 'E-Wallet',
     'action' => 'Action',
     'chgAcc' => 'Change Account',
+
+    'turnoverwithdrawal' => 'Turnover for Withdrawal',
 ];

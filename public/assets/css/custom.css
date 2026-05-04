@@ -2050,3 +2050,11 @@ Bank account
 .gamelog-btn:hover {
   background-color: #09bd5a;
 }
+
+.codeWord{
+    color: #fff;
+}
+
+.codeWordB{
+    color: #000;
+}
