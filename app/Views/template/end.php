@@ -2665,7 +2665,7 @@ function jackportTrigger()
 
                 $('.wrap-bigJackpot .img-bigjackpot').attr('src','<?=base_url('assets/img/jackpot/jackpot_ring.gif');?>');
             } else {
-                swal.fire("Success!", "Congratulation! You have successfully claimed RM10 welcome bonus!", "success").then(()=>{
+                swal.fire("Success!", "Congratulation! You have successfully claimed 5 USDT welcome bonus!", "success").then(()=>{
                     document.getElementById("btn-float-angpow").classList.add("d-none");
                 });
             }

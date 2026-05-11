@@ -883,8 +883,6 @@ async function getRadioPGatewayList(element)
                             document.querySelector("#dropdownMenuPG").setAttribute("name", 'pgid');
                             document.querySelector("#dropdownMenuPG").setAttribute("data-pgid", btoa(item.bank));
                             document.querySelector("#dropdownMenuPG").setAttribute("data-merchant", item.merchant);
-                            getPgChannel('depositPayGatewayBank-list', btoa(item.bank),item.merchant,item.currency);
-
                         };
 
                         node.appendChild(img);
