@@ -98,5 +98,6 @@ return [
     'casinogamerulescontent' => '<p class="text-start fs-6">Our company hereby solemnly declares that if any player is found to be involved in <b>Blackjack</b> or <b>Baccarat Perfect Pair games</b> while participating in the entertainment services provided by our company, our company will take the following measures:</b> <p class="text-start fs-6">Winnings will not be paid out.</p><p class="text-start fs-6">All winnings from Blackjack and Baccarat Perfect Pair games will not be paid out or settled.</p><p class="text-start fs-6">Proceeds will be confiscated.</p><p class="text-start fs-6">Our company will confiscate all winnings from the player in the game, including principal, bonuses, and related prizes.</p></b><p class="text-start fs-6">* The maximum winning amount for the LIVE high-stakes roulette will be uniformly set at 250,000 (USDT). Wins exceeding 250,000 (USDT) will be voided.</p>',
 
     'opennewtab' => 'The content will be opened on a new page',
+    'welcomebonus' => 'Congratulation! You have successfully claimed USDT 10 welcome bonus!',
     'pgconfirm' => 'Please strictly follow the amount shown in the payment gateway! If the amount is incorrect, the deposit will not be accepted. Our company will not make any compensation for any loss!',
 ];

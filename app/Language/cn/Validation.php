@@ -98,5 +98,6 @@ return [
     'casinogamerulescontent' => '<p class="text-start fs-6">本公司郑重声明，若发现玩家在参与本公司提供的娱乐服务中涉及<b>Blackjack(21点)</b> 游戏 及 <b>百家乐完美对子(Perfect Pair)</b> 本公司将采取以下措施:</b> <p class="text-start fs-6">赢金不予赔付</p><p class="text-start fs-6">所有在Blackiack(21点)游戏 及 百家乐完美对子(Perfect Pair) 中获得的收益将不予支付或结算</p><p class="text-start fs-6">所得没收</p><p class="text-start fs-6">本公司将没收玩家在该游戏中的所有所得包括本金、红利及相关赢金</p></b><p class="text-start fs-6">* LIVE 高倍数轮盘高贏金金額，將統一設定為 250,000 (USDT), 超出 250,000 (USDT) 以上的贏金將作廢。</p>',
     
     'opennewtab' => '即将在新页面中打开内容',
+    'welcomebonus' => '恭喜！您已成功领取USDT 10欢迎奖金！',
     'pgconfirm' => '请务必严格按照支付网关显示的金额进行操作！如果金额错误，存款将无法接受。对于由此造成的任何损失，我公司概不负责!',
 ];

@@ -99,5 +99,6 @@ return [
     'casinogamerulescontent' => '<p class="text-start fs-6">Công ty chúng tôi xin long trọng tuyên bố rằng nếu bất kỳ người chơi nào bị phát hiện tham gia trò chơi<b>Blackjack</b> hoặc <b>Baccarat Perfect Pair</b> trong khi tham gia các dịch vụ giải trí do công ty chúng tôi cung cấp, công ty chúng tôi sẽ thực hiện các biện pháp sau:</b> <p class="text-start fs-6">Tiền thắng cược sẽ không được trả.</p><p class="text-start fs-6">Tất cả tiền thắng cược từ trò chơi Blackjack và Baccarat Perfect Pair sẽ không được trả hoặc thanh toán.</p><p class="text-start fs-6">Tiền thu được sẽ bị tịch thu.</p><p class="text-start fs-6">Công ty chúng tôi sẽ tịch thu tất cả tiền thắng cược của người chơi trong trò chơi, bao gồm tiền gốc, tiền thưởng và các giải thưởng liên quan.</p></b><p class="text-start fs-6">* Mức tiền thắng tối đa cho trò chơi roulette trực tiếp có mức cược cao sẽ được ấn định đồng nhất ở mức 250,000 (USDT). Các khoản thắng vượt quá 250,000 (USDT) sẽ bị hủy bỏ.</p>',
 
     'opennewtab' => 'Nội dung sẽ được mở trên một trang mới',
+    'welcomebonus' => 'Chúc mừng! Bạn đã yêu cầu thành công tiền thưởng chào mừng USDT 10!',
     'pgconfirm' => 'Vui lòng tuân thủ nghiêm ngặt số tiền hiển thị trên cổng thanh toán! Nếu số tiền không chính xác, khoản tiền gửi sẽ không được chấp nhận. Công ty chúng tôi sẽ không bồi thường cho bất kỳ tổn thất nào!',
 ];

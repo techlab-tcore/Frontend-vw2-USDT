@@ -98,5 +98,6 @@ return [
     'casinogamerulescontent' => '<p class="text-start fs-6">Syarikat kami dengan ini mengisytiharkan bahawa jika mana-mana pemain didapati terlibat dalam permainan<b>Blackjack</b> atau <b>Baccarat Perfect Pair</b> semasa menyertai perkhidmatan hiburan yang disediakan oleh syarikat kami, syarikat kami akan mengambil langkah berikut:</b> <p class="text-start fs-6">Kemenangan tidak akan dibayar.</p><p class="text-start fs-6">Semua kemenangan daripada permainan Blackjack dan Baccarat Perfect Pair tidak akan dibayar atau diselesaikan.</p><p class="text-start fs-6">Hasil akan dirampas.</p><p class="text-start fs-6">Syarikat kami akan merampas semua kemenangan daripada pemain dalam permainan, termasuk prinsipal, bonus dan hadiah berkaitan.</p></b><p class="text-start fs-6">* Jumlah kemenangan maksimum untuk rolet taruhan tinggi LIVE akan ditetapkan secara seragam pada 1,000,000 (MYR). Kemenangan melebihi 1,000,000 (MYR) akan dibatalkan.</p>',
 
     'opennewtab' => 'Kandungan ini akan dibuka pada halaman baru',
+    'welcomebonus' => 'Tahniah! Anda telah berjaya menuntut bonus selamat datang USDT 10!',
     'pgconfirm' => 'Sila ikuti dengan ketat jumlah yang ditunjukkan dalam gerbang pembayaran! Jika jumlah tidak betul, deposit tidak akan diterima. Syarikat kami tidak akan membuat sebarang pampasan untuk sebarang kerugian!',
 ];
