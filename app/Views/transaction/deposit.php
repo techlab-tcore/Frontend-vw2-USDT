@@ -969,6 +969,7 @@ async function getRadioPGatewayList(element)
         }
     })
     .done(function() {
+        swal.close();
     })
     .fail(function() {
         swal.fire("Error!", "Oopss! There are something wrong. Please try again later.", "error");
