@@ -467,10 +467,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		hotGamesShowCase('<?=$_ENV['hotGames'];?>','grid-hot');
     });
 
-    // $('.btn-gameprovider a[data-bs-target="#exclusive"]').off().on('click', function(e) {
-    //     e.preventDefault();
-	// 	exclusiveGamesShowCase('<?=$_ENV['exclusiveGames'];?>','grid-exclusive');
-    // });
+    $('.btn-gameprovider a[data-bs-target="#exclusive"]').off().on('click', function(e) {
+        e.preventDefault();
+		exclusiveGamesShowCase('<?=$_ENV['exclusiveGames'];?>','grid-exclusive');
+    });
 	// End Games
 
     // Promotion

@@ -1067,13 +1067,13 @@ class Game_control extends BaseController
         $game = '';
 
         //PEG BONUS
-        // if( $data['session']==true ):
-        //     //MCLP
-        //     $peg_game .= '<li class="col-12">';
-        //     $peg_game .= '<a class="d-block text-decoration-none" href="javascript:void(0);" onclick="expressgameRules(\'2\', \'Legends Slot Free Credit\', \'MCLP\');">';
-        //     $peg_game .= '<img class="d-block w-100 rounded-4" src="'.$_ENV['exGameRules'].'/MCLP_'.$lng.'.png" title="Legends Slot Free Credit" alt="Legends Slot Free Credit">';
-        //     $peg_game .= '</a>';
-        //     $peg_game .= '</li>';
+        if( $data['session']==true ):
+            //MCLP
+            $peg_game .= '<li class="col-12">';
+            $peg_game .= '<a class="d-block text-decoration-none" href="javascript:void(0);" onclick="expressgameRules(\'2\', \'Legends Slot Free Credit\', \'MCLP\');">';
+            $peg_game .= '<img class="d-block w-100 rounded-4" src="'.$_ENV['exGameRules'].'/MCLPU_'.$lng.'.png" title="Legends Slot Free Credit" alt="Legends Slot Free Credit">';
+            $peg_game .= '</a>';
+            $peg_game .= '</li>';
         //     //MAVT
         //     $peg_game .= '<li class="col-12">';
         //     $peg_game .= '<a class="d-block text-decoration-none" href="javascript:void(0);" onclick="expressgameRules(\'2\', \'Avatar Free Credit\', \'MAVT\');">';
@@ -1093,13 +1093,13 @@ class Game_control extends BaseController
         //     //$peg_game .= '<img class="d-block w-100 rounded-4" src="'.$_ENV['exGameRules'].'/PEG_'.$lng.'.png" title="Pegasus Slot" alt="Pegasus Slot">';
         //     //$peg_game .= '</a>';
         //     //$peg_game .= '</li>';
-        // else:
-        //     //MCLP
-        //     $peg_game .= '<li class="col-12">';
-        //     $peg_game .= '<a class="d-block text-decoration-none overflow-hidden" href="javascript:void(0);" onclick="alertToast(\'bg-light\', \''.lang('Validation.loginaccount').'\');">';
-        //     $peg_game .= '<img class="d-block w-100 rounded-4" src="'.$_ENV['exGameRules'].'/MCLP_'.$lng.'.png" title="Legends Slot Free Credit" alt="Legends Slot Free Credit">';
-        //     $peg_game .= '</a>';
-        //     $peg_game .= '</li>';
+        else:
+            //MCLP
+            $peg_game .= '<li class="col-12">';
+            $peg_game .= '<a class="d-block text-decoration-none overflow-hidden" href="javascript:void(0);" onclick="alertToast(\'bg-light\', \''.lang('Validation.loginaccount').'\');">';
+            $peg_game .= '<img class="d-block w-100 rounded-4" src="'.$_ENV['exGameRules'].'/MCLP_'.$lng.'.png" title="Legends Slot Free Credit" alt="Legends Slot Free Credit">';
+            $peg_game .= '</a>';
+            $peg_game .= '</li>';
         //     //MAVT
         //     $peg_game .= '<li class="col-12">';
         //     $peg_game .= '<a class="d-block text-decoration-none overflow-hidden" href="javascript:void(0);" onclick="alertToast(\'bg-light\', \''.lang('Validation.loginaccount').'\');">';
@@ -1118,7 +1118,7 @@ class Game_control extends BaseController
         //     //$peg_game .= '<img class="d-block w-100 rounded-4" src="'.$_ENV['exGameRules'].'/PEG_'.$lng.'.png">';
         //     //$peg_game .= '</a>';
         //     //$peg_game .= '</li>';
-        // endif;
+        endif;
 
 		// if( $res['code']==1 && $res['data']!=[] ):
 		// 	foreach( $res['data'] as $g ):
