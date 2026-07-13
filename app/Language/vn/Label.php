@@ -98,7 +98,7 @@ return [
     'jackpot' => 'Giải độc đắc',
     'fortunetoken' => 'Mã thông báo may mắn',
     'lossrebate' => 'Hoàn tiền lỗ',
-    'selectbank' => 'Chọn địa chỉ tiền điện tử',
+    'selectbank' => 'Chọn Ngân hàng',
     'selectpg' => 'chọn phương thức thanh toán',
     'from' => 'Từ',
     'to' => 'Đến',
@@ -139,7 +139,7 @@ return [
     'currency' => 'Tiền tệ',
     'bank' => 'Ngân hàng',
     'accno' => 'Số tài khoản',
-    'holder' => 'Tên chủ tài khoản',
+    'holder' => 'Chủ thẻ',
 
     'referrer' => 'Người giới thiệu',
     'invalidreferrer' => 'Người giới thiệu không hợp lệ',
@@ -148,6 +148,7 @@ return [
 
     'Malaysia' => 'Mã Lai(+6)',
     'Singapore' => 'Singapore(+65)',
+    'australia' => 'Úc(+61)',
 
     'avvideotitle' => 'Video AV',
 
@@ -171,4 +172,11 @@ return [
     'chgAcc' => 'Thay đổi tài khoản',
     
     'turnoverwithdrawal' => 'Doanh thu để rút tiền',
+    'curBalance' => 'Bao gồm số dư',
+    'tdyBO' => 'Các cược hôm nay',
+    'ydyBO' => 'Các cược hôm qua',
+    
+    'personalinfo' => 'Thông tin cá nhân',
+    'setupdob' => 'Thiết lập ngày sinh',
+    'profile' => 'Hồ sơ',
 ];

@@ -8,6 +8,8 @@ return [
     'affid' => 'รหัสพันธมิตร',
     'fullname' => 'ชื่อเต็ม',
     'mobileno' => 'หมายเลขมือถือ',
+    'dob' => 'วันเกิด',
+    'email' => 'อีเมล',
     'amount' => 'จำนวน',
     'beforeamount' => 'จำนวนก่อนหน้า',
     'afteramount' => 'จำนวนหลังจาก',

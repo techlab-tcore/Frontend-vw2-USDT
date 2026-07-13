@@ -98,8 +98,7 @@ return [
     'jackpot' => 'Jackpot',
     'fortunetoken' => 'Fortune Token',
     'lossrebate' => 'ការសងប្រាក់វិញ',
-    'selectbank' => 'ជ្រើសរើសអាសយដ្ឋានគ្រីបតូ',
-    'selectpg' => 'ជ្រើសរើសច្រកទូទាត់',
+    'selectbank' => 'ជ្រើសរើសធនាគារ',
     'from' => 'From',
     'to' => 'To',
     'createdate' => 'កាលបរិច្ឆេទបង្កើត',
@@ -139,7 +138,7 @@ return [
     'currency' => 'រូបិយប័ណ្ណ',
     'bank' => 'ធនាគារ',
     'accno' => 'លេខគណនី',
-    'holder' => 'ឈ្មោះម្ចាស់គណនី',
+    'holder' => 'អ្នកកាន់កាត',
 
     'referrer' => 'អ្នកណែនាំ',
     'invalidreferrer' => 'មិនត្រឹមត្រូវអ្នកណែនាំ',
@@ -148,6 +147,7 @@ return [
 
     'malaysia' => 'Malaysia(+6)',
     'singapore' => 'Singapore(+65)',
+    'australia' => 'AUstralia(+61)',
 
     'avvideotitle' => 'AV វីដេអូ',
 
@@ -171,4 +171,12 @@ return [
     'chgAcc' => 'ផ្លាស់ប្តូរគណនី',
     
     'turnoverwithdrawal' => 'ការផ្លាស់ប្តូរសម្រាប់ការដកប្រាក់',
+    'winoverwithdrawal' => 'Winover for Withdrawal',
+    'tdyBO' => 'ភ្នាល់ថ្ងៃនេះ',
+    'ydyBO' => 'ភ្នាល់ម្សិលមិញ',
+    'dob' => 'ថ្ងៃខែឆ្នាំកំណើត',
+    'personalinfo' => 'ព័ត៌មានផ្ទាល់ខ្លួន',
+    'setupdob' => 'រៀបចំថ្ងៃខែឆ្នាំកំណើត',
+    'profile' => 'ប្រវត្តិរូប',
+
 ];

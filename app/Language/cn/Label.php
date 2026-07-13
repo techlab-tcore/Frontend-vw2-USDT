@@ -98,7 +98,7 @@ return [
     'jackpot' => '积宝红包',
     'fortunetoken' => '幸运币',
     'lossrebate' => '输利回扣',
-    'selectbank' => '选择加密钱包地址',
+    'selectbank' => '选择银行',
     'selectpg' => '选择充值渠道',
     'from' => '从',
     'to' => '到',
@@ -139,7 +139,7 @@ return [
     'currency' => '币种',
     'bank' => '银行',
     'accno' => '户口号码',
-    'holder' => '持有人姓名',
+    'holder' => '持卡人',
 
     'referrer' => '推荐人',
     'invalidreferrer' => '无效的推荐人',
@@ -148,6 +148,7 @@ return [
 
     'malaysia' => '马来西亚(+6)',
     'singapore' => '新加坡(+65)',
+    'australia' => '澳洲(+61)',
 
     'avvideotitle' => 'AV 视频',
 
@@ -169,6 +170,12 @@ return [
     'ewallet' => '电子钱包',
     'action' => '操作',
     'chgAcc' => '变更账户',
-    
+
     'turnoverwithdrawal' => '提款流水值',
+    'curBalance' => '带入余额',
+    'tdyBO' => '今日押注',
+    'ydyBO' => '昨日押注',
+    'personalinfo' => '个人资料s',
+    'setupdob' => '设置出生日期',
+    'profile' => '个人资料',
 ];

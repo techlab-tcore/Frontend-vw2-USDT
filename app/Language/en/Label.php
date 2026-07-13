@@ -98,7 +98,7 @@ return [
     'jackpot' => 'Jackpot',
     'fortunetoken' => 'Fortune Token',
     'lossrebate' => 'Loss Rebate',
-    'selectbank' => 'Select Crypto address',
+    'selectbank' => 'Select Bank',
     'selectpg' => 'Select Payment Gateway',
     'from' => 'From',
     'to' => 'To',
@@ -139,8 +139,7 @@ return [
     'currency' => 'Currency',
     'bank' => 'Bank',
     'accno' => 'Account Number',
-    'cryptoadd' => 'Crypto Address',
-    'holder' => 'Holder Name',
+    'holder' => 'Card Holder',
 
     'referrer' => 'Referrer',
     'invalidreferrer' => 'Invalid Referrer',
@@ -149,6 +148,7 @@ return [
 
     'malaysia' => 'Malaysia(+6)',
     'singapore' => 'Singapore(+65)',
+    'australia' => 'Australia(+61)',
 
     'avvideotitle' => 'AV Video',
 
@@ -172,4 +172,11 @@ return [
     'chgAcc' => 'Change Account',
 
     'turnoverwithdrawal' => 'Turnover for Withdrawal',
+
+    'personalinfo' => 'Personal Info',
+    'setupdob' => 'Setup Date of Birth',
+    'profile' => 'Profile',
+    'curBalance' => 'Current Balance',
+    'tdyBO' => 'Today BetOver',
+    'ydyBO' => 'Yesterday BetOver',
 ];

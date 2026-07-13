@@ -8,10 +8,14 @@ class Sms_control extends BaseController
     {
         $length = strlen($this->request->getpost('params')['contact']);
 
-        if ( $this->request->getpost('params')['mobilecode'] == 'MYR') {
-            $regionCode = 6;
+        if($this->request->getpost('params')['regioncode'] == 'MYR') {
+            $regionCode = '60';
+        } elseif($this->request->getpost('params')['regioncode'] == 'SGD') {
+            $regionCode = '65';
+        } elseif($this->request->getpost('params')['regioncode'] == 'AUD') {
+            $regionCode = '61';
         } else {
-            $regionCode = 65;
+            $regionCode = '65';
         }
 
         // Checking Mobile Number
@@ -54,8 +58,12 @@ class Sms_control extends BaseController
     {
         if($this->request->getpost('params')['regioncode'] == 'MYR') {
             $regionCode = '60';
-        } else {
+        } elseif($this->request->getpost('params')['regioncode'] == 'SGD') {
             $regionCode = '65';
+        } elseif($this->request->getpost('params')['regioncode'] == 'AUD') {
+            $regionCode = '61';
+        } else {
+            $regionCode = '60';
         }
 
         $length_of_string = 6;
@@ -141,8 +149,8 @@ class Sms_control extends BaseController
 
         $payload = [
             'type' => "2",
-            'regioncode' => $this->request->getpost('params')['regioncode'],
-            'contactno' => $this->request->getpost('params')['contact'],
+            'regioncode' => $_SESSION['regioncode'],
+            'contactno' => $_SESSION['contact'],
             'text' => $msg
             // 'text' => $this->request->getpost('params')['message']
         ];
@@ -176,5 +184,5 @@ class Sms_control extends BaseController
             $session = session();
             $session->set('taccode', $veritac);
         }
-    }    
+    }
 }

@@ -98,7 +98,7 @@ return [
     'jackpot' => 'Jackpot',
     'fortunetoken' => 'Token Nasib',
     'lossrebate' => 'Rebat Kerugian',
-    'selectbank' => 'Pilih alamat Kripto',
+    'selectbank' => 'Pilih Bank',
     'selectpg' => 'Pilih Gerbang Pembayaran',
     'from' => 'Daripada',
     'to' => 'Ke',
@@ -139,7 +139,7 @@ return [
     'currency' => 'Mata Wang',
     'bank' => 'Bank',
     'accno' => 'Nombor Akaun',
-    'holder' => 'Nama Pemegang',
+    'holder' => 'Pemegang Kad',
 
     'referrer' => 'Perujuk',
     'invalidreferrer' => 'Perujuk Tidak Sah',
@@ -148,6 +148,7 @@ return [
 
     'malaysia' => 'Malaysia(+6)',
     'singapore' => 'Singapura(+65)',
+    'australia' => 'Australia(+61)',
 
     'avvideotitle' => 'AV Video',
 
@@ -170,4 +171,11 @@ return [
     'chgAcc' => 'Tukar Akaun',
 
     'turnoverwithdrawal' => 'Perolehan untuk Pengeluaran',
+    'curBalance' => 'Sertakan Baki',
+    'tdyBO' => 'Pertaruhan Hari Ini',
+    'ydyBO' => 'Pertaruhan Semalam',
+
+    'personalinfo' => 'Maklumat Peribadi',
+    'setupdob' => 'Isikan Tarikh Lahir',
+    'profile' => 'Profil',
 ];
