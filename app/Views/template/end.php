@@ -622,6 +622,66 @@
 </section>
 <!-- End Score Display -->
 
+<!-- Setup Birthday -->
+<section class="modal fade modal-setupdob" id="modal-setupdob" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal-setupdob" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-xl-down">
+        <article class="modal-content border-0">
+            <div class="modal-body p-0">
+                <div class="p-4 bg-major position-relative rounded-top">
+                    <h4 class="m-0"><?=lang('Label.setupdob');?></h4>
+                </div>
+                <?=form_open('', ['class'=>'form-validation customForm p-5 setupdobForm', 'novalidate'=>'novalidate']);?>
+                <div class="row mb-3">
+                    <label class="col-xl-6 col-lg-6 col-md-6 col-12 col-form-label text-dark position-relative required2"><?=lang('Input.dob');?></label>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                        <input type="text" class="form-control bg-white setupdob-input" name="dob" value="" placeholder="YYYY-MM-DD" required>
+                    </div>
+                    <small class="form-text"><?=lang('Validation.dob');?></small>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg fw-bold"><?=lang('Nav.submit');?></button>
+                </div>
+                <?=form_close();?>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- Game Rules (Express) -->
+<section class="modal fade modal-gamerules" id="modal-gamerules" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="gameRulesTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+        <article class="modal-content border-0">
+            <div class="modal-header d-flex align-items-center">
+                <button type="button" class="btn-close me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title fs-5 fw-bold flex-grow-1 text-center m-0" id="gameRulesTitle">---</h5>
+                <button type="button" class="gamelog-btn gameRulesBetLog" aria-label="<?=lang('Nav.betlog');?>">
+                    <img src="<?=base_url('assets/img/icon/bet_log.png');?>" alt="<?=lang('Nav.betlog');?>">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="gameLogo d-flex justify-content-center">
+                    <img class="w-25 gameRulesLogo" src="" alt="">
+                </div>
+                <div class="betO fs-p8 d-block mb-2 rounded shadow-sm d-flex justify-content-center">
+                    <?=lang('Label.curBalance');?>: <span class="gameRulesBalance">0.00</span>
+                </div>
+                <div class="betO fs-p8 d-block mb-2 rounded shadow-sm">
+                        <table class="affPct table table-sm table-bordered mb-2"><tbody></tbody></table>
+                </div>
+                <div class="betO fs-p8 colorfff bglg d-block mb-2 rounded shadow-sm text-center">
+                    <?=lang('Label.tdyBO');?>: <span class="todayTurnover gameRulesToday">0.00</span><br>
+                    <?=lang('Label.ydyBO');?>: <span class="yesterdayTurnover gameRulesYesterday">0.00</span>
+                </div>
+                <div class="betO d-block mb-2 rounded shadow-sm small">
+                    <span class="gRulesLabel"><?=lang('Validation.slotgamerulestitle');?></span>: <span class="gRules"><?=lang('Validation.slotgamerulescontent');?></span>
+                </div>
+                <button type="button" class="btn btn-primary enter-game-btn gameRulesEnter mt-2 w-100"><?=lang('Nav.entergame');?></button>
+            </div>
+        </article>
+    </div>
+</section>
+<!-- End Game Rules -->
+
 <script src="<?=base_url('assets/vendors/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
 <script src="<?=base_url('assets/vendors/sweetalert2/sweetalert2.min.js');?>"></script>
 <script src="<?=base_url('assets/vendors/airdatepicker/js/datepicker.min.js');?>"></script>
@@ -788,6 +848,57 @@ document.addEventListener('DOMContentLoaded', (event) => {
         affiliateQREvent.addEventListener('hidden.bs.modal', function (event) {
             document.getElementById("qrcode").innerHTML = '';
         });
+
+
+        if ($('.setupdob-input').length) {
+            $('.setupdob-input').datepicker({
+                autoClose: true,
+                changeMonth: true,
+                changeYear: true,
+                language: '<?=$_SESSION['lang']=='cn' || $_SESSION['lang']=='zh' ? 'zh' : 'en'?>',
+                dateFormat: 'yyyy-mm-dd',
+                maxDate: new Date(),
+                view: 'years',
+                minView: 'days'
+            });
+        }
+
+        $('.setupdobForm').off().on('submit', function(e) {
+            e.preventDefault();
+            if (this.checkValidity() === false) return;
+
+            $('.setupdobForm [type=submit]').prop('disabled', true);
+
+            var params = {};
+            $.each($(this).serializeArray(), function (i, v) { params[v.name] = v.value; });
+            if (params.dob) {
+            params.dob = params.dob + 'T00:00:00Z';
+            }
+
+            $.post('/user/editProfile', { params }, function(data) {
+                const obj = JSON.parse(data);
+                if (obj.code == 1) {
+                    $('.modal-setupdob').modal('hide');
+                    swal.fire("Success!", obj.message, "success");
+                } else {
+                    swal.fire("Error!", obj.message + " (Code: " + obj.code + ")", "error");
+                }
+            })
+            .done(function() {
+                $('.setupdobForm [type=submit]').prop('disabled', false);
+            })
+            .fail(function() {
+                swal.fire("Error!", "Oopss! There are something wrong. Please try again later.", "error");
+                $('.setupdobForm [type=submit]').prop('disabled', false);
+            });
+        });
+
+        const dobModalEl = document.getElementById('modal-setupdob');
+        if (dobModalEl) {
+            dobModalEl.addEventListener('hidden.bs.modal', function () {
+                $(this).find('form').removeClass('was-validated').trigger('reset');
+            });
+        }
 
         // var $draggableFw = $('.draggable-fw').draggabilly({
         //     containment: true
@@ -3379,80 +3490,101 @@ function showTime() {
 setInterval(showTime, 1000);
 
 //Game Rules
-function expressgameRules(species, name, provider) {  
-    swal.fire({
-        backdrop: true,
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        padding: '0.5rem',
-        title: '<?=lang('Validation.slotgamerulestitle');?>',
-        html: '<?=lang('Validation.slotgamerulescontent');?>',
-        customClass: {
-	 		container: 'gamerules-content'
-	 	},
-        showDenyButton: true,
-        confirmButtonText: '<?=lang('Nav.entergame');?>',
-        denyButtonText: '<?=lang('Nav.cancel');?>',
-        didRender: () => { 
-            const actions = Swal.getActions(); 
-            const btn = document.createElement('button'); 
-            btn.textContent = '<?=lang('Nav.betlog');?>'; 
-            btn.className = 'gamelog-btn'; 
-            btn.onclick = () => 
-            {
-                swal.close();
-                const ntitle = '<?=lang('Nav.betlog');?> - ' + name;
-                document.getElementById('scoreTitle').textContent = ntitle;
-                const modal = new bootstrap.Modal(document.getElementById('modal-gamescore'));
-                modal.show();
-            if (!$.fn.DataTable.isDataTable('#scoreTable')) {
-                if( '<?=$_SESSION['lang']?>' == 'my' ) {
-                    langs = malay;
-                } else if( '<?=$_SESSION['lang']?>' == 'cn' ) {
-                    langs = chinese;
-                } else if( '<?=$_SESSION['lang']?>' == 'zh' ) {
-                    langs = tradchinese;
-                } else if( '<?=$_SESSION['lang']?>' == 'th' ) {
-                    langs = thai;
-                } else if( '<?=$_SESSION['lang']?>' == 'vn' ) {
-                    langs = viet;
+function expressgameRules(species, name, provider) {
+    const modalEl = document.getElementById('modal-gamerules');
+
+    modalEl.querySelector('#gameRulesTitle').textContent = name;
+    const logoEl = modalEl.querySelector('.gameRulesLogo');
+    logoEl.src = `<?=$_ENV['gameProviderLogo'];?>/${provider}.png`;
+    logoEl.alt = name;
+    modalEl.querySelector('.gameRulesBalance').innerText =
+        document.querySelector('.userBalance')?.innerText ?? '0.00';
+    modalEl.querySelector('.gameRulesToday').innerText = '0.00';
+    modalEl.querySelector('.gameRulesYesterday').innerText = '0.00';
+    modalEl.querySelector('.gRulesLabel').textContent = '<?=lang('Validation.slotgamerulestitle');?>';
+    modalEl.querySelector('.gRules').innerHTML = <?=json_encode(lang('Validation.slotgamerulescontent'));?>;
+    modalEl.querySelector('.affPct').style.display = '';
+
+    const today = new Date().toISOString().split('T')[0];
+    const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+
+    getTotalTurnOver(today, provider).then(total => {
+        modalEl.querySelector('.gameRulesToday').innerText = total.toFixed(2);
+    });
+    getYTotalTurnOver(yesterday, provider).then(total => {
+        modalEl.querySelector('.gameRulesYesterday').innerText = total.toFixed(2);
+    });
+    renderAffPct(provider);
+
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+
+    // Strip prior handlers (persistent modal element) by cloning the buttons,
+    // then attach fresh handlers so species/name/provider closures are current.
+    const freshEnter  = modalEl.querySelector('.gameRulesEnter').cloneNode(true);
+    const freshBetlog = modalEl.querySelector('.gameRulesBetLog').cloneNode(true);
+    modalEl.querySelector('.gameRulesEnter').replaceWith(freshEnter);
+    modalEl.querySelector('.gameRulesBetLog').replaceWith(freshBetlog);
+
+    freshEnter.addEventListener('click', () => {
+        modal.hide();
+        gameLandingExpress(species, name, provider);
+    });
+
+    freshBetlog.addEventListener('click', () => {
+        modal.hide();
+        const ntitle = 'Bet Log - ' + name;
+        document.getElementById('scoreTitle').textContent = ntitle;
+        document.getElementById('modal-gamescore').dataset.provider = provider;
+        const scoreModal = new bootstrap.Modal(document.getElementById('modal-gamescore'));
+        scoreModal.show();
+        if (!$.fn.DataTable.isDataTable('#paymentTable')) {
+            if( '<?=$_SESSION['lang']?>' == 'my' ) {
+                langs = malay;
+            } else if( '<?=$_SESSION['lang']?>' == 'cn' ) {
+                langs = chinese;
+            } else if( '<?=$_SESSION['lang']?>' == 'zh' ) {
+                langs = tradchinese;
+            } else if( '<?=$_SESSION['lang']?>' == 'th' ) {
+                langs = thai;
+            } else if( '<?=$_SESSION['lang']?>' == 'vn' ) {
+                langs = viet;
+            } else {
+                langs = english;
+            }
+
+            airdatepicker();
+
+        <?php if( isset($_SESSION['logged_in']) ): ?>
+            var pageindex = 1, debug = false;
+            const paymentTable = $('#paymentTable').DataTable({
+                dom: "<'row'<'col-12 overflow-auto'tr>>" + "<'row mt-3'<'col-xl-6 col-lg-6 col-md-6 col-12'i><'col-xl-6 col-lg-6 col-md-6 col-12'p>>",
+                language: langs,
+                ordering: false,
+                deferRender: true,
+                serverSide: true,
+                processing: true,
+                destroy: true,
+                ajax: function(data, callback, settings) {
+                if (settings._iRecordsTotal == 0) {
+                    pageindex = 1;
                 } else {
-                    langs = english;
+                    var pageindex = settings._iDisplayStart/settings._iDisplayLength + 1;
                 }
 
-                airdatepicker();
+                const fromdate = $('.filterForm [name=start]').val();
+                const todate = $('.filterForm [name=end]').val();
+                const gp = document.getElementById('modal-gamescore').dataset.provider || provider;
+                const text = '<?=$_SESSION['token'];?>';
+                const encoded = btoa(text);
 
-                <?php if( isset($_SESSION['logged_in']) ): ?>
-                var pageindex = 1, debug = false;
-                const paymentTable = $('#paymentTable').DataTable({
-                    dom: "<'row'<'col-12 overflow-auto'tr>>" + "<'row mt-3'<'col-xl-6 col-lg-6 col-md-6 col-12'i><'col-xl-6 col-lg-6 col-md-6 col-12'p>>",
-                    language: langs,
-                    ordering: false,
-                    deferRender: true,
-                    serverSide: true,
-                    processing: true,
-                    destroy: true,
-                    ajax: function(data, callback, settings) {
-                    if (settings._iRecordsTotal == 0) {
-                        pageindex = 1;
-                    } else {
-                        var pageindex = settings._iDisplayStart/settings._iDisplayLength + 1;
-                    }
-
-                    const fromdate = $('.filterForm [name=start]').val();
-                    const todate = $('.filterForm [name=end]').val();
-                    const gp = provider;
-                    const text = '<?=$_SESSION['token'];?>'; 
-                    const encoded = btoa(text);
-            
-                    var payload = JSON.stringify({
-                        pageindex: pageindex,
-                        rowperpage: data.length,
-                        start: fromdate,
-                        end: todate,
-                        parent: encoded,
-                        provider: gp
-                });
+                var payload = JSON.stringify({
+                    pageindex: pageindex,
+                    rowperpage: data.length,
+                    start: fromdate,
+                    end: todate,
+                    parent: encoded,
+                    provider: gp
+            });
             $.ajax({
                 url: '/list/game/bet-log',
                 type: 'post',
@@ -3483,9 +3615,6 @@ function expressgameRules(species, name, provider) {
         footerCallback: function ( row, data, start, end, display ) {
             var api = this.api(), data;
             var intVal = function(i){ return typeof i === 'string' ? i.replace(/[\$,]/g, '')*1 : typeof i === 'number' ? i : 0; };
-
-            // var grandtotal = api.column(17).data().reduce(function(a, b){ return intVal(a) + intVal(b); }, 0);
-            // var totalOverPage = api.column(4, {page: 'current'}).data().reduce(function(a, b){ return intVal(a) + intVal(b); }, 0);
 
             var totalOverPage = api.column(4).data().reduce(function(a, b){ return intVal(a) + intVal(b); }, 0);
             var truncate = parseFloat(totalOverPage).toFixed(5).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,");
@@ -3524,93 +3653,107 @@ function expressgameRules(species, name, provider) {
         }
     });
     <?php endif; ?>
-            }
-            }; 
-            actions.insertBefore(btn, actions.querySelector('.swal2-confirm')); 
-        }
-    }).then( (result) => {
-        if( result.isConfirmed ) {
-            gameLandingExpress(species, name, provider);
-        } else if ( result.isDenied ) {
-            swal.close();
         }
     });
+
+    modal.show();
 }
 
-function expresscasinoRules(species, name, provider) {  
-    swal.fire({
-        backdrop: true,
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        padding: '0.5rem',
-        title: '<?=lang('Validation.casinogamerulestitle');?>',
-        html: '<?=lang('Validation.casinogamerulescontent');?>',
-        customClass: {
-	 		container: 'gamerules-content'
-	 	},
-        showDenyButton: true,
-        confirmButtonText: '<?=lang('Nav.entergame');?>',
-        denyButtonText: '<?=lang('Nav.cancel');?>',
-        didRender: () => { 
-            const actions = Swal.getActions(); 
-            const btn = document.createElement('button'); 
-            btn.textContent = '<?=lang('Nav.betlog');?>'; 
-            btn.className = 'gamelog-btn'; 
-            btn.onclick = () => 
-            {
-                swal.close();
-                const ntitle = '<?=lang('Nav.betlog');?> - ' + name;
-                document.getElementById('scoreTitle').textContent = ntitle;
-                const modal = new bootstrap.Modal(document.getElementById('modal-gamescore'));
-                modal.show();
-            if (!$.fn.DataTable.isDataTable('#scoreTable')) {
-                if( '<?=$_SESSION['lang']?>' == 'my' ) {
-                    langs = malay;
-                } else if( '<?=$_SESSION['lang']?>' == 'cn' ) {
-                    langs = chinese;
-                } else if( '<?=$_SESSION['lang']?>' == 'zh' ) {
-                    langs = tradchinese;
-                } else if( '<?=$_SESSION['lang']?>' == 'th' ) {
-                    langs = thai;
-                } else if( '<?=$_SESSION['lang']?>' == 'vn' ) {
-                    langs = viet;
+function expresscasinoRules(species, name, provider) {
+    const modalEl = document.getElementById('modal-gamerules');
+
+    modalEl.querySelector('#gameRulesTitle').textContent = name;
+    const logoEl = modalEl.querySelector('.gameRulesLogo');
+    logoEl.src = `<?=$_ENV['gameProviderLogo'];?>/${provider}.png`;
+    logoEl.alt = name;
+    modalEl.querySelector('.gameRulesBalance').innerText =
+        document.querySelector('.userBalance')?.innerText ?? '0.00';
+    modalEl.querySelector('.gameRulesToday').innerText = '0.00';
+    modalEl.querySelector('.gameRulesYesterday').innerText = '0.00';
+    modalEl.querySelector('.gRulesLabel').textContent = '<?=lang('Validation.casinogamerulestitle');?>';
+    modalEl.querySelector('.gRules').innerHTML = <?=json_encode(lang('Validation.casinogamerulescontent'));?>;
+    modalEl.querySelector('.affPct').style.display = '';
+
+    const today = new Date().toISOString().split('T')[0];
+    const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+
+    getTotalTurnOver(today, provider).then(total => {
+        modalEl.querySelector('.gameRulesToday').innerText = total.toFixed(2);
+    });
+    getYTotalTurnOver(yesterday, provider).then(total => {
+        modalEl.querySelector('.gameRulesYesterday').innerText = total.toFixed(2);
+    });
+    renderAffPct(provider);
+
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+
+    // Strip prior handlers (persistent modal element) by cloning the buttons,
+    // then attach fresh handlers so species/name/provider closures are current.
+    const freshEnter  = modalEl.querySelector('.gameRulesEnter').cloneNode(true);
+    const freshBetlog = modalEl.querySelector('.gameRulesBetLog').cloneNode(true);
+    modalEl.querySelector('.gameRulesEnter').replaceWith(freshEnter);
+    modalEl.querySelector('.gameRulesBetLog').replaceWith(freshBetlog);
+
+    freshEnter.addEventListener('click', () => {
+        modal.hide();
+        gameLandingExpress(species, name, provider);
+    });
+
+    freshBetlog.addEventListener('click', () => {
+        modal.hide();
+        const ntitle = 'Bet Log - ' + name;
+        document.getElementById('scoreTitle').textContent = ntitle;
+        document.getElementById('modal-gamescore').dataset.provider = provider;
+        const scoreModal = new bootstrap.Modal(document.getElementById('modal-gamescore'));
+        scoreModal.show();
+        if (!$.fn.DataTable.isDataTable('#paymentTable')) {
+            if( '<?=$_SESSION['lang']?>' == 'my' ) {
+                langs = malay;
+            } else if( '<?=$_SESSION['lang']?>' == 'cn' ) {
+                langs = chinese;
+            } else if( '<?=$_SESSION['lang']?>' == 'zh' ) {
+                langs = tradchinese;
+            } else if( '<?=$_SESSION['lang']?>' == 'th' ) {
+                langs = thai;
+            } else if( '<?=$_SESSION['lang']?>' == 'vn' ) {
+                langs = viet;
+            } else {
+                langs = english;
+            }
+
+            airdatepicker();
+
+        <?php if( isset($_SESSION['logged_in']) ): ?>
+            var pageindex = 1, debug = false;
+            const paymentTable = $('#paymentTable').DataTable({
+                dom: "<'row'<'col-12 overflow-auto'tr>>" + "<'row mt-3'<'col-xl-6 col-lg-6 col-md-6 col-12'i><'col-xl-6 col-lg-6 col-md-6 col-12'p>>",
+                language: langs,
+                ordering: false,
+                deferRender: true,
+                serverSide: true,
+                processing: true,
+                destroy: true,
+                ajax: function(data, callback, settings) {
+                if (settings._iRecordsTotal == 0) {
+                    pageindex = 1;
                 } else {
-                    langs = english;
+                    var pageindex = settings._iDisplayStart/settings._iDisplayLength + 1;
                 }
 
-                airdatepicker();
+                const fromdate = $('.filterForm [name=start]').val();
+                const todate = $('.filterForm [name=end]').val();
+                const gp = document.getElementById('modal-gamescore').dataset.provider || provider;
+                const text = '<?=$_SESSION['token'];?>';
+                const encoded = btoa(text);
 
-                <?php if( isset($_SESSION['logged_in']) ): ?>
-                var pageindex = 1, debug = false;
-                const paymentTable = $('#paymentTable').DataTable({
-                    dom: "<'row'<'col-12 overflow-auto'tr>>" + "<'row mt-3'<'col-xl-6 col-lg-6 col-md-6 col-12'i><'col-xl-6 col-lg-6 col-md-6 col-12'p>>",
-                    language: langs,
-                    ordering: false,
-                    deferRender: true,
-                    serverSide: true,
-                    processing: true,
-                    destroy: true,
-                    ajax: function(data, callback, settings) {
-                    if (settings._iRecordsTotal == 0) {
-                        pageindex = 1;
-                    } else {
-                        var pageindex = settings._iDisplayStart/settings._iDisplayLength + 1;
-                    }
-
-                    const fromdate = $('.filterForm [name=start]').val();
-                    const todate = $('.filterForm [name=end]').val();
-                    const gp = provider;
-                    const text = '<?=$_SESSION['token'];?>'; 
-                    const encoded = btoa(text);
-            
-                    var payload = JSON.stringify({
-                        pageindex: pageindex,
-                        rowperpage: data.length,
-                        start: fromdate,
-                        end: todate,
-                        parent: encoded,
-                        provider: gp
-                });
+                var payload = JSON.stringify({
+                    pageindex: pageindex,
+                    rowperpage: data.length,
+                    start: fromdate,
+                    end: todate,
+                    parent: encoded,
+                    provider: gp
+            });
             $.ajax({
                 url: '/list/game/bet-log',
                 type: 'post',
@@ -3641,9 +3784,6 @@ function expresscasinoRules(species, name, provider) {
         footerCallback: function ( row, data, start, end, display ) {
             var api = this.api(), data;
             var intVal = function(i){ return typeof i === 'string' ? i.replace(/[\$,]/g, '')*1 : typeof i === 'number' ? i : 0; };
-
-            // var grandtotal = api.column(17).data().reduce(function(a, b){ return intVal(a) + intVal(b); }, 0);
-            // var totalOverPage = api.column(4, {page: 'current'}).data().reduce(function(a, b){ return intVal(a) + intVal(b); }, 0);
 
             var totalOverPage = api.column(4).data().reduce(function(a, b){ return intVal(a) + intVal(b); }, 0);
             var truncate = parseFloat(totalOverPage).toFixed(5).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,");
@@ -3682,93 +3822,107 @@ function expresscasinoRules(species, name, provider) {
         }
     });
     <?php endif; ?>
-            }
-            }; 
-            actions.insertBefore(btn, actions.querySelector('.swal2-confirm')); 
-        }
-    }).then( (result) => {
-        if( result.isConfirmed ) {
-            gameLandingExpress(species, name, provider);
-        } else if ( result.isDenied ) {
-            swal.close();
         }
     });
+
+    modal.show();
 }
 
-function expressSportRules(species, name, provider) {  
-    swal.fire({
-        backdrop: true,
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        padding: '0.5rem',
-        title: '<?=lang('Validation.useragreetitle');?>',
-        html: '<?=lang('Validation.sportgamerulescontent');?>',
-        customClass: {
-	 		container: 'gamerules-content'
-	 	},
-        showDenyButton: true,
-        confirmButtonText: '<?=lang('Nav.entergame');?>',
-        denyButtonText: '<?=lang('Nav.cancel');?>',
-        didRender: () => { 
-            const actions = Swal.getActions(); 
-            const btn = document.createElement('button'); 
-            btn.textContent = '<?=lang('Nav.betlog');?>'; 
-            btn.className = 'gamelog-btn'; 
-            btn.onclick = () => 
-            {
-                swal.close();
-                const ntitle = '<?=lang('Nav.betlog');?> - ' + name;
-                document.getElementById('scoreTitle').textContent = ntitle;
-                const modal = new bootstrap.Modal(document.getElementById('modal-gamescore'));
-                modal.show();
-            if (!$.fn.DataTable.isDataTable('#scoreTable')) {
-                if( '<?=$_SESSION['lang']?>' == 'my' ) {
-                    langs = malay;
-                } else if( '<?=$_SESSION['lang']?>' == 'cn' ) {
-                    langs = chinese;
-                } else if( '<?=$_SESSION['lang']?>' == 'zh' ) {
-                    langs = tradchinese;
-                } else if( '<?=$_SESSION['lang']?>' == 'th' ) {
-                    langs = thai;
-                } else if( '<?=$_SESSION['lang']?>' == 'vn' ) {
-                    langs = viet;
+function expressSportRules(species, name, provider) {
+    const modalEl = document.getElementById('modal-gamerules');
+
+    modalEl.querySelector('#gameRulesTitle').textContent = name;
+    const logoEl = modalEl.querySelector('.gameRulesLogo');
+    logoEl.src = `<?=$_ENV['gameProviderLogo'];?>/${provider}.png`;
+    logoEl.alt = name;
+    modalEl.querySelector('.gameRulesBalance').innerText =
+        document.querySelector('.userBalance')?.innerText ?? '0.00';
+    modalEl.querySelector('.gameRulesToday').innerText = '0.00';
+    modalEl.querySelector('.gameRulesYesterday').innerText = '0.00';
+    modalEl.querySelector('.gRulesLabel').textContent = '<?=lang('Validation.useragreetitle');?>';
+    modalEl.querySelector('.gRules').innerHTML = <?=json_encode(lang('Validation.sportgamerulescontent'));?>;
+    modalEl.querySelector('.affPct').style.display = '';
+
+    const today = new Date().toISOString().split('T')[0];
+    const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+
+    getTotalTurnOver(today, provider).then(total => {
+        modalEl.querySelector('.gameRulesToday').innerText = total.toFixed(2);
+    });
+    getYTotalTurnOver(yesterday, provider).then(total => {
+        modalEl.querySelector('.gameRulesYesterday').innerText = total.toFixed(2);
+    });
+    renderAffPct(provider);
+
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+
+    // Strip prior handlers (persistent modal element) by cloning the buttons,
+    // then attach fresh handlers so species/name/provider closures are current.
+    const freshEnter  = modalEl.querySelector('.gameRulesEnter').cloneNode(true);
+    const freshBetlog = modalEl.querySelector('.gameRulesBetLog').cloneNode(true);
+    modalEl.querySelector('.gameRulesEnter').replaceWith(freshEnter);
+    modalEl.querySelector('.gameRulesBetLog').replaceWith(freshBetlog);
+
+    freshEnter.addEventListener('click', () => {
+        modal.hide();
+        gameLandingExpress(species, name, provider);
+    });
+
+    freshBetlog.addEventListener('click', () => {
+        modal.hide();
+        const ntitle = 'Bet Log - ' + name;
+        document.getElementById('scoreTitle').textContent = ntitle;
+        document.getElementById('modal-gamescore').dataset.provider = provider;
+        const scoreModal = new bootstrap.Modal(document.getElementById('modal-gamescore'));
+        scoreModal.show();
+        if (!$.fn.DataTable.isDataTable('#paymentTable')) {
+            if( '<?=$_SESSION['lang']?>' == 'my' ) {
+                langs = malay;
+            } else if( '<?=$_SESSION['lang']?>' == 'cn' ) {
+                langs = chinese;
+            } else if( '<?=$_SESSION['lang']?>' == 'zh' ) {
+                langs = tradchinese;
+            } else if( '<?=$_SESSION['lang']?>' == 'th' ) {
+                langs = thai;
+            } else if( '<?=$_SESSION['lang']?>' == 'vn' ) {
+                langs = viet;
+            } else {
+                langs = english;
+            }
+
+            airdatepicker();
+
+        <?php if( isset($_SESSION['logged_in']) ): ?>
+            var pageindex = 1, debug = false;
+            const paymentTable = $('#paymentTable').DataTable({
+                dom: "<'row'<'col-12 overflow-auto'tr>>" + "<'row mt-3'<'col-xl-6 col-lg-6 col-md-6 col-12'i><'col-xl-6 col-lg-6 col-md-6 col-12'p>>",
+                language: langs,
+                ordering: false,
+                deferRender: true,
+                serverSide: true,
+                processing: true,
+                destroy: true,
+                ajax: function(data, callback, settings) {
+                if (settings._iRecordsTotal == 0) {
+                    pageindex = 1;
                 } else {
-                    langs = english;
+                    var pageindex = settings._iDisplayStart/settings._iDisplayLength + 1;
                 }
 
-                airdatepicker();
+                const fromdate = $('.filterForm [name=start]').val();
+                const todate = $('.filterForm [name=end]').val();
+                const gp = document.getElementById('modal-gamescore').dataset.provider || provider;
+                const text = '<?=$_SESSION['token'];?>';
+                const encoded = btoa(text);
 
-                <?php if( isset($_SESSION['logged_in']) ): ?>
-                var pageindex = 1, debug = false;
-                const paymentTable = $('#paymentTable').DataTable({
-                    dom: "<'row'<'col-12 overflow-auto'tr>>" + "<'row mt-3'<'col-xl-6 col-lg-6 col-md-6 col-12'i><'col-xl-6 col-lg-6 col-md-6 col-12'p>>",
-                    language: langs,
-                    ordering: false,
-                    deferRender: true,
-                    serverSide: true,
-                    processing: true,
-                    destroy: true,
-                    ajax: function(data, callback, settings) {
-                    if (settings._iRecordsTotal == 0) {
-                        pageindex = 1;
-                    } else {
-                        var pageindex = settings._iDisplayStart/settings._iDisplayLength + 1;
-                    }
-
-                    const fromdate = $('.filterForm [name=start]').val();
-                    const todate = $('.filterForm [name=end]').val();
-                    const gp = provider;
-                    const text = '<?=$_SESSION['token'];?>'; 
-                    const encoded = btoa(text);
-            
-                    var payload = JSON.stringify({
-                        pageindex: pageindex,
-                        rowperpage: data.length,
-                        start: fromdate,
-                        end: todate,
-                        parent: encoded,
-                        provider: gp
-                });
+                var payload = JSON.stringify({
+                    pageindex: pageindex,
+                    rowperpage: data.length,
+                    start: fromdate,
+                    end: todate,
+                    parent: encoded,
+                    provider: gp
+            });
             $.ajax({
                 url: '/list/game/bet-log',
                 type: 'post',
@@ -3799,9 +3953,6 @@ function expressSportRules(species, name, provider) {
         footerCallback: function ( row, data, start, end, display ) {
             var api = this.api(), data;
             var intVal = function(i){ return typeof i === 'string' ? i.replace(/[\$,]/g, '')*1 : typeof i === 'number' ? i : 0; };
-
-            // var grandtotal = api.column(17).data().reduce(function(a, b){ return intVal(a) + intVal(b); }, 0);
-            // var totalOverPage = api.column(4, {page: 'current'}).data().reduce(function(a, b){ return intVal(a) + intVal(b); }, 0);
 
             var totalOverPage = api.column(4).data().reduce(function(a, b){ return intVal(a) + intVal(b); }, 0);
             var truncate = parseFloat(totalOverPage).toFixed(5).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,");
@@ -3840,93 +3991,105 @@ function expressSportRules(species, name, provider) {
         }
     });
     <?php endif; ?>
-            }
-            }; 
-            actions.insertBefore(btn, actions.querySelector('.swal2-confirm')); 
-        }
-    }).then( (result) => {
-        if( result.isConfirmed ) {
-            gameLandingExpress(species, name, provider);
-        } else if ( result.isDenied ) {
-            swal.close();
         }
     });
+
+    modal.show();
 }
 
-function appgameRules(species, name, provider) {  
-    swal.fire({
-        backdrop: true,
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        padding: '0.5rem',
-        title: '<?=lang('Validation.slotgamerulestitle');?>',
-        html: '<?=lang('Validation.slotgamerulescontent');?>',
-        customClass: {
-	 		container: 'gamerules-content'
-	 	},
-        showDenyButton: true,
-        confirmButtonText: '<?=lang('Nav.entergame');?>',
-        denyButtonText: '<?=lang('Nav.cancel');?>',
-        didRender: () => { 
-            const actions = Swal.getActions(); 
-            const btn = document.createElement('button'); 
-            btn.textContent = '<?=lang('Nav.betlog');?>'; 
-            btn.className = 'gamelog-btn'; 
-            btn.onclick = () => 
-            {
-                swal.close();
-                const ntitle = '<?=lang('Nav.betlog');?> - ' + name;
-                document.getElementById('scoreTitle').textContent = ntitle;
-                const modal = new bootstrap.Modal(document.getElementById('modal-gamescore'));
-                modal.show();
-            if (!$.fn.DataTable.isDataTable('#scoreTable')) {
-                if( '<?=$_SESSION['lang']?>' == 'my' ) {
-                    langs = malay;
-                } else if( '<?=$_SESSION['lang']?>' == 'cn' ) {
-                    langs = chinese;
-                } else if( '<?=$_SESSION['lang']?>' == 'zh' ) {
-                    langs = tradchinese;
-                } else if( '<?=$_SESSION['lang']?>' == 'th' ) {
-                    langs = thai;
-                } else if( '<?=$_SESSION['lang']?>' == 'vn' ) {
-                    langs = viet;
+function appgameRules(species, name, provider) {
+    const modalEl = document.getElementById('modal-gamerules');
+
+    modalEl.querySelector('#gameRulesTitle').textContent = name;
+    const logoEl = modalEl.querySelector('.gameRulesLogo');
+    logoEl.src = `<?=$_ENV['gameProviderLogo'];?>/${provider}.png`;
+    logoEl.alt = name;
+    modalEl.querySelector('.gameRulesBalance').innerText =
+        document.querySelector('.userBalance')?.innerText ?? '0.00';
+    modalEl.querySelector('.gameRulesToday').innerText = '0.00';
+    modalEl.querySelector('.gameRulesYesterday').innerText = '0.00';
+    modalEl.querySelector('.gRulesLabel').textContent = '<?=lang('Validation.slotgamerulestitle');?>';
+    modalEl.querySelector('.gRules').innerHTML = <?=json_encode(lang('Validation.slotgamerulescontent'));?>;
+    modalEl.querySelector('.affPct').style.display = '';
+
+    const today = new Date().toISOString().split('T')[0];
+    const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+
+    getTotalTurnOver(today, provider).then(total => {
+        modalEl.querySelector('.gameRulesToday').innerText = total.toFixed(2);
+    });
+    getYTotalTurnOver(yesterday, provider).then(total => {
+        modalEl.querySelector('.gameRulesYesterday').innerText = total.toFixed(2);
+    });
+    renderAffPct(provider);
+
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+
+    const freshEnter  = modalEl.querySelector('.gameRulesEnter').cloneNode(true);
+    const freshBetlog = modalEl.querySelector('.gameRulesBetLog').cloneNode(true);
+    modalEl.querySelector('.gameRulesEnter').replaceWith(freshEnter);
+    modalEl.querySelector('.gameRulesBetLog').replaceWith(freshBetlog);
+
+    freshEnter.addEventListener('click', () => {
+        modal.hide();
+        appLanding(species, name, provider);
+    });
+
+    freshBetlog.addEventListener('click', () => {
+        modal.hide();
+        const ntitle = 'Bet Log - ' + name;
+        document.getElementById('scoreTitle').textContent = ntitle;
+        document.getElementById('modal-gamescore').dataset.provider = provider;
+        const scoreModal = new bootstrap.Modal(document.getElementById('modal-gamescore'));
+        scoreModal.show();
+        if (!$.fn.DataTable.isDataTable('#paymentTable')) {
+            if( '<?=$_SESSION['lang']?>' == 'my' ) {
+                langs = malay;
+            } else if( '<?=$_SESSION['lang']?>' == 'cn' ) {
+                langs = chinese;
+            } else if( '<?=$_SESSION['lang']?>' == 'zh' ) {
+                langs = tradchinese;
+            } else if( '<?=$_SESSION['lang']?>' == 'th' ) {
+                langs = thai;
+            } else if( '<?=$_SESSION['lang']?>' == 'vn' ) {
+                langs = viet;
+            } else {
+                langs = english;
+            }
+
+            airdatepicker();
+
+        <?php if( isset($_SESSION['logged_in']) ): ?>
+            var pageindex = 1, debug = false;
+            const paymentTable = $('#paymentTable').DataTable({
+                dom: "<'row'<'col-12 overflow-auto'tr>>" + "<'row mt-3'<'col-xl-6 col-lg-6 col-md-6 col-12'i><'col-xl-6 col-lg-6 col-md-6 col-12'p>>",
+                language: langs,
+                ordering: false,
+                deferRender: true,
+                serverSide: true,
+                processing: true,
+                destroy: true,
+                ajax: function(data, callback, settings) {
+                if (settings._iRecordsTotal == 0) {
+                    pageindex = 1;
                 } else {
-                    langs = english;
+                    var pageindex = settings._iDisplayStart/settings._iDisplayLength + 1;
                 }
 
-                airdatepicker();
+                const fromdate = $('.filterForm [name=start]').val();
+                const todate = $('.filterForm [name=end]').val();
+                const gp = document.getElementById('modal-gamescore').dataset.provider || provider;
+                const text = '<?=$_SESSION['token'];?>';
+                const encoded = btoa(text);
 
-                <?php if( isset($_SESSION['logged_in']) ): ?>
-                var pageindex = 1, debug = false;
-                const paymentTable = $('#paymentTable').DataTable({
-                    dom: "<'row'<'col-12 overflow-auto'tr>>" + "<'row mt-3'<'col-xl-6 col-lg-6 col-md-6 col-12'i><'col-xl-6 col-lg-6 col-md-6 col-12'p>>",
-                    language: langs,
-                    ordering: false,
-                    deferRender: true,
-                    serverSide: true,
-                    processing: true,
-                    destroy: true,
-                    ajax: function(data, callback, settings) {
-                    if (settings._iRecordsTotal == 0) {
-                        pageindex = 1;
-                    } else {
-                        var pageindex = settings._iDisplayStart/settings._iDisplayLength + 1;
-                    }
-
-                    const fromdate = $('.filterForm [name=start]').val();
-                    const todate = $('.filterForm [name=end]').val();
-                    const gp = provider;
-                    const text = '<?=$_SESSION['token'];?>'; 
-                    const encoded = btoa(text);
-            
-                    var payload = JSON.stringify({
-                        pageindex: pageindex,
-                        rowperpage: data.length,
-                        start: fromdate,
-                        end: todate,
-                        parent: encoded,
-                        provider: gp
-                });
+                var payload = JSON.stringify({
+                    pageindex: pageindex,
+                    rowperpage: data.length,
+                    start: fromdate,
+                    end: todate,
+                    parent: encoded,
+                    provider: gp
+            });
             $.ajax({
                 url: '/list/game/bet-log',
                 type: 'post',
@@ -3935,7 +4098,6 @@ function appgameRules(species, name, provider) {
                 dataType:"json",
                 success: function(res){
                     if (res.code !== 1) {
-                        // alert(res.message);
                         callback({
                             recordsTotal: 0,
                             recordsFiltered: 0,
@@ -3957,9 +4119,6 @@ function appgameRules(species, name, provider) {
         footerCallback: function ( row, data, start, end, display ) {
             var api = this.api(), data;
             var intVal = function(i){ return typeof i === 'string' ? i.replace(/[\$,]/g, '')*1 : typeof i === 'number' ? i : 0; };
-
-            // var grandtotal = api.column(17).data().reduce(function(a, b){ return intVal(a) + intVal(b); }, 0);
-            // var totalOverPage = api.column(4, {page: 'current'}).data().reduce(function(a, b){ return intVal(a) + intVal(b); }, 0);
 
             var totalOverPage = api.column(4).data().reduce(function(a, b){ return intVal(a) + intVal(b); }, 0);
             var truncate = parseFloat(totalOverPage).toFixed(5).replace(/(\.\d{2})\d*/, "$1").replace(/(\d)(?=(\d{3})+\b)/g, "$1,");
@@ -3998,17 +4157,10 @@ function appgameRules(species, name, provider) {
         }
     });
     <?php endif; ?>
-            }
-            }; 
-            actions.insertBefore(btn, actions.querySelector('.swal2-confirm')); 
-        }
-    }).then( (result) => {
-        if( result.isConfirmed ) {
-            appLanding(species, name, provider);
-        } else if ( result.isDenied ) {
-            swal.close();
         }
     });
+
+    modal.show();
 }
 
 function appUrlgameRules(species, name, provider) {  
@@ -4157,27 +4309,103 @@ function airdatepicker()
     });
 }
 
-function airdatepicker()
-{
-    $('[name=start]').datepicker({
-        autoClose: true,
-        changeMonth: true,
-        changeYear: true,
-        language: '<?=$_SESSION['lang']=='cn' || $_SESSION['lang']=='zh' ? 'zh' : 'en'?>',
-        dateFormat: 'yyyy-mm-dd',
-        maxDate: new Date(),
-        todayButton: new Date(),
-        clearButton: true
+function getTotalTurnOver(gDate, gpCode){
+    return new Promise((resolve, reject) => {
+        var params = {};
+        params['start'] = gDate;
+        params['end'] = gDate;
+        console.log(params);
+
+        $.post('/list/game/bet-TTO', { params }, function(data, status) {
+            const obj = JSON.parse(data);
+            if (obj.code == 1) {
+                let totalTurnover = 0;
+                obj.data.forEach(item => {
+                    if (item.gameProviderCode === gpCode) {
+                        totalTurnover += item.turnover;
+                    }
+                });
+                resolve(totalTurnover);
+            } else {
+                swal.fire("Error!", obj.message + " (Code: "+obj.code+")", "error");
+                reject(obj.message);
+            }
+        })
+        .fail(function() {
+            swal.fire("Error!", "Oopss! There are something wrong. Please try again later.", "error");
+            reject("Request failed");
+        });
     });
-    $('[name=end]').datepicker({
-        autoClose: true,
-        changeMonth: true,
-        changeYear: true,
-        language: '<?=$_SESSION['lang']=='cn' || $_SESSION['lang']=='zh' ? 'zh' : 'en'?>',
-        dateFormat: 'yyyy-mm-dd',
-        maxDate: new Date(),
-        todayButton: new Date(),
-        clearButton: true
+}
+
+function getYTotalTurnOver(gDate, gpCode){
+    return new Promise((resolve, reject) => {
+        var params = {};
+        params['start'] = gDate;
+        params['end'] = gDate;
+        console.log(params);
+
+        $.post('/list/game/bet-TTO', { params }, function(data, status) {
+            const obj = JSON.parse(data);
+            if (obj.code == 1) {
+                let totalTurnover = 0;
+                obj.data.forEach(item => {
+                    if (item.gameProviderCode === gpCode) {
+                        totalTurnover += item.turnover;
+                    }
+                });
+                resolve(totalTurnover);
+            } else {
+                swal.fire("Error!", obj.message + " (Code: "+obj.code+")", "error");
+                reject(obj.message);
+            }
+        })
+        .fail(function() {
+            swal.fire("Error!", "Oopss! There are something wrong. Please try again later.", "error");
+            reject("Request failed");
+        });
     });
+}
+
+window.affMap = {};
+const GAME_TYPE_LABELS = {
+    0: 'NONE',
+    1: '<?=lang('Label.slot');?>',
+    2: '<?=lang('Label.casino');?>',
+    3: '<?=lang('Label.sport');?>',
+    4: '<?=lang('Label.keno');?>',
+    5: '<?=lang('Label.lottery');?>',
+    6: '<?=lang('Nav.fishing');?>',
+    7: '<?=lang('Label.other');?>',
+    8: '<?=lang('Label.esport');?>'
+};
+
+function getAffiliateSettings() {
+    return $.post('/list/affiliate/settings', function(data) {
+        const res = typeof data === 'string' ? JSON.parse(data) : data;
+        if (res.code === 1) {
+            window.affMap = res.map || {};
+        }
+        console.log('affiliateSettingsList →', res);
+    })
+    .fail(function(xhr) {
+        console.error('affiliateSettingsList failed', xhr.status, xhr.responseText);
+    });
+}
+
+function renderAffPct(provider) {
+    const $body = $('.affPct tbody').empty();
+    const pcts = window.affMap[provider];
+    if (!pcts) return;
+
+    Object.keys(pcts).forEach(function(gt) {
+        const pct = pcts[gt];
+        const label = GAME_TYPE_LABELS[gt] || ('TYPE ' + gt);
+        $body.append('<tr><td>' + label + '</td><td class="text-end">' + pct + '%</td></tr>');
+    });
+}
+
+if (typeof logged !== 'undefined' && logged) {
+    getAffiliateSettings();
 }
 </script>

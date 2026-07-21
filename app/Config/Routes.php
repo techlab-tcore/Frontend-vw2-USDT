@@ -156,6 +156,7 @@ $routes->get('list/game-provider', 'Gameprovider_control::gameProviderList', ['f
 $routes->resource('Game_control');
 $routes->post('list/game-credit/log', 'Game_control::gameCreditLog', ['filter' => 'auth']);
 $routes->post('list/game/bet-log', 'Game_control::gameBetLog', ['filter' => 'auth']);
+$routes->post('list/game/bet-TTO', 'Game_control::gameBetTTO', ['filter' => 'auth']);
 $routes->post('list/game/reference-bet-log', 'Game_control::gameRefBetLog', ['filter' => 'auth']);
 $routes->post('game/lobby/get', 'Game_control::getGameLobbyInfo', ['filter' => 'auth']);
 $routes->post('game/lobby/open', 'Game_control::openLobby', ['filter' => 'auth']);
@@ -181,6 +182,7 @@ $routes->resource('Affiliate_control');
 $routes->post('list/affiliate/history', 'Affiliate_control::affiliateHistory', ['filter' => 'auth']);
 $routes->get('affiliate-downline', 'Affiliate_control::getAffiliateList', ['filter' => 'auth']);
 $routes->get('list/affiliate/downline', 'Affiliate_control::getAffiliateDownlineList', ['filter' => 'auth']);
+$routes->post('list/affiliate/settings', 'Affiliate_control::affiliateSettingsList', ['filter' => 'auth']);
 
 $routes->resource('Fortunewheel_control');
 $routes->get('fortune-wheel/top-20', 'Fortunewheel_control::fortuneWheelTopList', ['filter' => 'auth']);

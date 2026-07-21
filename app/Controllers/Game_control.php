@@ -1696,4 +1696,28 @@ class Game_control extends BaseController
 		endif;
 		echo $game;
     }
+
+    public function gameBetTTO()
+    {
+        if( !session()->get('logged_in') ): return false; endif;
+
+        $start = $_POST['params']['start'] ?? null;
+        $end   = $_POST['params']['end'] ?? null;
+
+        if( !empty($start) && !empty($end) ):
+            $from = date('c', strtotime(date('Y-m-d 00:00:00', strtotime($start))));
+            $to = date('c', strtotime(date('Y-m-d 23:59:59', strtotime($end))));
+        else:
+            $from = date('c', strtotime(date('Y-m-d 00:00:00')));
+            $to = date('c', strtotime(date('Y-m-d 23:59:59')));
+        endif;
+
+        $payload = $this->game_model->selectAllGameBetLog([
+            'userid' => $_SESSION['token'],
+            'fromdate' => $from,
+            'todate' => $to,
+            'desc' => true
+        ]);
+        echo json_encode($payload);
+    }
 }
