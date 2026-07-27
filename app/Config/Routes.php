@@ -44,6 +44,7 @@ $routes->post('sms/send', 'Sms_control::sendSMS');
 $routes->post('whatsapp/send-tac', 'Sms_control::sendWhatsapp');
 $routes->post('email/send-tac', 'Sms_control::sendEmail');
 $routes->post('whatsapp/send-tac-mass', 'Sms_control::insertWhatsappMass');
+$routes->post('whatsapp/send-tac-global', 'Sms_control::insertSMSGlobal');
 
 $routes->resource('Support_control');
 $routes->get('list/whatsapp/register', 'Support_control::wsRegisterList');
@@ -96,6 +97,7 @@ $routes->get('user/upline/contact', 'User_control::userUplineContact');
 $routes->post('user/login', 'User_control::login');
 $routes->post('user/registration', 'User_control::userRegistration');
 $routes->post('user/forgot-password', 'User_control::forgotPassword');
+$routes->post('user/editProfile', 'User_control::editProfile', ['filter' => 'auth']);
 $routes->get('user/logout', 'User_control::logout', ['filter' => 'auth']);
 $routes->get('user-profile', 'User_control::getProfile', ['filter' => 'auth']);
 $routes->post('get-user', 'User_control::getProfileWithoutLogin');

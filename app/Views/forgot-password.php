@@ -115,7 +115,8 @@ document.onkeydown = function(e) {
                         <span class="input-group-text bg-white"><i class="bx bx-mobile"></i></span>
                         <select class="form-select" id="tacmethod" name="tacmethod" required>
                             <option value="email" selected>Email</option>    
-                            <option value="sms">SMS</option>
+                            <option value="sms">SMS Channel 1</option>
+                            <option value="sms2">SMS Channel 2</option>
                             <option value="whatsapp">WhatsApp</option>
                         </select>
                     </div>
@@ -291,14 +292,46 @@ function requestSmsTac(dom)
             
                 if( tacmethod==="whatsapp" && contact!==''  ) {
 
+                    //disable get tac option and allow readonly
+                    const otpMethodBtn = document.getElementById('tacmethod');
+                    otpMethodBtn.disabled = true;
+                    $('.forgotPassForm [name=mobile]').prop('readonly', true);
+
+                    $('.btn-tac').prop('disabled', true);
+
                    whatsappTAC2(contact, regioncode);
                 }
                 else if (tacmethod === 'sms' && contact !== '') {
 
+                    //disable get tac option and allow readonly
+                    const otpMethodBtn = document.getElementById('tacmethod');
+                    otpMethodBtn.disabled = true;
+                    $('.forgotPassForm [name=mobile]').prop('readonly', true);
+
+                    $('.btn-tac').prop('disabled', true);
+
                     var pass = Math.floor(100000 + Math.random() * 900000);
                     sms(contact, pass, regioncode);
 
-                } else if (tacmethod === 'email' && email !== '') {
+                } else if (tacmethod === 'sms2' && contact !== '') {
+
+                    //disable get tac option and allow readonly
+                    const otpMethodBtn = document.getElementById('tacmethod');
+                    otpMethodBtn.disabled = true;
+                    $('.forgotPassForm [name=mobile]').prop('readonly', true);
+
+                    $('.btn-tac').prop('disabled', true);
+
+                    GlobalSMSTAC(contact, regioncode);
+
+                }else if (tacmethod === 'email' && email !== '') {
+
+                    //disable get tac option and allow readonly
+                    const otpMethodBtn = document.getElementById('tacmethod');
+                    otpMethodBtn.disabled = true;
+                    $('.forgotPassForm [name=mobile]').prop('readonly', true);
+
+                    $('.btn-tac').prop('disabled', true);
 
                     emailTAC(email);
                 }
@@ -442,6 +475,30 @@ function emailTAC(email)
             swal.fire("Error!", obj.message + " (Code: "+obj.code+")", "error");
             $('.btn-tac').prop('disabled', false);
             $('.affRegisForm [name=email').prop('readonly', false);
+        }
+    });
+}
+
+function GlobalSMSTAC(contact,mobilecode)
+{
+
+    var params = {};
+    params['contact'] = contact;
+    params['regioncode'] = mobilecode;
+
+    $.post('/whatsapp/send-tac-global', {
+        params
+    }, function(data, status) {
+        const obj = JSON.parse(data);
+        if( obj.code==200 ) {
+            swal.close();
+            timer();
+        } else if( obj.code==39 ) {
+            forceUserLogout();
+        } else {
+            swal.fire("Error!", obj.message + " (Code: "+obj.code+")", "error");
+            $('.btn-tac').prop('disabled', false);
+            $('.affRegisForm [name=mobile').prop('readonly', false);
         }
     });
 }
