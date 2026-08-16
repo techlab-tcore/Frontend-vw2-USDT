@@ -682,6 +682,24 @@
 </section>
 <!-- End Game Rules -->
 
+<!-- Maintenance modal -->
+ <section class="modal fade modal-maintenance" id="modal-maintenance" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal-maintenance" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <article class="modal-content border-0">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bx bxs-megaphone me-1"></i>Maintenance</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="row g-2 p-3">
+                    Maintenance in Progress
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+<!-- End of maintenance modal -->
+
 <script src="<?=base_url('assets/vendors/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
 <script src="<?=base_url('assets/vendors/sweetalert2/sweetalert2.min.js');?>"></script>
 <script src="<?=base_url('assets/vendors/airdatepicker/js/datepicker.min.js');?>"></script>
@@ -4402,6 +4420,22 @@ function renderAffPct(provider) {
         const pct = pcts[gt];
         const label = GAME_TYPE_LABELS[gt] || ('TYPE ' + gt);
         $body.append('<tr><td>' + label + '</td><td class="text-end">' + pct + '%</td></tr>');
+    });
+}
+
+function claimRebate() {
+    $.post('/payment/claimpendingrebate', { }, function(data, status) {
+        const obj = JSON.parse(data);
+        if (obj.code == 1) {
+            swal.fire("Success!", obj.message, "success").then(() => {
+                location.reload();
+            });
+        } else {
+            swal.fire("Error!", obj.message + " (Code: "+obj.code+")", "error");
+        }
+    })
+    .fail(function() {
+        swal.fire("Error!", "Oopss! There are something wrong. Please try again later.", "error");
     });
 }
 

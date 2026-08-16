@@ -403,4 +403,27 @@ class Balance_control extends BaseController
             echo json_encode(['no data']);
         endif;
     }
+
+    public function pgUrl()
+    {
+        if( !session()->get('logged_in') ): return false; endif;
+
+        $payload = [
+            'userid' => $_SESSION['token'],
+            'paymentid' => $this->request->getPost('params')['paymentid']
+        ];
+
+        $res = $this->balance_model->getPGurl($payload);
+        echo json_encode($res);
+ 
+    }
+
+    public function claimPendingRebate()
+    {
+        $payload = [
+            'userid' => $_SESSION['token']
+        ];
+        $res = $this->balance_model->claimRebate($payload);
+        echo json_encode($res);
+    }
 }

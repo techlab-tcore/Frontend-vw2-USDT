@@ -189,6 +189,12 @@ class User_control extends BaseController
             $fortuneToken = $res['data']['spinChip'];
             $jackpot = $res['data']['jackpot'];
             $fullName = $res['data']['name'];
+            $dob = $res['data']['dob'];
+            $region = $res['data']['regionCode'];
+            $contact = $res['data']['contact'];
+            $email = $res['data']['email'];
+            $winoverAmount = $res['data']['winoverAmount'];
+            $rebateAmount = $res['data']['pendingRebate'];
 
             $date = Time::parse(date('Y-m-d H:i:s', strtotime($res['data']['createDate'])));
             $created = $date->toDateTimeString();
@@ -270,6 +276,13 @@ class User_control extends BaseController
                 'jackpot' => $jackpot,
                 'currentTurnover' => bcdiv($validCurrentTurnover,1,2),
                 'totalTurnover' => bcdiv($totalTurnover,1,2),
+                'dob' => $dob,
+                'region' => $region,
+                'contact' => $contact,
+                'email' => $email,
+                'pendingRebate' => bcdiv($rebateAmount,1,2),
+                'currentBalance' => bcdiv($userBalance,1,2),
+                'winoverAmount' => bcdiv($winoverAmount,1,2)
             ];
             echo json_encode($result);
         else:
@@ -527,5 +540,18 @@ class User_control extends BaseController
     {
         $session = session();
         $session->set('taccode', $this->request->getpost('params')['veritac']);
+    }
+
+    public function editProfile()
+    {
+        if( !session()->get('logged_in') ): return false; endif;
+
+
+        $payload = [
+            'userid' => $_SESSION['token'],
+            'dob' => $this->request->getPost('params')['dob'],
+        ];
+        $res = $this->user_model->updateUserProfile($payload);
+        echo json_encode($res);
     }
 }

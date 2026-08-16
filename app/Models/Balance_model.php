@@ -8,11 +8,12 @@ class Balance_model extends Model
     protected $transactionHistory3 = 'http://10.148.15.251:8961/payment/getpaymenthistory3';
     protected $addPayment = 'http://10.148.15.251:8961/payment/transfer';
     protected $addBankSlip = 'http://10.148.15.251:8961/payment/uploadslip';
-
+    protected $getpgLink = 'http://10.148.15.251:8961/payment/pgtransfer';
     protected $userTransfer = 'http://10.148.15.251:8961/playertransfer/transferbyloginid';
     protected $userTransferHistory = 'http://10.148.15.251:8961/playertransfer/getplayertransferhistory';
 
     protected $transactionApproval = 'http://10.148.15.251:8961/payment/approve';
+    protected $claimRebate = 'http://10.148.15.251:8961/payment/claimpendingrebate';
 
     public function __construct()
 	{
@@ -135,6 +136,50 @@ class Balance_model extends Model
 		$payload = json_encode($data);
         
         $ch = curl_init($this->transactionHistory);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($ch, CURLINFO_HEADER_OUT, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($payload))
+        );
+        $response = curl_exec($ch);
+        $err = curl_error($ch);
+        curl_close($ch);
+
+        return json_decode($response, true);
+    }
+
+    public function getPGurl($where)
+	{
+		$data = array_merge(['lang'=>$_SESSION['lang'], 'sessionid'=>$_SESSION['session'], 'agentid'=>$_ENV['admin']], $where);
+		$payload = json_encode($data);
+        
+        $ch = curl_init($this->getpgLink);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($ch, CURLINFO_HEADER_OUT, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($payload))
+        );
+        $response = curl_exec($ch);
+        $err = curl_error($ch);
+        curl_close($ch);
+
+        return json_decode($response, true);
+    }
+
+    public function claimRebate($where)
+	{
+		$data = array_merge(['lang'=>$_SESSION['lang'], 'sessionid'=>$_SESSION['session'], 'agentid'=>$_ENV['host']], $where);
+		$payload = json_encode($data);
+        
+        $ch = curl_init($this->claimRebate);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($ch, CURLOPT_POST, 1);

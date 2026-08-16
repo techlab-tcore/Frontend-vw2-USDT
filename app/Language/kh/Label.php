@@ -171,7 +171,8 @@ return [
     'chgAcc' => 'ផ្លាស់ប្តូរគណនី',
     
     'turnoverwithdrawal' => 'ការផ្លាស់ប្តូរសម្រាប់ការដកប្រាក់',
-    'winoverwithdrawal' => 'Winover for Withdrawal',
+    'winoverwithdrawal' => 'Winover សម្រាប់ការដកប្រាក់',
+    'pendingrebate' => 'ចំនួនទឹកប្រាក់ដែលកំពុងរង់ចាំ',
     'tdyBO' => 'ភ្នាល់ថ្ងៃនេះ',
     'ydyBO' => 'ភ្នាល់ម្សិលមិញ',
     'dob' => 'ថ្ងៃខែឆ្នាំកំណើត',

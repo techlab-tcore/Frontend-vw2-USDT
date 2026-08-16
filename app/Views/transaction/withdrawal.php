@@ -104,13 +104,6 @@
                             <small class="d-block bg-major-light text-dark p-xl-5 p-lg-5 p-md-5 p-3">
                                 <h5 class="color-major2 pb-3"><?=lang('Label.withdrawalpolicy');?></h5>
                                 <p><?=lang('Validation.wthpolicy');?></p>
-                                <ul>
-                                    <li><?=lang('Validation.wthpolicyA');?></li>
-                                    <li><?=lang('Validation.wthpolicyB');?></li>
-                                    <li><?=lang('Validation.wthpolicyC');?></li>
-                                    <li><?=lang('Validation.wthpolicyD');?></li>
-                                    <li><?=lang('Validation.wthpolicyE');?></li>
-                                </ul>
                                 <p><?=lang('Validation.wthpolicy1');?></p>
                                 <p><?=lang('Validation.wthpolicy2');?></p>
                                 <p><?=lang('Validation.wthpolicy3');?></p>

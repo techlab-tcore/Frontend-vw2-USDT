@@ -12,13 +12,14 @@
                         <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                             <div class="p-2 rounded bg-55vp4">
                                 <nav class="row nav nav-pills" id="nav-tab">
-                                    <button class="nav-link col-4 d-flex flex-column align-items-center flex-fill active" id="nav-instant-tab" data-bs-toggle="tab" data-bs-target="#nav-instant" type="button" role="tab" aria-controls="nav-instant" aria-selected="true">
+                                    <button class="nav-link col-4 d-flex flex-column align-items-center active flex-fill" id="nav-instant-tab" data-bs-toggle="tab" data-bs-target="#nav-instant" type="button" role="tab" aria-controls="nav-instant" aria-selected="true">
                                         <img class="depoptionimg" src="<?=base_url('assets/img/bankmethod/gateway.png');?>" alt="Instant Transfer" class="bank-icon">
                                         <?=lang('Nav.instanttransfer');?>
                                     </button>
                                     <button class="nav-link col-4 d-flex flex-column align-items-center flex-fill" id="nav-bank-tab" data-bs-toggle="tab" data-bs-target="#nav-bank" type="button" role="tab" aria-controls="nav-bank" aria-selected="false">
                                         <img class="depoptionimg"src="<?=base_url('assets/img/bankmethod/bank_transfer.png');?>" alt="Bank Transfer" class="bank-icon">
-                                        <?=lang('Nav.banktransfer');?></button>
+                                        <?=lang('Nav.banktransfer');?>
+                                    </button>
                                 </nav>
                             </div>
                         </div>
@@ -26,7 +27,7 @@
 
                     <dl class="tab-content" id="nav-tabContent">
                         <dd class="tab-pane fade show active" id="nav-instant" role="tabpanel" aria-labelledby="nav-instant-tab" tabindex="0">
-                            <?=form_open('',['class'=>'form-validation pgatewayForm','novalidate'=>'novalidate'],['channel'=>'','currency'=>'','bankid'=>'','merchant'=>'']);?>
+                            <?=form_open('',['class'=>'form-validation pgatewayForm','novalidate'=>'novalidate'],['channel'=>'','currency'=>'TUSDT','bankid'=>'','merchant'=>'']);?>
                             <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.pgateway');?> <span class="text-danger">*</span></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
@@ -66,12 +67,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="row mb-3">
+                            <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Label.promotion');?></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                                     <select class="form-select" name="promotion" id="promo-list"></select>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="row mb-3">
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12 ms-auto">
                                     <button type="submit" class="btn btn-primary"><?=lang('Nav.submit');?></button>
@@ -138,7 +139,7 @@
                             <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Input.uploadreceipt');?> <span class="text-danger">*</span></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
-                                    <input class="form-control" type="file" id="receipt" name="receipt" required>
+                                    <input class="form-control" type="file" id="receipt" name="receipt" accept=".png,.jpg,.jpeg,.pdf,image/png,image/jpeg,application/pdf" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -147,12 +148,12 @@
                                     <input class="form-control" id="tranxid" name="tranxid" required>
                                 </div>
                             </div>
-                            <!-- <div class="row mb-3">
+                            <div class="row mb-3">
                                 <label class="col-xl-4 col-lg-4 col-md-4 col-12 col-form-label color-55vp3"><?=lang('Label.promotion');?></label>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12">
                                     <select class="form-select" name="promotion" id="bankPromo-list"></select>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="row mb-3">
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12 ms-auto">
                                     <button type="submit" class="btn btn-primary"><?=lang('Nav.submit');?></button>
@@ -424,12 +425,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 return false;
             }
 
-            // const promoExist = $('.pgatewayForm #promo-list').html();
-            // // alert(promoExist.length);
-            // if( promoExist.length>0 )
-            // {
-            //     if( params['promotion']=='' )
-            //     {
+            const promoExist = $('.pgatewayForm #promo-list').html();
+            // alert(promoExist.length);
+            if( promoExist.length>0 )
+            {
+                if( params['promotion']=='' )
+                {
                     swal.fire({
                         backdrop: true,
                         allowOutsideClick: false,
@@ -450,14 +451,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         }
                     });
                     return false;
-            //     } else {
-            //         beforePGDeposit(params);
-            //         //submitPGatetway(params);
-            //     }
-            // } else {
-            //     beforePGDeposit(params);
-            //     //submitPGatetway(params);
-            // }
+                } else {
+                    beforePGDeposit(params);
+                    //submitPGatetway(params);
+                }
+            } else {
+                beforePGDeposit(params);
+                //submitPGatetway(params);
+            }
         }
     });
 
@@ -471,6 +472,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const imgSource = $('.bankTransferForm [name=receipt]')[0].files[0];
             const img = $('.bankTransferForm [name=receipt]')[0].files[0]['name'];
             const ext = img.substr( (img.lastIndexOf('.') +1) );
+
+            const allowedExt = ['png','jpg','jpeg','pdf'];
+            const allowedMime = ['image/png','image/jpeg','application/pdf'];
+            if( !allowedExt.includes(ext.toLowerCase()) || !allowedMime.includes(imgSource.type) )
+            {
+                swal.fire('Warning', 'Only PNG, JPG, JPEG or PDF files are allowed.', 'warning');
+                $('.bankTransferForm [type=submit]').prop('disabled', false);
+                return;
+            }
 
             let timestamp = Math.floor(Date.now() / 1000);
             const userstamp = '<?=isset($_SESSION['username'])?$_SESSION['username']:'';?>';
@@ -490,11 +500,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 return false;
             }
             
-            // const promoExist = $('.bankTransferForm #bankPromo-list').html();
-            // if( promoExist.length>0 )
-            // {
-                // if( params['promotion']=='' )
-                // {
+            const promoExist = $('.bankTransferForm #bankPromo-list').html();
+            if( promoExist.length>0 )
+            {
+                if( params['promotion']=='' )
+                {
                     swal.fire({
                         title: '<?=lang('Validation.rusure');?>',
                         text: '<?=lang('Validation.nopromotion');?>',
@@ -510,14 +520,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                             $('.bankTransferForm [type=submit]').prop('disabled', false);
                         }
                     });
-                // } else {
-                //     beforeBTDeposit(params, imgSource);
-                //     //submitBankTransfer(params, imgSource);
-                // }
-            // } else {
-            //     beforeBTDeposit(params, imgSource);
-            //     //submitBankTransfer(params, imgSource);
-            // }
+                } else {
+                    beforeBTDeposit(params, imgSource);
+                    //submitBankTransfer(params, imgSource);
+                }
+            } else {
+                beforeBTDeposit(params, imgSource);
+                //submitBankTransfer(params, imgSource);
+            }
         }
     });
 });
@@ -557,6 +567,50 @@ function submitPGatetway(params)
     }, function(data, status) {
         const obj = JSON.parse(data);
         if( obj.code==1 ) {
+
+            if (params['bankid']==btoa('<?=$_ENV['ABitPay'];?>') ) {
+                var pgParams = {};
+                pgParams['paymentid'] = obj.paymentId;
+
+                $.post('/payment/getPGUrl', {
+                    params: pgParams
+                }, function(data2, status2) {
+                    const obj2 = JSON.parse(data2);
+                    if( obj2.code==1 ) {
+                        if( obj.paymentGatewayParams.channelcode!='USDT' && params['bankid']!=btoa('<?=$_ENV['payessence'];?>') && params['bankid']!=btoa('<?=$_ENV['peEwallet'];?>') && params['bankid']!=btoa('<?=$_ENV['bigpay'];?>') )
+                        {
+                            $('.modal-depositFrame').modal('show');
+                            var node = document.createElement('iframe');
+                            node.setAttribute('allowfullscreen','allowfullscreen');
+                            node.setAttribute('frameborder','0');
+                            node.setAttribute('loading','lazy');
+                            node.setAttribute('width','100%');
+                            node.setAttribute('height','100%');
+                            node.src = obj2.url;
+                            node.seamless;
+                            document.getElementById("depositScreen").appendChild(node);
+                        } else {
+                            
+                             byPassBlockPopUp(obj2.url);
+                        }
+                    } else {
+                        swal.fire("Error!", obj2.message + " (Code: "+obj2.code+")", "error").then(() => {
+                            $('.pgatewayForm [type=submit]').prop('disabled', false);
+                        });
+                    }
+                })
+                .done(function() {
+                    swal.close();
+                    $('.pgatewayForm [type=submit]').prop('disabled', false);
+                })
+                .fail(function() {
+                    swal.fire("Error!", "Oopss! There are something wrong. Please try again later.", "error").then(()=>{
+                        $('.pgatewayForm [type=submit]').prop('disabled', false);
+                    });
+                });
+                return false;
+            };
+
             $('form').removeClass('was-validated');
             $('form').trigger('reset');
 
@@ -596,7 +650,7 @@ function submitPGatetway(params)
                     // win.document.write(data);
                     // win.document.close();
 
-                    if( obj.paymentGatewayParams.channelcode!='USDT' && params['bankid']!=btoa('<?=$_ENV['payessence'];?>') && params['bankid']!=btoa('<?=$_ENV['peEwallet'];?>') && params['bankid']!=btoa('<?=$_ENV['bigpay'];?>') && params['bankid']!=btoa('<?=$_ENV['epicpayFPX'];?>') )
+                    if( obj.paymentGatewayParams.channelcode!='USDT' && params['bankid']!=btoa('<?=$_ENV['payessence'];?>') && params['bankid']!=btoa('<?=$_ENV['peEwallet'];?>') && params['bankid']!=btoa('<?=$_ENV['bigpay'];?>') && params['bankid']!=btoa('<?=$_ENV['epicpayFPX'];?>') && params['bankid']!=btoa('<?=$_ENV['tgpay'];?>') && params['bankid']!=btoa('<?=$_ENV['tgpayEwallet'];?>'))
                     {
                         $('.modal-depositFrame').modal('show');
                         var node = document.createElement('iframe');
@@ -660,13 +714,14 @@ async function getPromoList(element)
             //     $('form').removeClass('was-validated');
             //     $('form').trigger('reset');
             // });
+            const promo = obj.data.sort((a, b) => a.order - b.order);
+            
             var nodeAll = document.createElement("option");
             var textNodeAll = document.createTextNode('---<?=lang('Label.promotion');?>---');
             nodeAll.setAttribute("value", '');
             nodeAll.appendChild(textNodeAll);
             document.getElementById(element).appendChild(nodeAll);
 
-            const promo = obj.data;
             promo.forEach(function(item, index) {
                 var node = document.createElement("option");
                 var textNode = document.createTextNode(item.title);
@@ -842,6 +897,10 @@ async function getRadioPGatewayList(element)
                     //DGPAY filter
                     pg.forEach(function(item, index) {
                         let oderNo = index + 1;
+                        // Restrict ABitPay to specific user only
+                        // if (item.bank == '6a81781a2567a97d5fe8b7d3' && '<?=$_SESSION['token']?>' != '695444dc3b4cd756c8d7e5e2') {
+                        //     return;
+                        // }
                     // <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
                     // <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
                     //if( item.status==1 && item.name == 'PayEssence')
@@ -883,6 +942,8 @@ async function getRadioPGatewayList(element)
                             document.querySelector("#dropdownMenuPG").setAttribute("name", 'pgid');
                             document.querySelector("#dropdownMenuPG").setAttribute("data-pgid", btoa(item.bank));
                             document.querySelector("#dropdownMenuPG").setAttribute("data-merchant", item.merchant);
+                            // getPgChannel('depositPayGatewayBank-list', btoa(item.bank),item.merchant,item.currency);
+
                         };
 
                         node.appendChild(img);
